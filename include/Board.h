@@ -23,13 +23,15 @@ class Board
 {
 public:
 
-    Board(sf::RenderWindow& window, const std::tuple<GameTextures, GameTextures, GameTextures, GameTextures> player_textures);
-    void switchPlayer(const std::tuple<GameTextures, GameTextures, GameTextures, GameTextures>& player_textures);
+    Board(sf::RenderWindow& window, const std::vector<GameTextures> player_textures);
+    void switchPlayer(const std::vector<GameTextures>& player_textures);
     bool handleInput(const sf::Event& event);
     void drawBoard();
     void createLevel(const GameMaps level/*, const GameSounds sound*/);
     void findObjectColor(const sf::Color& color, const sf::Vector2f& location, size_t x, size_t y, const sf::Image& m_source);
+    void addMovingObject(std::unique_ptr<MovingObject> object);
     void addMovingObject2(std::unique_ptr<MovingObject> object);
+    void addStaticObject(std::unique_ptr<StaticObject> object);
     void addMovingObject(const sf::Vector2f& location, size_t x, size_t y, const sf::Image& m_source);
     void addStaticObject(const sf::Vector2f& location, size_t x, size_t y, const sf::Image& m_source);
     void moveObjects();
@@ -48,7 +50,7 @@ private:
     sf::RenderWindow& m_window;
     b2Vec2 m_gravity;
     b2World m_world;
-    std::tuple<GameTextures, GameTextures, GameTextures, GameTextures> m_player_textures;
+    std::vector<GameTextures> m_player_textures;
 
     //game objects:
     std::vector < std::unique_ptr< MovingObject>>  m_moving_objects;

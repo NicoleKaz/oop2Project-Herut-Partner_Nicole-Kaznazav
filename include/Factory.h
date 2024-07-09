@@ -6,7 +6,7 @@
 #include <vector>
 #include <string>
 #include "StaticObject.h"
-#include "MovingObject.h"  //??'למה לא מכיר את המחלקה
+#include "MovingObject.h" 
 #include <SFML/Graphics.hpp>
 
 
@@ -49,22 +49,24 @@ private:
 template<class ObjectType>
 inline bool Factory<ObjectType>::isExist(sf::Color color)
 {
-    const auto& map = getMap();
+    return getMap().find(color) != getMap().end();
+    //const auto& map = getMap();
 
-    // Check in the map of StaticObjects
-    for (const auto& pair : map) {
-        if (pair.first == color) {
-            return true;
-        }
-    }
-    return false;
+    //// Check in the map of StaticObjects
+    //for (const auto& pair : map) {
+    //    if (pair.first == color) {
+    //        return true;
+    //    }
+    //}
+    //return false;
 }
 
 template<class ObjectType>
 inline bool Factory<ObjectType>::registerObject(sf::Color object, p2Fnc fnc)
 {
     //Insert the object to the map (color, function)
-    Factory::getMap().emplace(object, fnc);
+   /* Factory::getMap().emplace(object, fnc);*/
+    getMap().emplace(object, fnc);
     return true;
 }
 

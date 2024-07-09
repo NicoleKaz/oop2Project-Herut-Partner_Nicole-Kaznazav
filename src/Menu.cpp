@@ -44,22 +44,23 @@ void Menu::ButtonRelease(const MenuPlayer player)
 }
 
 
-std::tuple<GameTextures, GameTextures, GameTextures, GameTextures> Menu::getPlayerTextures() const
+std::vector<GameTextures> Menu::getPlayerTextures() const
 {
 	switch (m_player)
 	{
 	case PLAYER1:
-		return std::tuple<GameTextures, GameTextures, GameTextures, GameTextures>(First_Player, First_Speed, First_Shield,First_Fly);
+		return { First_Player, First_Speed, First_Shield, First_Fly };
 	case PLAYER2:
-		return std::tuple<GameTextures, GameTextures, GameTextures, GameTextures>(Second_Player, Second_Speed, Second_Shield,Second_Fly);
+		return { Second_Player, Second_Speed, Second_Shield, Second_Fly };
 	case PLAYER3:
-		return std::tuple<GameTextures, GameTextures, GameTextures, GameTextures>(Third_Player, Third_Speed, Third_Shield,Third_Fly);
+		return { Third_Player, Third_Speed, Third_Shield, Third_Fly };
 	case PLAYER4:
-		return std::tuple<GameTextures, GameTextures, GameTextures, GameTextures>(Fourth_Player, Fourth_Speed, Fourth_Player,Fourth_Fly);
+		return { Fourth_Player, Fourth_Speed, Fourth_Player, Fourth_Fly };
 	default:
-		return std::tuple<GameTextures, GameTextures, GameTextures, GameTextures>(First_Player, First_Speed,First_Shield,First_Fly);
+		return { First_Player, First_Speed, First_Shield, First_Fly };
 	}
 }
+
 
 void Menu::choosePlayer(const MenuPlayer player)
 {

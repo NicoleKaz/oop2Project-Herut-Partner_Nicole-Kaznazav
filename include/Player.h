@@ -15,7 +15,7 @@ class Player : public MovingObject
 {
 public:
     void setTouchingFloor(bool);
-    Player(b2World&, const std::tuple<GameTextures, GameTextures, GameTextures, GameTextures>, const sf::Vector2f);
+    Player(b2World&, const std::vector<GameTextures>, const sf::Vector2f);
     void move();
     void updateDirection()override;
     void increasePoints();
@@ -58,7 +58,7 @@ private:
     bool m_direction[4] = { false, false, false, false };
 
     std::unique_ptr <PlayerState> m_state;
-    std::tuple<GameTextures, GameTextures, GameTextures, GameTextures> m_player_textures;
+    std::vector<GameTextures> m_player_textures;
     int m_coins;
     bool m_beSpeed = false;
     bool m_beShield = false;

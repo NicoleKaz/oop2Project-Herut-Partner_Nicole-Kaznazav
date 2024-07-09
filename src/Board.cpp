@@ -5,7 +5,7 @@
 //#include <ShooterEnemy.h>
 
 
-Board::Board(sf::RenderWindow& window, const std::tuple<GameTextures, GameTextures, GameTextures, GameTextures> player_textures)
+Board::Board(sf::RenderWindow& window, const std::vector<GameTextures> player_textures)
 :m_window(window), m_gravity(0.0f, 9.8f), m_world(m_gravity), m_player_textures(player_textures)
 {
     m_background.setTexture(Resources::instance().getGameTexture(Level_Background));
@@ -14,8 +14,9 @@ Board::Board(sf::RenderWindow& window, const std::tuple<GameTextures, GameTextur
 	m_world.SetContactListener(&m_contact_listener);
 }
 
-void Board::switchPlayer(const std::tuple<GameTextures, GameTextures, GameTextures, GameTextures>& player_textures)
+void Board::switchPlayer(const std::vector<GameTextures>& player_textures)
 {
+
 	m_player_textures = player_textures;
 }
 
@@ -244,9 +245,9 @@ void Board::createLevel(const GameMaps level)
     }
 }
 
-void Board::findObjectColor(const sf::Color& color, const sf::Vector2f& location,size_t x,size_t y, const sf::Image& m_source)
+void Board::findObjectColor(const sf::Color& color, const sf::Vector2f& location, size_t x, size_t y, const sf::Image& m_source)
 {
-	if (color == sf::Color::White) 
+	if (color == sf::Color::White)
 	{
 		return;
 	}
@@ -254,43 +255,54 @@ void Board::findObjectColor(const sf::Color& color, const sf::Vector2f& location
 	//creating the player sepratly to keep a pointer on him
 	else if ((color == PLAYER_COLOR))
 	{
-		//m_player_textures = m_menu.getPlayerTextures();
 		m_player = new Player(m_world, m_player_textures, location);
 		m_moving_objects.push_back(std::unique_ptr<Player>(m_player));
 		m_player_location = location;
 	}
-
-	else if (Factory<StaticObject>::isExist(m_source.getPixel(x, y)))
+	else
 	{
-		addStaticObject(location, x, y, m_source);	
+		auto movingObject = Factory<MovingObject>::createObject(m_source.getPixel(x, y), m_world, location);
+		if (movingObject)
+		{
+			addMovingObject(std::move(movingObject));
+		}
+		else
+		{
+			auto staticObject = Factory<StaticObject>::createObject(m_source.getPixel(x, y), m_world, location);
+			if (staticObject)
+			{
+				addStaticObject(std::move(staticObject));
+			}
+		}
 	}
-
-	//if moving object color
-	else if (Factory<MovingObject>::isExist(m_source.getPixel(x, y)))
-	{
-		addMovingObject(location, x, y, m_source);
-	}
-
 }
 
-void Board::addMovingObject(const sf::Vector2f& location, size_t x, size_t y, const sf::Image& m_source)
+void Board::addMovingObject(std::unique_ptr<MovingObject> object)
 {
-	m_moving_objects.push_back(Factory<MovingObject>::createObject(m_source.getPixel(x, y),
-		m_world, location));
-
+	m_moving_objects.push_back(std::move(object));
 }
 
-void Board::addStaticObject(const sf::Vector2f& location, size_t x, size_t y, const sf::Image& m_source)
+void Board::addStaticObject(std::unique_ptr<StaticObject> object)
 {
-	m_static_objects.push_back(Factory<StaticObject>::createObject(m_source.getPixel(x, y),
-		m_world, location));
-
+	m_static_objects.push_back(std::move(object));
 }
+
+
+
+
+
 
 void Board::addMovingObject2(std::unique_ptr<MovingObject> object)
 {
 	m_moving_objects.push_back(std::move(object));
 }
+
+
+
+
+
+
+
 
 const b2Vec2 Board::getPlayerPosition()const
 {

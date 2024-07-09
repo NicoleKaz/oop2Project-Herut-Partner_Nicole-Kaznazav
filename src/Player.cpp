@@ -3,8 +3,8 @@
 #include "Player.h"
 
 
-Player::Player(b2World& world, const std::tuple<GameTextures, GameTextures, GameTextures, GameTextures> textures, const sf::Vector2f location)
-    : MovingObject(world, std::get<0>(textures), location), 
+Player::Player(b2World& world, const std::vector<GameTextures> textures, const sf::Vector2f location)
+    : MovingObject(world, textures[0], location),
     m_player_textures(textures),
     m_state(std::make_unique<RegularPlayerState>()),
     m_coins(0),
@@ -169,7 +169,7 @@ void Player::beFly()
 void Player::setSpeedState()
 {
     //changed the player body
-    changeBodyAndSprite(std::get<1>(m_player_textures));
+    changeBodyAndSprite(m_player_textures[1]);
     //changed the pointer
     m_state.reset(new SpeedPlayerState());
     m_object.setRotation(0);
@@ -179,7 +179,7 @@ void Player::setSpeedState()
 void Player::setRegularState()
 {
     //changed the player body
-    changeBodyAndSprite(std::get<0>(m_player_textures));
+    changeBodyAndSprite(m_player_textures[0]);
     //changed the pointer
     m_state.reset(new RegularPlayerState());
     m_object.setRotation(0);
@@ -189,7 +189,7 @@ void Player::setRegularState()
 void Player::setShieldState()
 {
     //changed the player body
-    changeBodyAndSprite(std::get<2>(m_player_textures));
+    changeBodyAndSprite(m_player_textures[2]);
     //changed the pointer
     m_state.reset(new ShieldPlayerState());
 
@@ -199,7 +199,7 @@ void Player::setShieldState()
 void Player::setFlyState()
 {
 	//changed the player body
-	changeBodyAndSprite(std::get<3>(m_player_textures));
+	changeBodyAndSprite(m_player_textures[3]);
 	//changed the pointer
 	m_state.reset(new FlyPlayerState());
 	m_object.setRotation(0);

@@ -3,7 +3,9 @@
 #include <SFML/Graphics.hpp>
 #include "Resources.h"
 #include "Command.h"
-#include <tuple>
+#include <vector>
+#include <memory>
+
 
 
 
@@ -24,7 +26,7 @@ public:
 
 	void choosePlayer(const MenuPlayer player);
 	const sf::Sprite getPlayer(const MenuPlayer player) const;
-	std::tuple<GameTextures, GameTextures, GameTextures, GameTextures> getPlayerTextures() const;
+	std::vector<GameTextures> getPlayerTextures() const;
 
 
 
