@@ -2,6 +2,7 @@
 #configure_file ("level1.txt" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("menuBackground.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("background1.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("Menu_Background_Score.png" ${CMAKE_BINARY_DIR} COPYONLY)
 
 configure_file ("Title.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Switch_Player.png" ${CMAKE_BINARY_DIR} COPYONLY)
@@ -35,6 +36,8 @@ configure_file ("Player4_Speed.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Sticker.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("instructions.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Map1.png" ${CMAKE_BINARY_DIR} COPYONLY)
+#configure_file ("Map2.png" ${CMAKE_BINARY_DIR} COPYONLY)
+#configure_file ("Map3.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("CoinScore.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("CoinSpeed.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("CoinShield.png" ${CMAKE_BINARY_DIR} COPYONLY)
@@ -58,7 +61,7 @@ configure_file ("Enemy2.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Bullet.png" ${CMAKE_BINARY_DIR} COPYONLY)
 
 configure_file ("level1.png" ${CMAKE_BINARY_DIR} COPYONLY)
-#configure_file ("level2.png" ${CMAKE_BINARY_DIR} COPYONLY)
-#configure_file ("level3.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("level2.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("level3.png" ${CMAKE_BINARY_DIR} COPYONLY)
 
 

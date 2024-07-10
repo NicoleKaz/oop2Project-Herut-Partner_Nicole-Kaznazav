@@ -4,7 +4,7 @@
 
 //This functions define the arrays
 Menu::Menu(sf::RenderWindow& window)
-	:m_window(window)
+	:m_window(window),m_score_table(window)
 {
 	//background sprite
 	m_background.setTexture(Resources::instance().getMenuTexture(menuBackground));
@@ -24,11 +24,10 @@ Menu::Menu(sf::RenderWindow& window)
 	setPosition();
 }
 
-sf::Sprite Menu::getButton(const Button button) const
+void Menu::drawScoreTable()
 {
-	return m_buttons[button];
+	m_score_table.draw();
 }
-
 
 //This function changes the color of the button as soon as the user hovers over it with the mouse
 void Menu::ButtonPress(const MenuPlayer player)
@@ -66,13 +65,6 @@ void Menu::choosePlayer(const MenuPlayer player)
 {
 	m_player = player;
 }
-
-const sf::Sprite Menu::getPlayer(const MenuPlayer player) const
-{
-	//return the sprite
-	return m_players[player];
-}
-
 
 
 

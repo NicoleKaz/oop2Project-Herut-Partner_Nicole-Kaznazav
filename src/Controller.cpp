@@ -6,8 +6,11 @@
 Controller::Controller()
     :m_window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Geometry Dash"),
     m_menu(m_window),
-    m_gameManager(m_window, m_menu)
+    m_gameManager(m_window, m_menu),
+    m_scoreTable(m_window)
 {
+    m_scoreTable.loadScores(scoreFile);
+
     m_window.setFramerateLimit(120);
     m_gameView.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
     m_gameView.setCenter(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
@@ -63,7 +66,25 @@ void Controller::run()
 
             }
         }
+        if (m_gameManager.isWin())
+        {
+			//m_gameManager.setWin(false);
+			//m_gameManager.setFinish(false);
+
+			addScore(m_gameManager.getCoins());
+            m_gameView.setCenter(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
+            m_window.setView(m_gameView);
+            //winLoop(); //taking name to scoreboard
+        }
+        addScore(m_gameManager.getCoins());
+
     }
+}
+
+void Controller::addScore(int score)
+{
+    m_scoreTable.addScore(score);
+    m_scoreTable.saveScores(scoreFile);
 }
 
 void Controller::handleSwitchPlayer(const sf::Vector2f location)
@@ -115,10 +136,6 @@ void Controller::handleMenuMouseMoved(const sf::Vector2f location)
     }
 }
 
-Menu& Controller::getMenu()
-{
-    return m_menu;
-}
 
 void Controller::quitGame()
 {

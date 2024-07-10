@@ -33,15 +33,11 @@ void GameManager::startGame()
         m_board.handleCollision(); //maybe change the name 
         setView(); // update the game view and background 
 
-        //if (m_board.isWin())
-        //{
-        //    m_game_over = true;
-        //    //reset game view
-        //    m_gameView.setCenter(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
-        //    m_window.setView(m_gameView);
-        //    winLoop(); //taking name to scoreboard
-        //}
-
+        if (m_board.isWin())
+		{
+			m_isFinish = true;
+			m_isWin = true;		
+		}
         if (m_isFinish)
         {
             //reset board for next game
@@ -50,8 +46,6 @@ void GameManager::startGame()
             m_gameView.setCenter(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
             m_window.setView(m_gameView);
         }
-
-
     }
 }
 
@@ -63,6 +57,18 @@ void GameManager::setView()
     const float playerX = playerPosition.x * SCALE;
     m_gameView.setCenter(playerX, WINDOW_HEIGHT / 2);
     m_board.viewBackground(playerX - last_pos); //make the background move with the view
+}
+
+bool GameManager::isWin() const
+{
+    return m_isWin;
+}
+
+
+int 
+GameManager::getCoins() const
+{
+	return m_board.getCoins();
 }
 
 Board& GameManager::getBoard()

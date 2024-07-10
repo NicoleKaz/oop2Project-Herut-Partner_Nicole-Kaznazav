@@ -13,7 +13,7 @@ enum Direction { Right, Left,Up, Stay };
 enum ToolBarWord { LIFE, SCORE, LEVEL, TIME, KEYCOUNTER };
 enum Sound { CLICK, MINUS_LIFE, EAT, CLOCK_SOUND, DOOR_SOUND, FREEZE_SOUND, KEY_SOUND, GAME_OVER, WIN, EXTRA_LIFE };
 enum Music { SONG, SECOND_END };
-enum MenuTextures { menuBackground, Title};
+enum MenuTextures { menuBackground, Title, Score_Background };
 enum MenuPlayer { PLAYER1, PLAYER2, PLAYER3, PLAYER4};
 enum MenuLevels { level1, level2, level3};
 enum GameMaps { Map1, Map2, Map3};
@@ -45,7 +45,7 @@ const int TOOL_BAR = 5;
 const int SOUNDS = 10;
 const int MUSIC = 2;
 const float SPRITE_SIZE = 400.f;
-const int MENU_TEXTURES = 2;
+const int MENU_TEXTURES = 3;
 const int GAME_MAPS = 3;
 
 const int GAME_TEXTURES = 42;
@@ -109,18 +109,18 @@ class Resources
 public:
 
 	Resources(); //private so there will be no duplicates
-	const sf::Texture& getMenuPlayer(const MenuPlayer player) const;
-	const sf::Texture& getInstruction(const Instructions instruction) const;
 	Resources(const Resources&) = default;
-	Resources& operator=(const Resources&) = default;
 	static Resources& instance(); //static so the resources will called once
-	const sf::Texture& getGameTexture(const GameTextures texture) const;
-	const sf::Font& getFont() const;
 
-	const sf::Texture& getMenuTexture(const MenuTextures)const;
-	const sf::Texture& getLevelsMenu(const MenuLevels button) const;
-	const sf::Texture& getButton(const Button)const;
-	const sf::Image& getMap(const GameMaps map) const;
+	const sf::Texture& getMenuPlayer(const MenuPlayer player) const { return m_menuPlayers[player]; }
+	const sf::Texture& getInstruction(const Instructions instruction) const { return m_instructionsTextures[instruction]; }
+	const sf::Texture& getGameTexture(const GameTextures texture) const { return m_game_textures[texture]; }
+	const sf::Texture& getLevelsMenu(const MenuLevels button) const { return m_menuLevel[button]; }
+	const sf::Image& getMap(const GameMaps map) const { return m_maps[map]; }
+	const sf::Font& getFont() const { return m_font; }
+	const sf::Texture& getMenuTexture(const MenuTextures texture)const { return m_menuTextures[texture]; }
+	const sf::Texture& getButton(const Button button)const { return m_menuButton[button]; }
+
 
 	void playSound(Sound);
 
@@ -132,11 +132,7 @@ private:
 	sf::Texture m_game_textures[GAME_TEXTURES];
 	sf::Texture m_menuPlayers[MENU_PLAYER];
 	sf::Texture m_menuLevel[LEVEL_MENU];
-	sf::Texture m_playerSpeed;
-	sf::Texture m_playerShield;
 
-
-	std::vector<sf::Texture> m_MenuTexture;
 
 	sf::Font m_font;
 	sf::Image m_maps[GAME_MAPS];

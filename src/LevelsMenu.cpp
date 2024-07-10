@@ -93,13 +93,13 @@ void LevelsMenu::add(const MenuLevels button, std::unique_ptr<Command> command)
 void LevelsMenu::locateObjects()
 {
 	//level buttons
-	m_menuLevel[level1].setPosition(sf::Vector2f((WINDOW_WIDTH - m_menuLevel[level1].getTextureRect().width) * 0.25,
+	m_menuLevel[level1].setPosition(sf::Vector2f((WINDOW_WIDTH - m_menuLevel[level1].getTextureRect().width) * 0.15,
 		(WINDOW_HEIGHT - m_menuLevel[level1].getTextureRect().height) * 0.25));
 
-	m_menuLevel[level2].setPosition(sf::Vector2f((WINDOW_WIDTH - m_menuLevel[level2].getTextureRect().width) * 0.75,
+	m_menuLevel[level2].setPosition(sf::Vector2f((WINDOW_WIDTH - m_menuLevel[level2].getTextureRect().width) * 0.90,
 		(WINDOW_HEIGHT - m_menuLevel[level2].getTextureRect().height) * 0.25));
 
-	m_menuLevel[level3].setPosition(sf::Vector2f((WINDOW_WIDTH - m_menuLevel[level3].getTextureRect().width) * 0.25,
+	m_menuLevel[level3].setPosition(sf::Vector2f((WINDOW_WIDTH - m_menuLevel[level3].getTextureRect().width) * 0.50,
 		(WINDOW_HEIGHT - m_menuLevel[level3].getTextureRect().height) * 0.75));
 
 	/*m_menuLevel[Spectre].setPosition(sf::Vector2f((WINDOW_WIDTH - m_menuLevel[Spectre].getTextureRect().width) * 0.75,

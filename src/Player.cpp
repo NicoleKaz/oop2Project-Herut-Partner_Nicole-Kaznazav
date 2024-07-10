@@ -70,7 +70,7 @@ void Player::releaseSpace()
 
 void Player::increasePoints()
 {
-   m_coins++;
+   m_coins+=5;
 }
 
 

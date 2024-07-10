@@ -5,6 +5,7 @@
 #include "Command.h"
 #include <vector>
 #include <memory>
+#include "ScoreTable.h"
 
 
 
@@ -15,7 +16,8 @@ class Menu
 public:
 
 	Menu(sf::RenderWindow& window);
-	sf::Sprite getButton(const Button) const;
+	void drawScoreTable() ;
+	sf::Sprite getButton(const Button button) const { return m_buttons[0]; }
 	void ButtonPress(const MenuPlayer player);
 	void ButtonRelease(const MenuPlayer player);
 
@@ -25,12 +27,14 @@ public:
 	void action(const sf::Vector2f& location) const;
 
 	void choosePlayer(const MenuPlayer player);
-	const sf::Sprite getPlayer(const MenuPlayer player) const;
+	const sf::Sprite getPlayer(const MenuPlayer player) const { return m_players[player]; }
 	std::vector<GameTextures> getPlayerTextures() const;
 
 
 
 private:
+
+	ScoreTable m_score_table;
 	sf::RenderWindow& m_window;
 	sf::Sprite m_background;
 	sf::Sprite m_title;

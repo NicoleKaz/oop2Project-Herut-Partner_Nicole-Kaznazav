@@ -37,12 +37,15 @@ public:
     void moveObjects();
     const b2Vec2 getPlayerPosition() const;
     void viewBackground(const float addition);
+    int getCoins() const;
     void updateMovingDirections()const;
     void resetBoard();
     void rightReleased() const;
     void leftReleased() const;
     void spaceReleased() const;
     void handleCollision();
+
+	bool isWin() const { return m_win; }
 
 
 private:

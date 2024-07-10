@@ -52,49 +52,24 @@ bool Board::handleInput(const sf::Event& event)
 	return false;
 }
 
+
+int Board::getCoins() const
+{
+	return m_coins;
+}
+
 void Board::updateMovingDirections()const
 {
 	// Update each moving object's direction based on its state
 	for (auto& object : m_moving_objects)
 	{
 		object->updateDirection();
-
-
 	}
-
 }
 
 
 void Board::resetBoard()
-//{
-//	//clear vectors
-//	m_static_objects.clear();
-//	m_moving_objects.clear();
-//	//reset members
-//	m_player = nullptr;
-//	m_win = false;
-//	m_background.setPosition(0, 0);
-//	m_background.setColor(sf::Color::White);
-//
-//	// Destroy all fixtures
-//	b2Body* body = m_world.GetBodyList();
-//	while (body) {
-//		b2Fixture* fixture = body->GetFixtureList();
-//		while (fixture) {
-//			b2Fixture* nextFixture = fixture->GetNext();
-//			body->DestroyFixture(fixture);
-//			fixture = nextFixture;
-//		}
-//		body = body->GetNext();
-//	}
-//
-//	// Destroy all bodies
-//	body = m_world.GetBodyList();
-//	while (body) {
-//		b2Body* nextBody = body->GetNext();
-//		m_world.DestroyBody(body);
-//		body = nextBody;
-//	}
+
 {
 	//clear vectors
 	m_static_objects.clear();
@@ -212,8 +187,6 @@ void Board::handleCollision()
 	}
 }
 
-
-
 //This function draws the board
 void Board::drawBoard()
 {
@@ -286,19 +259,6 @@ void Board::addStaticObject(std::unique_ptr<StaticObject> object)
 {
 	m_static_objects.push_back(std::move(object));
 }
-
-
-
-
-
-
-void Board::addMovingObject2(std::unique_ptr<MovingObject> object)
-{
-	m_moving_objects.push_back(std::move(object));
-}
-
-
-
 
 
 

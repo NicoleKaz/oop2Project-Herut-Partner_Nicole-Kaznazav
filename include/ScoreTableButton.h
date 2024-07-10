@@ -15,6 +15,6 @@ public:
 
 private:
 	//LevelsMenu m_levels_menu;
-	Controller* m_game;
+	//Controller* m_game;
 	//sf::RenderWindow& m_window;
 };

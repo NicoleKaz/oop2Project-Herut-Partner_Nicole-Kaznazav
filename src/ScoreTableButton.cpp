@@ -2,23 +2,41 @@
 
 #include "ScoreTableButton.h"
 #include "Controller.h"
-//#include "WithoutYouButton.h"
-//#include "GreyhoundButton.h"
-//#include "OnlyTheHorsesButton.h"
-//#include "SpectreButton.h"
 
 
 ScoreTableButton::ScoreTableButton(Controller* game, sf::RenderWindow& window, GameManager* manager)
 	:Command(game, window,manager)
 {
-	//adding buttons to the submenu
-	//m_levels_menu.add(WithoutYou, std::make_unique<WithoutYouButton>(m_game, m_window));
-	//m_levels_menu.add(Greyhound, std::make_unique<GreyhoundButton>(m_game, m_window));
-	//m_levels_menu.add(OnlyTheHorses, std::make_unique<OnlyTheHorsesButton>(m_game, m_window));
-	//m_levels_menu.add(Spectre, std::make_unique<SpectreButton>(m_game, m_window));
 }
 
 void ScoreTableButton::execute()
 {
-	// כאשר לוחצים על כפתור המשחק, הפונקציה תבצע את הפעולות הנדרשות להתחלת המשחק
+    bool click = false;
+
+    //rendering the score table
+    while (m_window.isOpen() && !click)
+    {
+        m_window.clear();
+        m_game->getMenu().drawScoreTable();
+        m_window.display();
+
+        if (auto event = sf::Event{}; m_window.waitEvent(event))
+        {
+            switch (event.type)
+            {
+            case sf::Event::MouseButtonReleased:
+            {
+                click = true;
+                break;
+            }
+            case sf::Event::Closed:
+                m_window.close();
+                break;
+            }
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+        {
+            break;
+        }
+    }
 }
