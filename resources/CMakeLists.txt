@@ -51,6 +51,7 @@ configure_file ("Floor.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Helfcube.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Gate3.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Gate2.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("Gate5.png" ${CMAKE_BINARY_DIR} COPYONLY)
 
 configure_file ("Thorn1.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Thorn2.png" ${CMAKE_BINARY_DIR} COPYONLY)

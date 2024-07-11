@@ -91,6 +91,7 @@ void Resources::loadTextures()
 	m_game_textures[Wheel].loadFromFile("SpikedWheel.png");
 	m_game_textures[Gate3].loadFromFile("Gate3.png");
 	m_game_textures[Gate2].loadFromFile("Gate2.png");
+	m_game_textures[Gate5].loadFromFile("Gate5.png");
 
 	m_font.loadFromFile("C:/Windows/Fonts/Arial.ttf");
 }
