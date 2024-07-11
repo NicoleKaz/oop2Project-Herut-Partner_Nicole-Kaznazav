@@ -16,6 +16,18 @@ void FlyPlayerState::move(bool* direction, b2Body* body, bool& m_touchingFloor, 
         else
             body->ApplyLinearImpulseToCenter(b2Vec2(0.0f, FLY_FORCE), true);
     }
+    if (direction[Right])
+    {
+        //keep Y vilocity
+        float currentSpeed_y = body->GetLinearVelocity().y;
+        //move X acording to player movement
+        body->SetLinearVelocity({ PLAYER_MOVEMENT_SPEED, currentSpeed_y });
+    }
+    if (direction[Left])
+    {
+        float currentSpeed_y = body->GetLinearVelocity().y;
+        body->SetLinearVelocity({ -PLAYER_MOVEMENT_SPEED, currentSpeed_y });
+    }
     else
     {
         //saving last vilocity and keep moving that way

@@ -20,18 +20,18 @@ configure_file ("Player1_Fly.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Player2.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Player2_Shield.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Player2_Speed.png" ${CMAKE_BINARY_DIR} COPYONLY)
-#configure_file ("Player2_Fly.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("Player2_Fly.png" ${CMAKE_BINARY_DIR} COPYONLY)
 
 
 configure_file ("Player3.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Player3_Shield.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Player3_Speed.png" ${CMAKE_BINARY_DIR} COPYONLY)
-#configure_file ("Player3_Fly.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("Player3_Fly.png" ${CMAKE_BINARY_DIR} COPYONLY)
 
 configure_file ("Player4.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Player4_Shield.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Player4_Speed.png" ${CMAKE_BINARY_DIR} COPYONLY)
-#configure_file ("Player4_Fly.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("Player4_Fly.png" ${CMAKE_BINARY_DIR} COPYONLY)
 
 configure_file ("Sticker.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("instructions.png" ${CMAKE_BINARY_DIR} COPYONLY)

@@ -9,7 +9,7 @@ ShooterEnemy::ShooterEnemy(b2World& world, const GameTextures texture, const sf:
 void ShooterEnemy::shoot()
 {
     static int counter = 0; 
-    if (m_shootClock.getElapsedTime().asSeconds() > 3.f)
+    if (m_shootClock.getElapsedTime().asSeconds() > 1.f)
     {
 		m_shootClock.restart();
         //counter = 0;

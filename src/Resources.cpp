@@ -64,17 +64,17 @@ void Resources::loadTextures()
 	m_game_textures[Second_Player].loadFromFile("Player2.png");
 	m_game_textures[Second_Shield].loadFromFile("Player2_Shield.png");
 	m_game_textures[Second_Speed].loadFromFile("Player2_Speed.png");
-	//m_game_textures[Second_Fly].loadFromFile("Player2_Fly.png");
+	m_game_textures[Second_Fly].loadFromFile("Player2_Fly.png");
  
 	m_game_textures[Third_Player].loadFromFile("Player3.png");
 	m_game_textures[Third_Shield].loadFromFile("Player3_Shield.png");
 	m_game_textures[Third_Speed].loadFromFile("Player3_Speed.png");
-	//m_game_textures[Third_Fly].loadFromFile("Player3_Fly.png");
+	m_game_textures[Third_Fly].loadFromFile("Player3_Fly.png");
 
 	m_game_textures[Fourth_Player].loadFromFile("Player4.png");
 	m_game_textures[Fourth_Shield].loadFromFile("Player4_Shield.png");
 	m_game_textures[Fourth_Speed].loadFromFile("Player4_Speed.png");
-	//m_game_textures[Fourth_Fly].loadFromFile("Player4_Fly.png");
+	m_game_textures[Fourth_Fly].loadFromFile("Player4_Fly.png");
 
 
 	m_game_textures[Enemy1].loadFromFile("Enemy1.png");

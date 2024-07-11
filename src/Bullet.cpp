@@ -24,7 +24,7 @@ Bullet::Bullet(b2World& world, const GameTextures texture, const sf::Vector2f po
     m_body->CreateFixture(&fixtureDef);
 
     // Apply impulse force to the Box2D body
-    b2Vec2 forceScaled{ 100 * 8.f / SCALE, 0 };
+    b2Vec2 forceScaled{ 50* 8.f / SCALE, 0 };
 
     m_body->SetLinearVelocity(forceScaled);
     m_body->ApplyLinearImpulse(forceScaled, m_body->GetWorldCenter(), true);

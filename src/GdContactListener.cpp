@@ -57,8 +57,8 @@ void GdContactListener::BeginContact(b2Contact* contact)
             switch (entrance.getType())
             {
             case Gate3:
-                 static_cast<Player&>(player).reverseGravity();
-                 static_cast<Entrance&>(other).changeColorTemporarily(sf::Color::Red);
+                static_cast<Player&>(player).reverseGravity();
+                static_cast<Entrance&>(other).changeColorTemporarily(sf::Color::Red);
                 break;
             case Gate2:
                 static_cast<Player&>(player).beRegular();
@@ -82,23 +82,73 @@ void GdContactListener::BeginContact(b2Contact* contact)
             }
         }
 
+        /* else if (typeid(player) == typeid(Player) && typeid(other) == typeid(ShooterEnemy))
+         {
+             static_cast<Player&>(player).setPlayerKill();
+         }
+         else if (typeid(player) == typeid(Player) && typeid(other) == typeid(Bullet))
+         {
+             static_cast<Player&>(player).setPlayerKill();
+         }
+         */
 
-        if (typeid(player) == typeid(Player))
+        else if ((typeid(*objectA) == typeid(ShooterEnemy) && typeid(*objectB) == typeid(Player)) ||
+            (typeid(*objectB) == typeid(ShooterEnemy) && typeid(*objectA) == typeid(Player)))
+        {
+            std::cout << "Player hit by ShooterEnemy" << std::endl;
+            static_cast<Player&>(player).setPlayerKill();
+        }
+
+        else if ((typeid(*objectA) == typeid(Bullet) && typeid(*objectB) == typeid(Player)) ||
+            (typeid(*objectB) == typeid(Bullet) && typeid(*objectA) == typeid(Player)))
+        {
+
+            std::cout << "Player hit by Bullet" << std::endl;
+            static_cast<Player&>(player).setPlayerKill();
+        }
+
+
+        //if ((typeid(*objectA) == typeid(Bullet) && typeid(*objectB) == typeid(Player)) ||
+        //    (typeid(*objectB) == typeid(Bullet) && typeid(*objectA) == typeid(Player)))
+        //{
+        //    std::cout << "Player hit by Bullet" << std::endl;
+        //    //static_cast<Player&>(player).setPlayerKill();
+        //    // Determine which object is the player and cast it
+        //    if (typeid(*objectA) == typeid(Player))
+        //    {
+        //        static_cast<Player&>(*objectA).setPlayerKill();
+        //    }
+        //    else
+        //    {
+        //        static_cast<Player&>(*objectB).setPlayerKill();
+        //    }
+        //}
+
+
+
+        /*if (typeid(player) == typeid(Player))
         {
             if (typeid(other) == typeid(Bullet))
             {
+                std::cout << "Player hit by Bullet" << std::endl;
                 static_cast<Player&>(player).setPlayerKill();
             }
             else if (typeid(other) == typeid(ShooterEnemy))
             {
+                std::cout << "Player hit by ShooterEnemy" << std::endl;
                 static_cast<Player&>(player).setPlayerKill();
             }
-        }
+        }*/
 
 
 
         // טיפול בהתנגשויות של ChaserEnemy
-        if (typeid(*objectA) == typeid(ChaserEnemy) && typeid(*objectB) != typeid(Player) && typeid(*objectB) != typeid(Floor))
+        else if ((typeid(*objectA) == typeid(ChaserEnemy) && typeid(*objectB) == typeid(Player)) ||
+            (typeid(*objectB) == typeid(ChaserEnemy) && typeid(*objectA) == typeid(Player)))
+        {
+            static_cast<Player&>(player).setPlayerKill();
+        }
+        else if (typeid(*objectA) == typeid(ChaserEnemy) && typeid(*objectB) != typeid(Player) && typeid(*objectB) != typeid(Floor))
         {
             static_cast<ChaserEnemy&>(*objectA).notifyCollision();
         }
@@ -106,22 +156,23 @@ void GdContactListener::BeginContact(b2Contact* contact)
         {
             static_cast<ChaserEnemy&>(*objectB).notifyCollision();
         }
-        if (typeid(*objectA) == typeid(ChaserEnemy) && typeid(*objectB) == typeid(ChaserEnemy))
+        else if (typeid(*objectA) == typeid(ChaserEnemy) && typeid(*objectB) == typeid(ChaserEnemy))
         {
             static_cast<ChaserEnemy&>(*objectA).notifyCollision();
             static_cast<ChaserEnemy&>(*objectB).notifyCollision();
         }
-		// טיפול בהתנגשויות של ShooterEnemy with ChaserEnemy
-		/*if (typeid(*objectA) == typeid(ShooterEnemy) && typeid(*objectB) == typeid(ChaserEnemy))
-		{
-			static_cast<ShooterEnemy&>(*objectA).notifyCollision();
-			static_cast<ChaserEnemy&>(*objectB).notifyCollision();
-		}
-		else if (typeid(*objectB) == typeid(ShooterEnemy) && typeid(*objectA) == typeid(ChaserEnemy))
-		{
-			static_cast<ShooterEnemy&>(*objectB).notifyCollision();
-			static_cast<ChaserEnemy&>(*objectA).notifyCollision();
-		}*/
 
+
+        // טיפול בהתנגשויות של ShooterEnemy with ChaserEnemy
+        /*if (typeid(*objectA) == typeid(ShooterEnemy) && typeid(*objectB) == typeid(ChaserEnemy))
+        {
+            static_cast<ShooterEnemy&>(*objectA).notifyCollision();
+            static_cast<ChaserEnemy&>(*objectB).notifyCollision();
+        }
+        else if (typeid(*objectB) == typeid(ShooterEnemy) && typeid(*objectA) == typeid(ChaserEnemy))
+        {
+            static_cast<ShooterEnemy&>(*objectB).notifyCollision();
+            static_cast<ChaserEnemy&>(*objectA).notifyCollision();
+        }*/
     }
 }
