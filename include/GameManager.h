@@ -11,7 +11,7 @@ public:
 
     void startGame();
     void setView();
-    bool isWin() const;
+    bool isWin() ;
     int getCoins() const;
     Board& getBoard();
 
@@ -23,5 +23,6 @@ private:
     bool m_isFinish = false;
 	bool m_isWin = false;
     sf::View m_gameView;
+    int m_coins;
 
 };

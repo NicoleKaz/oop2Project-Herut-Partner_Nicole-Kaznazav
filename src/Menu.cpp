@@ -29,6 +29,12 @@ void Menu::drawScoreTable()
 	m_score_table.draw();
 }
 
+void Menu::updateScoreTable(const int score)
+{
+	m_score_table.addScore(score);
+	m_score_table.saveScores(scoreFile);
+}
+
 //This function changes the color of the button as soon as the user hovers over it with the mouse
 void Menu::ButtonPress(const MenuPlayer player)
 {

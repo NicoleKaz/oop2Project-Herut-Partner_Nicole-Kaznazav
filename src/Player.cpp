@@ -256,7 +256,7 @@ const bool Player::isAlive()const
 
 const int Player::getCoins()const
 {
-    return 0; //m_coins
+	return m_coins;
 }
 
 

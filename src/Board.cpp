@@ -55,7 +55,7 @@ bool Board::handleInput(const sf::Event& event)
 
 int Board::getCoins() const
 {
-	return m_coins;
+	return m_player->getCoins();
 }
 
 void Board::updateMovingDirections()const

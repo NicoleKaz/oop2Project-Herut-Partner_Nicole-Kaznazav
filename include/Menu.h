@@ -17,6 +17,7 @@ public:
 
 	Menu(sf::RenderWindow& window);
 	void drawScoreTable() ;
+	void updateScoreTable(const int score);
 	sf::Sprite getButton(const Button button) const { return m_buttons[0]; }
 	void ButtonPress(const MenuPlayer player);
 	void ButtonRelease(const MenuPlayer player);
@@ -34,6 +35,7 @@ public:
 
 private:
 
+	std::string scoreFile = "scores.txt";
 	ScoreTable m_score_table;
 	sf::RenderWindow& m_window;
 	sf::Sprite m_background;

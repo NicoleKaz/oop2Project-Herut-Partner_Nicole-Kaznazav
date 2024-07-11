@@ -64,7 +64,6 @@ private:
     sf::Vector2f m_player_location;
     
     GdContactListener m_contact_listener;
-	int m_coins = 0;
 
     bool m_win = false;
 //    sf::Sound m_game_song;

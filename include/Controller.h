@@ -29,7 +29,6 @@ public:
 	int getPlayer();
 	void quitGame();
 	void chooseLevel();
-	void addScore(int score);
 
 
 
@@ -39,10 +38,9 @@ private:
 	Menu m_menu;
 	GameManager m_gameManager;
 	Resources m_resources;
-	ScoreTable m_scoreTable;
 
 	
-	std::string scoreFile = "scores.txt";
+	//std::string scoreFile = "scores.txt";
 	sf::View m_gameView;
 	sf::Clock m_GameClock;
 

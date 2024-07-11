@@ -4,7 +4,8 @@ GameManager::GameManager(sf::RenderWindow& window, Menu& menu)
     : m_window(window), m_menu(menu), m_board(m_window, m_menu.getPlayerTextures())
 {
    	m_gameView.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-	m_gameView.setCenter(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
+	m_gameView.setCenter(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2),
+    m_coins = 0;
 }
 
 void GameManager::startGame()
@@ -40,8 +41,9 @@ void GameManager::startGame()
 		}
         if (m_isFinish)
         {
+			m_coins = m_board.getCoins();
             //reset board for next game
-            m_board.resetBoard();
+              m_board.resetBoard();
             //reset game view - (if the player exit with escape)
             m_gameView.setCenter(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
             m_window.setView(m_gameView);
@@ -59,16 +61,20 @@ void GameManager::setView()
     m_board.viewBackground(playerX - last_pos); //make the background move with the view
 }
 
-bool GameManager::isWin() const
+bool GameManager::isWin() 
 {
-    return m_isWin;
+    if (m_isWin)
+    {
+        m_isWin = false;
+        return true;
+    }
+    return false;
 }
 
 
-int 
-GameManager::getCoins() const
+int GameManager::getCoins() const
 {
-	return m_board.getCoins();
+	return m_coins;
 }
 
 Board& GameManager::getBoard()

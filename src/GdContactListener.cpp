@@ -87,12 +87,10 @@ void GdContactListener::BeginContact(b2Contact* contact)
         {
             if (typeid(other) == typeid(Bullet))
             {
-                std::cout << "Player hit by Bullet" << std::endl;
                 static_cast<Player&>(player).setPlayerKill();
             }
             else if (typeid(other) == typeid(ShooterEnemy))
             {
-                std::cout << "Player hit by ShooterEnemy" << std::endl;
                 static_cast<Player&>(player).setPlayerKill();
             }
         }
