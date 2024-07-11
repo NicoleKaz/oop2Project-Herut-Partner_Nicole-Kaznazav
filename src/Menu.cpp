@@ -29,10 +29,10 @@ void Menu::drawScoreTable()
 	m_score_table.draw();
 }
 
-void Menu::updateScoreTable(const int score)
+void Menu::updateScoreTable(const std::string& username, const int score)
 {
-	m_score_table.addScore(score);
-	m_score_table.saveScores(scoreFile);
+	m_score_table.addScore(username, score);
+	m_score_table.saveScores("scores.txt");
 }
 
 //This function changes the color of the button as soon as the user hovers over it with the mouse

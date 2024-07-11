@@ -21,7 +21,7 @@ ScoreTable::ScoreTable(sf::RenderWindow& window)
 	loadScores("scores.txt");
 }
 
-void ScoreTable::loadScores(const std::string& filename) 
+void ScoreTable::loadScores(const std::string& filename)
 {
     std::ifstream file(filename);
     if (file.is_open())
@@ -30,59 +30,58 @@ void ScoreTable::loadScores(const std::string& filename)
         while (std::getline(file, line))
         {
             std::istringstream iss(line);
+            std::string username;
             int score;
-            if (iss >> score) 
+            if (iss >> username >> score)
             {
-                m_scores.push_back(score);
+                m_scores.emplace_back(username, score);
             }
         }
-		std::cout << m_scores.size() << std::endl;
         file.close();
     }
-    //sortScores();
 }
 
 void ScoreTable::saveScores(const std::string& filename)
 {
     std::ofstream file(filename);
-    if (file.is_open()) 
+    if (file.is_open())
     {
-        for (const auto& score : m_scores) 
+        for (const auto& entry : m_scores)
         {
-            file << score << std::endl;
+            file << entry.first << " " << entry.second << std::endl;
         }
-		file.close();
+        file.close();
     }
 }
 
-void ScoreTable::addScore(int score)
+void ScoreTable::addScore(const std::string& username, int score)
 {
-    m_scores.push_back(score);
+    m_scores.emplace_back(username, score);
     sortScores();
-    if (m_scores.size() > maxScores) 
+    if (m_scores.size() > maxScores)
     {
         m_scores.pop_back();
     }
 }
 
-void ScoreTable::sortScores() 
+void ScoreTable::sortScores()
 {
-    std::sort(m_scores.begin(), m_scores.end(), std::greater<int>());
+    std::sort(m_scores.begin(), m_scores.end(), [](const auto& a, const auto& b)
+        {
+        return a.second > b.second;
+        });
 }
 
 void ScoreTable::draw()
 {
-    //loadScores("scores.txt");
     m_window.draw(m_backgroundScore);
     m_window.draw(m_titleScore);
 
-	int count = 0;
     for (size_t i = 0; i < m_scores.size(); i++)
     {
         sf::Text text;
         text.setFont(Resources::instance().getFont());
-        text.setString(std::to_string(m_scores[i]));
-		std::cout << m_scores[i] << std::endl;
+        text.setString(m_scores[i].first + ": " + std::to_string(m_scores[i].second));
         text.setCharacterSize(24);
         text.setFillColor(sf::Color::White);
         text.setPosition(m_table.x + 20.f, i * 40.f + 250.f);

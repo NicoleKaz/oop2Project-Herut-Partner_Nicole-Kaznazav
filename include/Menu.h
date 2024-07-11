@@ -17,6 +17,7 @@ public:
 
 	Menu(sf::RenderWindow& window);
 	void drawScoreTable() ;
+	void updateScoreTable(const std::string& username, const int score);
 	void updateScoreTable(const int score);
 	sf::Sprite getButton(const Button button) const { return m_buttons[0]; }
 	void ButtonPress(const MenuPlayer player);

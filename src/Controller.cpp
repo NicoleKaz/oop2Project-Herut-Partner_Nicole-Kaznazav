@@ -67,16 +67,25 @@ void Controller::run()
         {
 			//m_gameManager.setWin(false);
 			//m_gameManager.setFinish(false);
-            m_menu.updateScoreTable(m_gameManager.getCoins());
-  /*          m_scoreTable.addScore(m_gameManager.getCoins());
-            m_scoreTable.saveScores(scoreFile);*/
+           // m_menu.updateScoreTable(m_gameManager.getCoins());
             m_gameView.setCenter(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
             m_window.setView(m_gameView);
-            //winLoop(); //taking name to scoreboard
+            fillScoreTable(); //taking name to scoreboard
         }
 
     }
 }
+
+void Controller::fillScoreTable()
+{
+    std::string username;
+    std::cout << "Enter your name: ";
+    std::cin >> username; // קבלת שם המשתמש מהשחקן
+
+    int score = m_gameManager.getCoins(); // קבלת הניקוד של השחקן
+    m_menu.updateScoreTable(username, score); // עדכון טבלת השיאים עם השם והניקוד
+}
+
 
 void Controller::handleSwitchPlayer(const sf::Vector2f location)
 {

@@ -20,6 +20,7 @@ class Controller
 public:
 	Controller();
 	void run();
+	void fillScoreTable();
 	void handleSwitchPlayer(const sf::Vector2f location);
     void handleSwitchPlayerMouseMoved(const sf::Vector2f location);
 
