@@ -49,6 +49,14 @@ private:
 
 	int m_player = 0; 
 
+	void handleTextEntered(const sf::Event& event); // פונקציה יעודית לטיפול בקלט טקסט
+
+	std::string m_username;
+	bool m_isEnteringName = false;
+	sf::Text m_enterNameText;
+	sf::Text m_promptText;
+	sf::RectangleShape m_backgroundRect;
+
 	//sf::Clock m_game_clock;
 	////private functions
 	//void setView();

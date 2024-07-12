@@ -78,13 +78,83 @@ void Controller::run()
 
 void Controller::fillScoreTable()
 {
-    std::string username;
-    std::cout << "Enter your name: ";
-    std::cin >> username; // קבלת שם המשתמש מהשחקן
+    m_isEnteringName = true;
+    m_username.clear();
 
-    int score = m_gameManager.getCoins(); // קבלת הניקוד של השחקן
-    m_menu.updateScoreTable(username, score); // עדכון טבלת השיאים עם השם והניקוד
+    // עיצוב הכותרת והטקסט
+    m_enterNameText.setFont(Resources::instance().getFont());
+    m_enterNameText.setString("High Scores");
+    m_enterNameText.setCharacterSize(48);
+    m_enterNameText.setFillColor(sf::Color::White);
+    m_enterNameText.setPosition(300, 100);
+
+    m_promptText.setFont(Resources::instance().getFont());
+    m_promptText.setString("Enter your name: ");
+    m_promptText.setCharacterSize(24);
+    m_promptText.setFillColor(sf::Color::White);
+    m_promptText.setPosition(300, 200);
+
+    // עיצוב הרקע
+    m_backgroundRect.setSize(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT));
+    m_backgroundRect.setFillColor(sf::Color(100, 100, 100, 150)); // רקע שחור שקוף
+
+    while (m_isEnteringName)
+    {
+        sf::Event event;
+        while (m_window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+                m_window.close();
+
+            if (event.type == sf::Event::TextEntered && m_isEnteringName)
+            {
+                handleTextEntered(event);
+            }
+        }
+
+        m_window.clear();
+
+        // ציור הרקע, הכותרת והטקסט
+        m_window.draw(m_backgroundRect);
+        m_window.draw(m_enterNameText);
+        m_window.draw(m_promptText);
+
+        sf::Text nameText;
+        nameText.setFont(Resources::instance().getFont());
+        nameText.setString(m_username);
+        nameText.setCharacterSize(24);
+        nameText.setFillColor(sf::Color::White);
+        nameText.setPosition(300, 250);
+        m_window.draw(nameText);
+
+        m_window.display();
+    }
 }
+
+void Controller::handleTextEntered(const sf::Event& event)
+{
+    if (event.text.unicode < 128)
+    {
+        char enteredChar = static_cast<char>(event.text.unicode);
+        if (enteredChar == '\b') // טיפול במחיקת תו
+        {
+            if (!m_username.empty())
+                m_username.pop_back();
+        }
+        else if (enteredChar == '\r') // טיפול בלחיצת Enter
+        {
+            m_isEnteringName = false;
+            int score = m_gameManager.getCoins();
+            m_menu.updateScoreTable(m_username, score);
+        }
+        else
+        {
+            m_username += enteredChar;
+        }
+    }
+}
+
+
 
 
 void Controller::handleSwitchPlayer(const sf::Vector2f location)
