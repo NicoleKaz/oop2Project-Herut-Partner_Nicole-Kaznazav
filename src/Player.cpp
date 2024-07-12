@@ -120,10 +120,30 @@ void Player::updateTools(sf::Sprite& background)
         setRegularState();
          background.setColor(sf::Color(rand(), rand(), rand()));
     }
+    else if (m_beFly && m_flyClock.getElapsedTime().asSeconds() > 5)
+    {
+        m_beFly = false;
+        setRegularState();
+         background.setColor(sf::Color(rand(), rand(), rand()));
+    }
 }
 
+void Player::beRegular()
+{
+    m_beSpeed = false;
+    m_beShield = false;
+    m_beFly = false;
+    setRegularState();
+}
 
-
+void Player::setRegularState()
+{
+    //changed the player body
+    changeBodyAndSprite(m_player_textures[0]);
+    //changed the pointer
+    m_state.reset(new RegularPlayerState());
+    m_object.setRotation(0);
+}
 
 void Player::increaseSpeed()
 {
@@ -136,36 +156,6 @@ bool Player::isSpeedState() const
     return m_beSpeed;
 }
 
-bool Player::isShieldState() const
-{
-    return m_beShield;
-}
-
-bool Player::isFlystate() const
-{
-	return m_beFly;
-}
-void Player::beShield()
-{
-    m_beShield = true;
-    m_shieldClock.restart(); // אתחול הטיימר עבור מצב מגן
-
-}
-
-void Player::beRegular()
-{
-	m_beSpeed = false;
-	m_beShield = false;
-	m_beFly = false;    
-	setRegularState();
-}
-
-void Player::beFly()
-{
-	m_beFly = true;
-}
-
-
 void Player::setSpeedState()
 {
     //changed the player body
@@ -176,14 +166,15 @@ void Player::setSpeedState()
 
 }
 
-void Player::setRegularState()
+void Player::beShield()
 {
-    //changed the player body
-    changeBodyAndSprite(m_player_textures[0]);
-    //changed the pointer
-    m_state.reset(new RegularPlayerState());
-    m_object.setRotation(0);
+    m_beShield = true;
+    m_shieldClock.restart(); // אתחול הטיימר עבור מצב מגן
+}
 
+bool Player::isShieldState() const
+{
+    return m_beShield;
 }
 
 void Player::setShieldState()
@@ -192,8 +183,18 @@ void Player::setShieldState()
     changeBodyAndSprite(m_player_textures[2]);
     //changed the pointer
     m_state.reset(new ShieldPlayerState());
-
     m_object.setRotation(0);
+}
+
+void Player::beFly()
+{
+    m_beFly = true;
+    m_flyClock.restart();
+}
+
+bool Player::isFlystate() const
+{
+	return m_beFly;
 }
 
 void Player::setFlyState()
@@ -203,7 +204,6 @@ void Player::setFlyState()
 	//changed the pointer
 	m_state.reset(new FlyPlayerState());
 	m_object.setRotation(0);
-	m_beFly = false;
 }
 
 void Player::setGravity()

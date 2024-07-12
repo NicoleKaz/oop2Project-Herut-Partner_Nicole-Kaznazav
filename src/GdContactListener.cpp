@@ -1,8 +1,8 @@
-// d2ContactListener.cpp
+ο»Ώ// d2ContactListener.cpp
 #include "GdContactListener.h"
 
 
-// ξιξεω δτεπχφιεϊ ωμ δξημχδ d2ContactListener
+// Γ®Γ©Γ®Γ₯ΓΉ Γ€Γ΄Γ₯Γ°Γ·ΓΆΓ©Γ₯ΓΊ ΓΉΓ¬ Γ€Γ®Γ§Γ¬Γ·Γ€ d2ContactListener
 void GdContactListener::BeginContact(b2Contact* contact)
 {
     b2Fixture* fixtureA = contact->GetFixtureA();
@@ -142,7 +142,7 @@ void GdContactListener::BeginContact(b2Contact* contact)
 
 
 
-        // θιτεμ αδϊπβωειεϊ ωμ ChaserEnemy
+        // Γ¨Γ©Γ΄Γ₯Γ¬ Γ‘Γ€ΓΊΓ°Γ’ΓΉΓ₯Γ©Γ₯ΓΊ ΓΉΓ¬ ChaserEnemy
         else if ((typeid(*objectA) == typeid(ChaserEnemy) && typeid(*objectB) == typeid(Player)) ||
             (typeid(*objectB) == typeid(ChaserEnemy) && typeid(*objectA) == typeid(Player)))
         {
@@ -163,7 +163,7 @@ void GdContactListener::BeginContact(b2Contact* contact)
         }
 
 
-        // θιτεμ αδϊπβωειεϊ ωμ ShooterEnemy with ChaserEnemy
+        // Γ¨Γ©Γ΄Γ₯Γ¬ Γ‘Γ€ΓΊΓ°Γ’ΓΉΓ₯Γ©Γ₯ΓΊ ΓΉΓ¬ ShooterEnemy with ChaserEnemy
         /*if (typeid(*objectA) == typeid(ShooterEnemy) && typeid(*objectB) == typeid(ChaserEnemy))
         {
             static_cast<ShooterEnemy&>(*objectA).notifyCollision();

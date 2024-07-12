@@ -36,7 +36,6 @@ void Resources::loadTextures()
 	//m_maps[Map2].loadFromFile("Map2.png");
 	//m_maps[Map3].loadFromFile("Map3.png");
 
-
 	m_menuLevel[level1].loadFromFile("Level1.png");
 	m_menuLevel[level2].loadFromFile("Level2.png");
 	m_menuLevel[level3].loadFromFile("Level3.png");
@@ -45,8 +44,12 @@ void Resources::loadTextures()
 	m_instructionsTextures[STICKER].loadFromFile("Sticker.png");	
 
 
+	//background textures
+	m_background_textures[LevelRed].loadFromFile("background1.png");
+	m_background_textures[LevelPink].loadFromFile("background2.png");
+	m_background_textures[LevelBlue].loadFromFile("background3.png");
+
 	//game textures
-	m_game_textures[Level_Background].loadFromFile("background1.png");
 	m_game_textures[Floor_Inair].loadFromFile("Floor.png");
 	m_game_textures[Cube1].loadFromFile("Cube1.png");
 	m_game_textures[Cube2].loadFromFile("Cube2.png");

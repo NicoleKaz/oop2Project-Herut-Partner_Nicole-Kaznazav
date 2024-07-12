@@ -10,8 +10,6 @@ Level2_Button::Level2_Button(Controller* game, sf::RenderWindow& window, GameMan
 
 void Level2_Button::execute()
 {
-	//m_game->getMenu().stopSong();
-	m_manager->getBoard().createLevel(Map2/*, WithoutYou_Song*/);
+	m_manager->getBoard().createLevel(Map2, LevelPink);
 	m_manager->startGame();
-	//m_game->getMenu().playSong();
 }

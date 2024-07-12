@@ -2,6 +2,8 @@
 #configure_file ("level1.txt" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("menuBackground.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("background1.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("background2.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("background3.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Menu_Background_Score.png" ${CMAKE_BINARY_DIR} COPYONLY)
 
 configure_file ("Title.png" ${CMAKE_BINARY_DIR} COPYONLY)

@@ -8,15 +8,12 @@
 Board::Board(sf::RenderWindow& window, const std::vector<GameTextures> player_textures)
 :m_window(window), m_gravity(0.0f, 9.8f), m_world(m_gravity), m_player_textures(player_textures)
 {
-    m_background.setTexture(Resources::instance().getGameTexture(Level_Background));
-    m_background.scale(1.6f, 1.6f);
     m_background.setColor(sf::Color::White);
 	m_world.SetContactListener(&m_contact_listener);
 }
 
 void Board::switchPlayer(const std::vector<GameTextures>& player_textures)
 {
-
 	m_player_textures = player_textures;
 }
 
@@ -69,13 +66,11 @@ void Board::updateMovingDirections()const
 
 
 void Board::resetBoard()
-
 {
 	//clear vectors
 	m_static_objects.clear();
 	m_moving_objects.clear();
 	//reset members
-	//m_player = nullptr;
 	m_win = false;
 	m_background.setPosition(0, 0);
 	m_background.setColor(sf::Color::White);
@@ -101,14 +96,8 @@ void Board::resetBoard()
 	// Reset the player
 	m_player = nullptr;
 	// Reset the world
-	//m_world = b2World(m_gravity);
+	m_world = b2World(m_gravity);
 	m_world.SetContactListener(&m_contact_listener);
-	// Reset the background
-
-
-
-
-
 }
 
 
@@ -201,8 +190,11 @@ void Board::drawBoard()
 	}
 }
 
-void Board::createLevel(const GameMaps level)
+void Board::createLevel(const GameMaps level, const GameBackground back)
 {
+	m_background.setTexture(Resources::instance().getGameBackground(back));
+	m_background.scale(1.6f, 1.6f);
+
     //read level board from image by pixel
     const sf::Image& m_source = Resources::instance().getMap(level);
     for (size_t y = 0; y < m_source.getSize().y; ++y)
@@ -259,10 +251,6 @@ void Board::addStaticObject(std::unique_ptr<StaticObject> object)
 {
 	m_static_objects.push_back(std::move(object));
 }
-
-
-
-
 
 const b2Vec2 Board::getPlayerPosition()const
 {

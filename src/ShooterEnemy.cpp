@@ -66,10 +66,3 @@ bool ShooterEnemy::m_object1 = Factory<MovingObject>::registerObject(ENEMY2_COLO
         return std::make_unique<ShooterEnemy>(world, Enemy2, location);
     });
 
-
-
-
-
-
-
-

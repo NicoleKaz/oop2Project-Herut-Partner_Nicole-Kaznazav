@@ -32,11 +32,8 @@ void LevelsMenu::handleMouseMoved(const sf::Vector2f location)
 	// מציין את המיקום של העכבר
 	for (std::size_t level = 0; level < m_options.size(); ++level)
 	{
-
-
 		if (m_options[level].first.getGlobalBounds().contains(location))
 		{
-
 			// הפיכת הכפתור לבולט
 			m_menuLevel[level].setColor(sf::Color::Color(255, 255, 255, 150));
 		}
@@ -94,10 +91,10 @@ void LevelsMenu::locateObjects()
 {
 	//level buttons
 	m_menuLevel[level1].setPosition(sf::Vector2f((WINDOW_WIDTH - m_menuLevel[level1].getTextureRect().width) * 0.15,
-		(WINDOW_HEIGHT - m_menuLevel[level1].getTextureRect().height) * 0.25));
+		(WINDOW_HEIGHT - m_menuLevel[level1].getTextureRect().height) * 0.30));
 
 	m_menuLevel[level2].setPosition(sf::Vector2f((WINDOW_WIDTH - m_menuLevel[level2].getTextureRect().width) * 0.90,
-		(WINDOW_HEIGHT - m_menuLevel[level2].getTextureRect().height) * 0.25));
+		(WINDOW_HEIGHT - m_menuLevel[level2].getTextureRect().height) * 0.20));
 
 	m_menuLevel[level3].setPosition(sf::Vector2f((WINDOW_WIDTH - m_menuLevel[level3].getTextureRect().width) * 0.50,
 		(WINDOW_HEIGHT - m_menuLevel[level3].getTextureRect().height) * 0.75));

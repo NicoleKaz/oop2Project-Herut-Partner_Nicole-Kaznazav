@@ -17,11 +17,12 @@ enum MenuTextures { menuBackground, Title, Score_Background };
 enum MenuPlayer { PLAYER1, PLAYER2, PLAYER3, PLAYER4};
 enum MenuLevels { level1, level2, level3};
 enum GameMaps { Map1, Map2, Map3};
+enum GameBackground { LevelRed, LevelPink, LevelBlue};
 enum GameAnimations { Enemy1Animation, Enemy2Animation };
 
 
 enum GameTextures {
-	Floor_Inair, Level_Background,
+	Floor_Inair,
 	First_Player, First_Shield, First_Speed, First_Fly,
 	Second_Player, Second_Shield, Second_Speed, Second_Fly,
 	Third_Player, Third_Shield, Third_Speed, Third_Fly,
@@ -47,8 +48,9 @@ const int MUSIC = 2;
 const float SPRITE_SIZE = 400.f;
 const int MENU_TEXTURES = 3;
 const int GAME_MAPS = 3;
+const int GAME_BACKGROUND = 3;
 
-const int GAME_TEXTURES = 42;
+const int GAME_TEXTURES = 41;
 
 
 //game object by color
@@ -115,6 +117,7 @@ public:
 	const sf::Texture& getMenuPlayer(const MenuPlayer player) const { return m_menuPlayers[player]; }
 	const sf::Texture& getInstruction(const Instructions instruction) const { return m_instructionsTextures[instruction]; }
 	const sf::Texture& getGameTexture(const GameTextures texture) const { return m_game_textures[texture]; }
+	const sf::Texture& getGameBackground(const GameBackground texture) const { return m_background_textures[texture]; }
 	const sf::Texture& getLevelsMenu(const MenuLevels button) const { return m_menuLevel[button]; }
 	const sf::Image& getMap(const GameMaps map) const { return m_maps[map]; }
 	const sf::Font& getFont() const { return m_font; }
@@ -130,6 +133,7 @@ private:
 	sf::Texture m_menuButton[MENU_BUTTONS];
 	sf::Texture m_instructionsTextures[INSTRUCTIONS];
 	sf::Texture m_game_textures[GAME_TEXTURES];
+	sf::Texture m_background_textures[GAME_BACKGROUND];
 	sf::Texture m_menuPlayers[MENU_PLAYER];
 	sf::Texture m_menuLevel[LEVEL_MENU];
 

@@ -27,7 +27,7 @@ public:
     void switchPlayer(const std::vector<GameTextures>& player_textures);
     bool handleInput(const sf::Event& event);
     void drawBoard();
-    void createLevel(const GameMaps level/*, const GameSounds sound*/);
+    void createLevel(const GameMaps level, const GameBackground back/*, const GameSounds sound*/);
     void findObjectColor(const sf::Color& color, const sf::Vector2f& location, size_t x, size_t y, const sf::Image& m_source);
     void addMovingObject(std::unique_ptr<MovingObject> object);
     void addMovingObject2(std::unique_ptr<MovingObject> object);

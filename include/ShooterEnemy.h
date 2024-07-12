@@ -30,6 +30,4 @@ private:
     b2World& m_world;
     std::unique_ptr<Bullet> m_bullet;
 
-
-
 };

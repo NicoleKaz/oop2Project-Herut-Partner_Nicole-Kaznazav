@@ -7,6 +7,6 @@ Level1_Button::Level1_Button(Controller* game, sf::RenderWindow& window, GameMan
 
 void Level1_Button::execute()
 {
-    m_manager->getBoard().createLevel(Map1);
+    m_manager->getBoard().createLevel(Map1, LevelRed);
     m_manager->startGame();
 }
