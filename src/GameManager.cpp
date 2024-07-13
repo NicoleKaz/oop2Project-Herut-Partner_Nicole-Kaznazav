@@ -35,15 +35,15 @@ void GameManager::startGame()
         setView(); // update the game view and background 
 
         if (m_board.isWin())
-		{
-			m_isFinish = true;
-			m_isWin = true;		
-		}
+        {
+            m_isFinish = true;
+            m_isWin = true;
+        }
         if (m_isFinish)
         {
-			m_coins = m_board.getCoins();
+            m_coins = m_board.getCoins();
             //reset board for next game
-              m_board.resetBoard();
+            m_board.resetBoard();
             //reset game view - (if the player exit with escape)
             m_gameView.setCenter(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
             m_window.setView(m_gameView);

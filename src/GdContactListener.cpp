@@ -61,7 +61,7 @@ void GdContactListener::BeginContact(b2Contact* contact)
                 static_cast<Entrance&>(other).changeColorTemporarily(sf::Color::Red);
                 break;
             case Gate2:
-                static_cast<Player&>(player).beRegular();
+                static_cast<Player&>(player).setRegular();
                 break;
             case Gate5:
                 static_cast<Player&>(player).setWin();

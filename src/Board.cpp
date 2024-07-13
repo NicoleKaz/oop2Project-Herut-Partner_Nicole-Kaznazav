@@ -64,7 +64,6 @@ void Board::updateMovingDirections()const
 	}
 }
 
-
 void Board::resetBoard()
 {
 	//clear vectors
@@ -96,7 +95,7 @@ void Board::resetBoard()
 	// Reset the player
 	m_player = nullptr;
 	// Reset the world
-	m_world = b2World(m_gravity);
+	//m_world = b2World(m_gravity);
 	m_world.SetContactListener(&m_contact_listener);
 }
 
@@ -145,6 +144,14 @@ void Board::handleCollision()
 		m_gravity = -m_gravity;
 		m_world.SetGravity(m_gravity);	
 	}
+
+	//setreguler
+	if (m_player->isRegularState())
+	{
+		m_player->setRegularState();
+	}
+
+
 	for (auto& object : m_static_objects)
 	{
 		if (typeid(*object) == typeid(Entrance))
@@ -193,6 +200,7 @@ void Board::drawBoard()
 void Board::createLevel(const GameMaps level, const GameBackground back)
 {
 	m_background.setTexture(Resources::instance().getGameBackground(back));
+	m_background.setScale(1.f, 1.f); // איפוס קנה המידה
 	m_background.scale(1.6f, 1.6f);
 
     //read level board from image by pixel

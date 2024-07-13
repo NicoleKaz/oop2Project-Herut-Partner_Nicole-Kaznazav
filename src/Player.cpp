@@ -106,6 +106,21 @@ void Player::reverseGravity()
 	m_gravity_changed = true;
 }
 
+//return reguler state
+void Player::setRegular()
+{
+    m_beFly = false;
+    m_beSpeed = false;
+    m_beShield = false;
+	m_state_change = true;
+}
+
+//isRegularState
+bool Player::isRegularState() const
+{
+	return m_state_change;
+}
+
 void Player::updateTools(sf::Sprite& background)
 {
     if (m_beSpeed && m_speedClock.getElapsedTime().asSeconds() > 3)
@@ -120,20 +135,12 @@ void Player::updateTools(sf::Sprite& background)
         setRegularState();
          background.setColor(sf::Color(rand(), rand(), rand()));
     }
-    else if (m_beFly && m_flyClock.getElapsedTime().asSeconds() > 5)
-    {
-        m_beFly = false;
-        setRegularState();
-         background.setColor(sf::Color(rand(), rand(), rand()));
-    }
-}
-
-void Player::beRegular()
-{
-    m_beSpeed = false;
-    m_beShield = false;
-    m_beFly = false;
-    setRegularState();
+    //else if (!m_beFly)
+    ////{
+    ////    m_beFly = false;
+    //   setRegularState();
+    //   background.setColor(sf::Color(rand(), rand(), rand()));
+    ////}
 }
 
 void Player::setRegularState()
@@ -189,7 +196,7 @@ void Player::setShieldState()
 void Player::beFly()
 {
     m_beFly = true;
-    m_flyClock.restart();
+   // m_flyClock.restart();
 }
 
 bool Player::isFlystate() const
@@ -245,6 +252,9 @@ void Player::setPlayerKill()
 {
     if (!m_beShield)
     {
+		m_beFly = false;
+		m_beShield = false;
+		m_beSpeed = false;
         m_alive = false;
     }
 }

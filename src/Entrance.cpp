@@ -40,6 +40,9 @@ void Entrance::changeColorTemporarily(const sf::Color& color)
     m_object.setColor(color);
     m_colorChanged = true;
     m_colorChangeClock.restart();
+	//not avaliable for 2 second to use again.
+
+
 }
 
 //register all the spikes to the static object factory
