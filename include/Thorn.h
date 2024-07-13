@@ -17,4 +17,5 @@ private:
 	static bool m_object1;
 	static bool m_object2;
 	static bool m_object3;
+	static bool m_object4;
 };

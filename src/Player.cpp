@@ -127,20 +127,20 @@ void Player::updateTools(sf::Sprite& background)
     {
         m_beSpeed = false;
         setRegularState();
-		background.setColor(sf::Color(rand(), rand(), rand()));
+		//background.setColor(sf::Color(rand(), rand(), rand()));
     }
     else if (m_beShield && m_shieldClock.getElapsedTime().asSeconds() > 5)
     {
         m_beShield = false;
         setRegularState();
-         background.setColor(sf::Color(rand(), rand(), rand()));
+        //background.setColor(sf::Color(rand(), rand(), rand()));
     }
-    //else if (!m_beFly)
-    ////{
-    ////    m_beFly = false;
-    //   setRegularState();
-    //   background.setColor(sf::Color(rand(), rand(), rand()));
-    ////}
+    else if (m_beFly && m_flyClock.getElapsedTime().asSeconds() > 5)
+    {
+        m_beFly = false;
+        setRegularState();
+        //background.setColor(sf::Color(rand(), rand(), rand()));
+    }
 }
 
 void Player::setRegularState()
@@ -196,7 +196,7 @@ void Player::setShieldState()
 void Player::beFly()
 {
     m_beFly = true;
-   // m_flyClock.restart();
+    m_flyClock.restart();
 }
 
 bool Player::isFlystate() const
