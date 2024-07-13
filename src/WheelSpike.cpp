@@ -1,25 +1,14 @@
 #include "WheelSpike.h"
 #include <cmath>
 
-//#ifndef M_PI
-//#define M_PI 3.14159265358979323846
-//#endif
-//
-//constexpr double DEGREES_TO_RADIANS = M_PI / 180.0;
-
 
 WheelSpike::WheelSpike(b2World& world, const GameTextures textures, const sf::Vector2f location)
-    : MovingObject(world, textures, location),
-    /*m_wheel_textures(textures),*/ m_degrees(0.0f)
+    : MovingObject(world, textures, location), m_degrees(0.0f)
 {
 }
 
 void WheelSpike::move()
 {
-    //// Update physics rotation in Box2D 
-    //float angleInRadians = static_cast<float>(m_degrees * DEGREES_TO_RADIANS);
-    //m_object_body->SetTransform(m_object_body->GetPosition(), angleInRadians);
-
     // Update sprite rotation in SFML 
     m_object.setRotation(m_degrees);
 }
