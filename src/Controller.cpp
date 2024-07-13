@@ -8,6 +8,8 @@ Controller::Controller()
     m_menu(m_window),
     m_gameManager(m_window, m_menu)
 {
+    //m_menuSound.setBuffer(Resources::instance().getSoundBuffer(Menu_Song));
+    //m_menuSound.setLoop(true);
     m_window.setFramerateLimit(120);
     m_gameView.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
     m_gameView.setCenter(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
@@ -25,6 +27,7 @@ Controller::Controller()
 
 void Controller::run()
 {
+	m_musics.playMenuSound();
     m_GameClock.restart();
     while (m_window.isOpen())
     {

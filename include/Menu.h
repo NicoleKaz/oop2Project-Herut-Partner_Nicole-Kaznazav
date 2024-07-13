@@ -23,6 +23,8 @@ public:
 	void ButtonPress(const MenuPlayer player);
 	void ButtonRelease(const MenuPlayer player);
 
+	void playSound(Sound sound);
+
 	void add(const Button button, std::unique_ptr<Command> command);
 	void drawMenu()const;
 	void displayRules()const;

@@ -48,6 +48,11 @@ void Menu::ButtonRelease(const MenuPlayer player)
 	m_players[player].setColor(sf::Color::Color(255, 255, 255, 100));
 }
 
+//void Menu::playSound(Sound sound)
+//{
+//	Resources::instance().playSound(sound);
+//}
+
 
 std::vector<GameTextures> Menu::getPlayerTextures() const
 {

@@ -76,8 +76,3 @@ int GameManager::getCoins() const
 {
 	return m_coins;
 }
-
-Board& GameManager::getBoard()
-{
-    return m_board;
-}

@@ -1,9 +1,10 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
-//#include <SFML/Audio.hpp>
 #include <string.h>
 #include <vector>
+#include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
+#include <unordered_map>
 
 //enum
 enum Instructions { GAME_RULES, STICKER };
@@ -19,6 +20,7 @@ enum MenuLevels { level1, level2, level3};
 enum GameMaps { Map1, Map2, Map3};
 enum GameBackground { LevelRed, LevelPink, LevelBlue};
 enum GameAnimations { Enemy1Animation, Enemy2Animation };
+//enum GameSounds { Menu_Song, Red_Song, Pink_Song,Blue_Song };
 
 
 enum GameTextures {
@@ -43,7 +45,7 @@ const int MENU_BUTTONS = 5;
 const int MENU_PLAYER = 4;
 const int INSTRUCTIONS = 2;
 const int TOOL_BAR = 5;
-const int SOUNDS = 10;
+//const int SOUNDS = 10;
 const int MUSIC = 2;
 const float SPRITE_SIZE = 400.f;
 const int MENU_TEXTURES = 3;
@@ -53,41 +55,42 @@ const int GAME_BACKGROUND = 3;
 const int GAME_TEXTURES = 41;
 
 
-//game object by color
-const sf::Color FLOOR_Inair_COLOR = sf::Color(0, 0, 0);;
-//const sf::Color SPIKE1_COLOR = sf::Color(237, 28, 36);
-const sf::Color THORN1_COLOR = sf::Color(237, 28, 36);
-const sf::Color THORN2_COLOR = sf::Color(185, 122, 87);;
-const sf::Color THORNS_COLOR = sf::Color(255, 174, 201);
-const sf::Color CUBE1_COLOR = sf::Color(63, 72, 204);
-const sf::Color CUBE2_COLOR = sf::Color(0, 162, 232);
-const sf::Color HELF_CUBE_COLOR = sf::Color(153, 217, 234);
+	//game object by color
+	const sf::Color FLOOR_Inair_COLOR = sf::Color(0, 0, 0);;
+	//const sf::Color SPIKE1_COLOR = sf::Color(237, 28, 36);
+	const sf::Color THORN1_COLOR = sf::Color(237, 28, 36);
+	const sf::Color THORN2_COLOR = sf::Color(185, 122, 87);;
+	const sf::Color THORNS_COLOR = sf::Color(255, 174, 201);
+	const sf::Color CUBE1_COLOR = sf::Color(63, 72, 204);
+	const sf::Color CUBE2_COLOR = sf::Color(0, 162, 232);
+	const sf::Color HELF_CUBE_COLOR = sf::Color(153, 217, 234);
 
 
-const sf::Color COIN_COLOR_SCORE = sf::Color(255, 242, 0);
-const sf::Color COIN_COLOR_SPEED = sf::Color(60,120,180);
-const sf::Color COIN_COLOR_Shield = sf::Color(60, 228, 34);
-const sf::Color COIN_COLOR_Fly = sf::Color(255, 127, 39);
+	const sf::Color COIN_COLOR_SCORE = sf::Color(255, 242, 0);
+	const sf::Color COIN_COLOR_SPEED = sf::Color(60, 120, 180);
+	const sf::Color COIN_COLOR_Shield = sf::Color(60, 228, 34);
+	const sf::Color COIN_COLOR_Fly = sf::Color(255, 127, 39);
 
-const sf::Color GATE1_COLOR = sf::Color(255, 127, 39);
-const sf::Color GATE2_COLOR = sf::Color(136, 0, 21);
-const sf::Color GATE3_COLOR = sf::Color(200, 191, 231);
-const sf::Color GATE4_COLOR = sf::Color(136, 0, 21);
-const sf::Color GATE5_COLOR = sf::Color(64, 128, 128);
+	const sf::Color GATE1_COLOR = sf::Color(255, 127, 39);
+	const sf::Color GATE2_COLOR = sf::Color(136, 0, 21);
+	const sf::Color GATE3_COLOR = sf::Color(200, 191, 231);
+	const sf::Color GATE4_COLOR = sf::Color(136, 0, 21);
+	const sf::Color GATE5_COLOR = sf::Color(64, 128, 128);
 
 
-const sf::Color RECTANGLE_COLOR = sf::Color(153, 217, 234);
-//const sf::Color SPIKES_COLOR = sf::Color(255, 174, 201);
-const sf::Color JUMPER2_COLOR = sf::Color(34, 177, 76);
-const sf::Color JUMPER1_COLOR = sf::Color(181, 230, 29);
-const sf::Color JUMPER1_UP_COLOR = sf::Color(127, 127, 127);
-const sf::Color PLAYER_COLOR = sf::Color(255, 201, 14);
-const sf::Color ENEMY1_COLOR = sf::Color(195, 195, 195);
-const sf::Color ENEMY1_UP_COLOR = sf::Color(117, 22, 63);
-const sf::Color ENEMY2_COLOR = sf::Color(234, 54, 128);
-const sf::Color ENEMY2_UP_COLOR = sf::Color(120, 67, 21);
-const sf::Color BULLET_COLOR = sf::Color(255, 0, 0);
-const sf::Color WHEEL_COLOR = sf::Color(50, 60, 70);
+	const sf::Color RECTANGLE_COLOR = sf::Color(153, 217, 234);
+	//const sf::Color SPIKES_COLOR = sf::Color(255, 174, 201);
+	const sf::Color JUMPER2_COLOR = sf::Color(34, 177, 76);
+	const sf::Color JUMPER1_COLOR = sf::Color(181, 230, 29);
+	const sf::Color JUMPER1_UP_COLOR = sf::Color(127, 127, 127);
+	const sf::Color PLAYER_COLOR = sf::Color(255, 201, 14);
+	const sf::Color ENEMY1_COLOR = sf::Color(195, 195, 195);
+	const sf::Color ENEMY1_UP_COLOR = sf::Color(117, 22, 63);
+	const sf::Color ENEMY2_COLOR = sf::Color(234, 54, 128);
+	const sf::Color ENEMY2_UP_COLOR = sf::Color(120, 67, 21);
+	const sf::Color BULLET_COLOR = sf::Color(255, 0, 0);
+	const sf::Color WHEEL_COLOR = sf::Color(50, 60, 70);
+
 
 //physics
 const float SCALE = 30.f;
@@ -123,11 +126,12 @@ public:
 	const sf::Font& getFont() const { return m_font; }
 	const sf::Texture& getMenuTexture(const MenuTextures texture)const { return m_menuTextures[texture]; }
 	const sf::Texture& getButton(const Button button)const { return m_menuButton[button]; }
+	//const sf::SoundBuffer& getSoundBuffer(const GameSounds sound) const { return m_soundBuffers[sound]; }
+	
 
-
-	void playSound(Sound);
 
 private:
+	//void loadMusic();
 	void loadTextures();
 	sf::Texture m_menuTextures[MENU_TEXTURES];
 	sf::Texture m_menuButton[MENU_BUTTONS];
@@ -142,16 +146,7 @@ private:
 	sf::Image m_maps[GAME_MAPS];
 
 	sf::CircleShape player;
-	//sf::Sound m_sound;
-//	sf::Music m_music;
+	
 
-	//std::vector<sf::Texture> m_textureVec;
-	//std::vector<sf::SoundBuffer> m_soundVector;
-//	std::vector<sf::Music> m_musicVector;
-	/*std::string m_ButtonFiles[BUTTONS] = { "Play.png", "Help.png", "Exit.png" , "VideoPlay.png" , "Back.png" };
-	std::string m_MusicFiles[MUSIC] = { "Song.wav","5_second_end.wav" };
-	std::string m_InstructionFiles[INSTRUCTIONS] = { "GameRules.png" };
-	std::string m_SoundFiles[SOUNDS] = { "Click.ogg", "MinusLife.ogg", "Eat.ogg", "ClockSound.ogg",
-									"DoorSound.ogg" , "FreezeSound.ogg" ,
-									 "KeySound.ogg" , "GameOver.ogg","win.ogg", "ExtraLifeSound.ogg" };*/
+
 };

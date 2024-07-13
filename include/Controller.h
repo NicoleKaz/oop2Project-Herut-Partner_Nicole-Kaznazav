@@ -12,6 +12,7 @@
 #include "ExitGame.h"
 #include "Menu.h"
 #include "GameManager.h"
+#include "Musics.h"
 
 
 
@@ -25,6 +26,8 @@ public:
     void handleSwitchPlayerMouseMoved(const sf::Vector2f location);
 
 	Menu& getMenu() { return m_menu; }
+	Musics& getMusics() { return m_musics; }
+
 
 	void helpGame();
 	int getPlayer();
@@ -37,6 +40,7 @@ private:
 	//sf::Sprite& m_background;
 	sf::RenderWindow m_window;
 	Menu m_menu;
+	Musics m_musics;
 	GameManager m_gameManager;
 	Resources m_resources;
 

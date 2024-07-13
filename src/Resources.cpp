@@ -4,9 +4,23 @@
 Resources::Resources()
 {
 	loadTextures();
+	//loadMusic();	
 }
 
-
+//void Resources::loadMusic()
+//{
+//	m_soundBuffers[Red_Song].loadFromFile("Red_Song.wav");
+//	m_soundBuffers[Pink_Song].loadFromFile("Pink_Song.wav");
+//	m_soundBuffers[Blue_Song].loadFromFile("Blue_Song.wav");
+//	m_soundBuffers[Menu_Song].loadFromFile("Menu_Song.wav");
+//}
+//
+//
+////getGameSounds
+//sf::SoundBuffer& Resources::getGameSounds(GameSounds sound)
+//{
+//	return m_soundBuffers[sound];
+//}
 
 //loading all the textures
 void Resources::loadTextures()
@@ -100,12 +114,4 @@ Resources& Resources::instance()
 {
 	static Resources Resource;
 	return Resource;
-}
-
-
-//return the sound
-void Resources::playSound(Sound sound)
-{
-	//m_sound.setBuffer(m_soundVector[sound]);
-	//m_sound.play();
 }

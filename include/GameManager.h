@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "Board.h" 
 #include "Menu.h"
+#include "Musics.h"
 
 
 class GameManager
@@ -13,11 +14,15 @@ public:
     void setView();
     bool isWin() ;
     int getCoins() const;
-    Board& getBoard();
+	Board& getBoard() { return m_board; }
+    Musics& getMusics() { return m_musics; }
+
 
 
 private:
+
     Menu& m_menu;
+	Musics m_musics;
     sf::RenderWindow& m_window;
     Board m_board;
     bool m_isFinish = false;
