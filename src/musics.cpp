@@ -10,9 +10,9 @@ Musics::Musics()
 void Musics::loadMusic()
 {
 	m_soundBuffers[Red_Song].loadFromFile("Red_Song.ogg");
-	m_soundBuffers[Pink_Song].loadFromFile("Pink_Song.wav");
-	m_soundBuffers[Blue_Song].loadFromFile("Blue_Song.wav");
-	m_soundBuffers[Menu_Song].loadFromFile("Menu_Song.wav");
+	m_soundBuffers[Pink_Song].loadFromFile("Pink_Song.ogg");
+	m_soundBuffers[Blue_Song].loadFromFile("Blue_Song.ogg");
+	m_soundBuffers[Menu_Song].loadFromFile("Menu_Song.ogg");
 }
 
 Musics& Musics::instance()
@@ -38,6 +38,11 @@ void Musics::playSongLevel(const GameSounds sound)
 	m_levelSound.setBuffer(m_soundBuffers[sound]);
 	m_levelSound.setLoop(true);
 	m_levelSound.play();
+}
+
+void Musics::stopSongLevel(const GameSounds sound)
+{
+	m_levelSound.stop();
 }
 
 

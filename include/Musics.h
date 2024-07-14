@@ -20,6 +20,8 @@ public:
 	void stopMusic();
 	void playSongLevel(const GameSounds sound);
 
+	void stopSongLevel(const GameSounds sound);
+
 
 
 
