@@ -53,7 +53,5 @@ target_sources(${CMAKE_PROJECT_NAME}
   "../include/GdContactListener.h" "GdContactListener.cpp" "../include/Coin.h" "Coin.cpp" 
   "../include/Jumper.h" "Jumper.cpp" "WheelSpike.cpp" "../include/WheelSpike.h"
   "../include/Enemy.h" "Enemy.cpp" "../include/ShooterEnemy.h" "../include/ChaserEnemy.h"
-  "ShooterEnemy.cpp" "ChaserEnemy.cpp" "../include/Entrance.h" "Entrance.cpp"
-  "../include/SpeedPlayerState.h" "SpeedPlayerState.cpp" 
-  "../include/ShieldPlayerState.h" "ShieldPlayerState.cpp" "../include/FlyPlayerState.h" "FlyPlayerState.cpp"
-  "../include/Bullet.h" "Bullet.cpp" "../include/ScoreTable.h" "ScoreTable.cpp" "../include/musics.h" "musics.cpp")
+  "ShooterEnemy.cpp" "ChaserEnemy.cpp" "../include/Entrance.h" "Entrance.cpp" "../include/SpeedPlayerState.h" "SpeedPlayerState.cpp" 
+  "../include/ShieldPlayerState.h" "ShieldPlayerState.cpp" "../include/FlyPlayerState.h" "FlyPlayerState.cpp" "../include/Bullet.h" "Bullet.cpp" "../include/ScoreTable.h" "ScoreTable.cpp")

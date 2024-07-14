@@ -20,5 +20,10 @@ private:
 	static bool m_object2;
 	static bool m_object3;
 	static bool m_object4;
+	static bool m_object5;
+	static bool m_object6;
+	static bool m_object7;
+	static bool m_object8;
+	static bool m_object9;
 
 };

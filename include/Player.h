@@ -83,7 +83,7 @@ private:
 	bool m_touchingFloor = false;
     sf::Clock m_speedClock; // טיימר עבור מצב מהירות
     sf::Clock m_shieldClock; // טיימר עבור מצב מגן
-    //sf::Clock m_flyClock; // טיימר עבור מצב מגן
+    sf::Clock m_flyClock; // טיימר עבור מצב מגן
 
 
 
