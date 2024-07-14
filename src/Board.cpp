@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "Board.h"
 #include <thread>
@@ -6,9 +6,9 @@
 
 
 Board::Board(sf::RenderWindow& window, const std::vector<GameTextures> player_textures)
-:m_window(window), m_gravity(0.0f, 9.8f), m_world(m_gravity), m_player_textures(player_textures)
+	:m_window(window), m_gravity(0.0f, 9.8f), m_world(m_gravity), m_player_textures(player_textures)
 {
-    m_background.setColor(sf::Color::White);
+	m_background.setColor(sf::Color::White);
 	m_world.SetContactListener(&m_contact_listener);
 }
 
@@ -21,11 +21,11 @@ bool Board::handleInput(const sf::Event& event)
 {
 	switch (event.type)
 	{
-		case sf::Event::Closed:
-			m_window.close();
-			break;
-		case sf::Event::KeyReleased:
-		{
+	case sf::Event::Closed:
+		m_window.close();
+		break;
+	case sf::Event::KeyReleased:
+	{
 		//update the player direction
 		if (event.key.code == sf::Keyboard::Right)
 		{
@@ -142,7 +142,7 @@ void Board::handleCollision()
 	if (m_player->isGravityChange())
 	{
 		m_gravity = -m_gravity;
-		m_world.SetGravity(m_gravity);	
+		m_world.SetGravity(m_gravity);
 	}
 
 	//setreguler
@@ -200,22 +200,22 @@ void Board::drawBoard()
 void Board::createLevel(const GameMaps level, const GameBackground back)
 {
 	m_background.setTexture(Resources::instance().getGameBackground(back));
-	m_background.setScale(1.f, 1.f); // àéôåñ ÷ðä äîéãä
+	m_background.setScale(1.f, 1.f); // Ã Ã©Ã´Ã¥Ã± Ã·Ã°Ã¤ Ã¤Ã®Ã©Ã£Ã¤
 	m_background.scale(1.6f, 1.6f);
 
-    //read level board from image by pixel
-    const sf::Image& m_source = Resources::instance().getMap(level);
-    for (size_t y = 0; y < m_source.getSize().y; ++y)
-    {
-        for (size_t x = 0; x < m_source.getSize().x; ++x)
-        {
-            //the object location acording to the pixel location
-            const sf::Vector2f location(50 * x + 25, 50 * y + 25);
+	//read level board from image by pixel
+	const sf::Image& m_source = Resources::instance().getMap(level);
+	for (size_t y = 0; y < m_source.getSize().y; ++y)
+	{
+		for (size_t x = 0; x < m_source.getSize().x; ++x)
+		{
+			//the object location acording to the pixel location
+			const sf::Vector2f location(50 * x + 25, 50 * y + 25);
 			sf::Color color = m_source.getPixel(x, y);
 
 			findObjectColor(color, location, x, y, m_source);
-        }
-    }
+		}
+	}
 }
 
 void Board::findObjectColor(const sf::Color& color, const sf::Vector2f& location, size_t x, size_t y, const sf::Image& m_source)
@@ -270,4 +270,3 @@ void Board::viewBackground(const float addition)
 	//moving the game background
 	m_background.setPosition(m_background.getPosition().x + addition, m_background.getPosition().y);
 }
-

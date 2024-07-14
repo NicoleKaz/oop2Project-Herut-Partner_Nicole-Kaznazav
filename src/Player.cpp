@@ -13,7 +13,7 @@ Player::Player(b2World& world, const std::vector<GameTextures> textures, const s
 {
 }
 
-void Player::setTouchingFloor(bool touching) 
+void Player::setTouchingFloor(bool touching)
 {
     m_touchingFloor = touching;
 }
@@ -70,7 +70,7 @@ void Player::releaseSpace()
 
 void Player::increasePoints()
 {
-   m_coins+=5;
+    m_coins += 5;
 }
 
 
@@ -94,7 +94,7 @@ void Player::hop(const float hop_force) const
     m_object_body->SetLinearVelocity(b2Vec2(0.0f, 0.0f));
 
     //make the player jump according to the gravity
-    if(m_gravity.y>0)
+    if (m_gravity.y > 0)
         m_object_body->ApplyLinearImpulseToCenter(b2Vec2(0.0f, -hop_force), true);
     else
         m_object_body->ApplyLinearImpulseToCenter(b2Vec2(0.0f, hop_force), true);
@@ -103,7 +103,7 @@ void Player::hop(const float hop_force) const
 void Player::reverseGravity()
 {
     m_gravity = -m_gravity;
-	m_gravity_changed = true;
+    m_gravity_changed = true;
 }
 
 //return reguler state
@@ -112,13 +112,13 @@ void Player::setRegular()
     m_beFly = false;
     m_beSpeed = false;
     m_beShield = false;
-	m_state_change = true;
+    m_state_change = true;
 }
 
 //isRegularState
 bool Player::isRegularState() const
 {
-	return m_state_change;
+    return m_state_change;
 }
 
 void Player::updateTools(sf::Sprite& background)
@@ -127,7 +127,7 @@ void Player::updateTools(sf::Sprite& background)
     {
         m_beSpeed = false;
         setRegularState();
-		//background.setColor(sf::Color(rand(), rand(), rand()));
+        //background.setColor(sf::Color(rand(), rand(), rand()));
     }
     else if (m_beShield && m_shieldClock.getElapsedTime().asSeconds() > 5)
     {
@@ -135,12 +135,12 @@ void Player::updateTools(sf::Sprite& background)
         setRegularState();
         //background.setColor(sf::Color(rand(), rand(), rand()));
     }
-    else if (m_beFly && m_flyClock.getElapsedTime().asSeconds() > 5)
-    {
-        m_beFly = false;
-        setRegularState();
-        //background.setColor(sf::Color(rand(), rand(), rand()));
-    }
+    //else if (m_beFly && m_flyClock.getElapsedTime().asSeconds() > 5)
+    //{
+    //    m_beFly = false;
+    //    setRegularState();
+    //    //background.setColor(sf::Color(rand(), rand(), rand()));
+    //}
 }
 
 void Player::setRegularState()
@@ -196,21 +196,20 @@ void Player::setShieldState()
 void Player::beFly()
 {
     m_beFly = true;
-    m_flyClock.restart();
 }
 
 bool Player::isFlystate() const
 {
-	return m_beFly;
+    return m_beFly;
 }
 
 void Player::setFlyState()
 {
-	//changed the player body
-	changeBodyAndSprite(m_player_textures[3]);
-	//changed the pointer
-	m_state.reset(new FlyPlayerState());
-	m_object.setRotation(0);
+    //changed the player body
+    changeBodyAndSprite(m_player_textures[3]);
+    //changed the pointer
+    m_state.reset(new FlyPlayerState());
+    m_object.setRotation(0);
 }
 
 void Player::setGravity()
@@ -252,9 +251,9 @@ void Player::setPlayerKill()
 {
     if (!m_beShield)
     {
-		m_beFly = false;
-		m_beShield = false;
-		m_beSpeed = false;
+        m_beFly = false;
+        m_beShield = false;
+        m_beSpeed = false;
         m_alive = false;
     }
 }
@@ -266,7 +265,7 @@ const bool Player::isAlive()const
 
 const int Player::getCoins()const
 {
-	return m_coins;
+    return m_coins;
 }
 
 

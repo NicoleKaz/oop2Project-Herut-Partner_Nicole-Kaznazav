@@ -9,7 +9,7 @@ Musics::Musics()
 
 void Musics::loadMusic()
 {
-	m_soundBuffers[Red_Song].loadFromFile("Red_Song.wav");
+	m_soundBuffers[Red_Song].loadFromFile("Red_Song.ogg");
 	m_soundBuffers[Pink_Song].loadFromFile("Pink_Song.wav");
 	m_soundBuffers[Blue_Song].loadFromFile("Blue_Song.wav");
 	m_soundBuffers[Menu_Song].loadFromFile("Menu_Song.wav");
