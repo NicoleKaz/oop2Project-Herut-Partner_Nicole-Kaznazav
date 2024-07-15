@@ -46,9 +46,9 @@ void Resources::loadTextures()
 
 
 	//game image
-	m_maps[Map1].loadFromFile("Map1.png");
-	m_maps[Map2].loadFromFile("Map2.png");
-	m_maps[Map3].loadFromFile("Map3.png");
+	m_maps[MapRed].loadFromFile("MapRed.png");
+	m_maps[MapPink].loadFromFile("MapPink.png");
+	m_maps[MapBlue].loadFromFile("MapBlue.png");
 
 	m_menuLevel[level1].loadFromFile("Level1.png");
 	m_menuLevel[level2].loadFromFile("Level2.png");
@@ -111,9 +111,9 @@ void Resources::loadTextures()
 	m_game_textures[Jumper1].loadFromFile("Jumper1.png");
 	m_game_textures[Jumper2].loadFromFile("Jumper2.png");
 	m_game_textures[Wheel].loadFromFile("SpikedWheel.png");
-	m_game_textures[Gate3].loadFromFile("Gate3.png");
-	m_game_textures[Gate2].loadFromFile("Gate2.png");
-	m_game_textures[Gate5].loadFromFile("Gate5.png");
+	m_game_textures[GateGravityChange].loadFromFile("GateGravityChange.png");
+	m_game_textures[GateNoFly].loadFromFile("GateNoFly.png");
+	m_game_textures[GateGateLevelEnd].loadFromFile("GateLevelEnd.png");
 
 	m_font.loadFromFile("C:/Windows/Fonts/Arial.ttf");
 }

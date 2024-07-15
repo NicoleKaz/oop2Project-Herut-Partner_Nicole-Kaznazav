@@ -59,6 +59,9 @@ private:
     std::vector < std::unique_ptr< MovingObject>>  m_moving_objects;
     std::vector < std::unique_ptr< StaticObject>>  m_static_objects;
 
+    std::vector<std::unique_ptr<Coin>> m_collected_coins;
+    std::vector<std::unique_ptr<Coin>> m_initial_coins;
+
     sf::Sprite m_background;
     Player* m_player = nullptr;
     sf::Vector2f m_player_location;

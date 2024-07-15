@@ -159,8 +159,6 @@ void Controller::handleTextEntered(const sf::Event& event)
 }
 
 
-
-
 void Controller::handleSwitchPlayer(const sf::Vector2f location)
 {
     //loop to go over the buttons
@@ -216,7 +214,5 @@ void Controller::quitGame()
     m_window.close();
 }
 
-void Controller::chooseLevel()
-{
-}
+
 

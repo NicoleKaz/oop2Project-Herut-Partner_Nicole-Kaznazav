@@ -73,7 +73,6 @@ void Player::increasePoints()
     m_coins += 5;
 }
 
-
 void Player::resetPlayerAfterKill()
 {
     //reset state and gravity

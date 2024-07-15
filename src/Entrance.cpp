@@ -46,21 +46,21 @@ void Entrance::changeColorTemporarily(const sf::Color& color)
 }
 
 //register all the spikes to the static object factory
-bool Entrance::m_object1 = Factory<StaticObject>::registerObject(GATE3_COLOR,
+bool Entrance::m_object1 = Factory<StaticObject>::registerObject(GATE_GRAVITY_CHANGE_COLOR,
 	[](b2World& world, const sf::Vector2f location) -> std::unique_ptr<StaticObject> {
-		return std::make_unique<Entrance>(world, Gate3, location/*, false, (GameAnimations)0, (GameTextures)0*/); }
+		return std::make_unique<Entrance>(world, GateGravityChange, location/*, false, (GameAnimations)0, (GameTextures)0*/); }
 );
 
 //register all the spikes to the static object factory
-bool Entrance::m_object2 = Factory<StaticObject>::registerObject(GATE2_COLOR,
+bool Entrance::m_object2 = Factory<StaticObject>::registerObject(GATE_NO_FLY_COLOR,
 	[](b2World& world, const sf::Vector2f location) -> std::unique_ptr<StaticObject> {
-		return std::make_unique<Entrance>(world, Gate2, location/*, false, (GameAnimations)0, (GameTextures)0*/); }
+		return std::make_unique<Entrance>(world, GateNoFly, location/*, false, (GameAnimations)0, (GameTextures)0*/); }
 );
 
 //register all the spikes to the static object factory
-bool Entrance::m_object3 = Factory<StaticObject>::registerObject(GATE5_COLOR,
+bool Entrance::m_object3 = Factory<StaticObject>::registerObject(GATE_END_LEVEL_COLOR,
 	[](b2World& world, const sf::Vector2f location) -> std::unique_ptr<StaticObject> {
-		return std::make_unique<Entrance>(world, Gate5, location/*, false, (GameAnimations)0, (GameTextures)0*/); }
+		return std::make_unique<Entrance>(world, GateGateLevelEnd, location/*, false, (GameAnimations)0, (GameTextures)0*/); }
 );
 
 

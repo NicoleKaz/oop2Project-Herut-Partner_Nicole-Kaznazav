@@ -9,7 +9,7 @@ void Level1_Button::execute()
 {
 	m_game->getMusics().stopMusic();
     m_manager->getMusics().playSongLevel(Red_Song);
-    m_manager->getBoard().createLevel(Map1, LevelRed);
+    m_manager->getBoard().createLevel(MapRed, LevelRed);
     m_manager->startGame();
     m_manager->getMusics().stopSongLevel(Red_Song);
 

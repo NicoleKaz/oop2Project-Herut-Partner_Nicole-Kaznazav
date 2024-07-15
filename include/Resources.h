@@ -16,7 +16,7 @@ enum Music { SONG, SECOND_END };
 enum MenuTextures { menuBackground, Title, Score_Background };
 enum MenuPlayer { PLAYER1, PLAYER2, PLAYER3, PLAYER4 };
 enum MenuLevels { level1, level2, level3 };
-enum GameMaps { Map1, Map2, Map3 };
+enum GameMaps { MapRed, MapPink, MapBlue };
 enum GameBackground { LevelRed, LevelPink, LevelBlue };
 enum GameAnimations { Enemy1Animation, Enemy2Animation };
 
@@ -30,7 +30,7 @@ enum GameTextures {
 	ThornRed, ThornPink, ThornBlue, Thorns,
 	CoinSpeed, CoinScore, CoinShield, CoinFly,
 	Cube1Red, Cube2Red, Cube1Pink, Cube2Pink, Cube1Blue, Cube2Blue,
-	Gate1, Gate2, Gate3, Gate4, Gate5,
+	GateNoFly, GateGravityChange, GateGateLevelEnd,
 	Jumper1, Jumper2,
 	Enemy1SpriteSheet, Enemy2SpriteSheet, Enemy1, Enemy2, Bullet1,
 	ScoreBoard, Wheel
@@ -50,7 +50,7 @@ const int MENU_TEXTURES = 3;
 const int GAME_MAPS = 3;
 const int GAME_BACKGROUND = 3;
 
-const int GAME_TEXTURES = 47;
+const int GAME_TEXTURES = 45;
 
 
 //game object by color
@@ -75,22 +75,16 @@ const sf::Color COIN_COLOR_SPEED = sf::Color(60, 120, 180);
 const sf::Color COIN_COLOR_SHIELD = sf::Color(60, 228, 34);
 const sf::Color COIN_COLOR_FLY = sf::Color(255, 127, 39);
 
-const sf::Color GATE1_COLOR = sf::Color(255, 127, 39);
-const sf::Color GATE2_COLOR = sf::Color(136, 0, 21);
-const sf::Color GATE3_COLOR = sf::Color(200, 191, 231);
-const sf::Color GATE4_COLOR = sf::Color(136, 0, 21);
-const sf::Color GATE5_COLOR = sf::Color(64, 128, 128);
-
+const sf::Color GATE_NO_FLY_COLOR = sf::Color(136, 0, 21);
+const sf::Color GATE_GRAVITY_CHANGE_COLOR = sf::Color(200, 191, 231);
+const sf::Color GATE_END_LEVEL_COLOR = sf::Color(64, 128, 128);
 
 const sf::Color RECTANGLE_COLOR = sf::Color(153, 217, 234);
 const sf::Color JUMPER2_COLOR = sf::Color(34, 177, 76);
 const sf::Color JUMPER1_COLOR = sf::Color(181, 230, 29);
-//const sf::Color JUMPER1_UP_COLOR = sf::Color(127, 127, 127);
 const sf::Color PLAYER_COLOR = sf::Color(255, 201, 14);
 const sf::Color ENEMY1_COLOR = sf::Color(195, 195, 195);
-const sf::Color ENEMY1_UP_COLOR = sf::Color(117, 22, 63);
 const sf::Color ENEMY2_COLOR = sf::Color(234, 54, 128);
-const sf::Color ENEMY2_UP_COLOR = sf::Color(120, 67, 21);
 const sf::Color BULLET_COLOR = sf::Color(255, 0, 0);
 const sf::Color WHEEL_COLOR = sf::Color(50, 60, 70);
 

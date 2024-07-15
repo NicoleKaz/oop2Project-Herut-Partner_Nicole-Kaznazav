@@ -32,7 +32,6 @@ public:
 	void helpGame();
 	int getPlayer();
 	void quitGame();
-	void chooseLevel();
 
 
 

@@ -64,10 +64,11 @@ void Board::updateMovingDirections()const
 	}
 }
 
+
 void Board::resetBoard()
 {
 	//clear vectors
-	m_static_objects.clear();
+	m_static_objects.clear();	
 	m_moving_objects.clear();
 	//reset members
 	m_win = false;
@@ -138,6 +139,7 @@ void Board::handleCollision()
 	{
 		m_player->setRegularState();
 		m_player->resetPlayerAfterKill();
+	 	//newGame();
 	}
 	if (m_player->isGravityChange())
 	{

@@ -56,14 +56,14 @@ void GdContactListener::BeginContact(b2Contact* contact)
             auto& entrance = static_cast<Entrance&>(other);
             switch (entrance.getType())
             {
-            case Gate3:
+            case GateGravityChange:
                 static_cast<Player&>(player).reverseGravity();
                 static_cast<Entrance&>(other).changeColorTemporarily(sf::Color::Red);
                 break;
-            case Gate2:
+            case GateNoFly:
                 static_cast<Player&>(player).setRegular();
                 break;
-            case Gate5:
+            case GateGateLevelEnd:
                 static_cast<Player&>(player).setWin();
                 break;
             }

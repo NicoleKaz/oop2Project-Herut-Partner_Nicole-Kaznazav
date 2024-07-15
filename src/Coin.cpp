@@ -1,4 +1,4 @@
-#include "Coin.h"
+﻿#include "Coin.h"
 
 #pragma once
 
