@@ -12,12 +12,11 @@ Bullet::Bullet(b2World& world, const GameTextures texture, const sf::Vector2f po
     bodyDef.type = b2_dynamicBody;
     bodyDef.bullet = true;
     bodyDef.position.Set(position.x / SCALE, position.y / SCALE); 
+    bodyDef.userData.pointer = reinterpret_cast<uintptr_t>(this); // update the pointer to return himself
     m_body = world.CreateBody(&bodyDef);
 
-    bodyDef.userData.pointer = reinterpret_cast<uintptr_t>(this); // update the pointer to return himself
-
     b2CircleShape shape;
-    //shape.m_radius = m_sprite.getLocalBounds().width / 2 / SCALE;
+    shape.m_radius = m_sprite.getLocalBounds().width / 2 / SCALE;
 
     b2FixtureDef fixtureDef;
     fixtureDef.shape = &shape;

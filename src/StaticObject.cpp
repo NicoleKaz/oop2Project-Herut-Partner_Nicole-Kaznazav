@@ -12,6 +12,7 @@ StaticObject::StaticObject(b2World& world, const GameTextures texture, const sf:
     b2BodyDef bodyDef; // difine body
     bodyDef.position.Set(m_object.getPosition().x / SCALE, m_object.getPosition().y / SCALE); //locate it
     bodyDef.type = b2_staticBody; // define static
+
     bodyDef.userData.pointer = reinterpret_cast<uintptr_t>(this); // define its pointer for the collision 
 
     m_object_body = world.CreateBody(&bodyDef); //pushing the body to the world
