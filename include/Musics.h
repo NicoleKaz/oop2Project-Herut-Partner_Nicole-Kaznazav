@@ -16,8 +16,8 @@ public:
 	Musics();
 	static Musics& instance();
 	void playMenuSound();
+	void stopMenuMusic();
 	//stopMusic
-	void stopMusic();
 	void playSongLevel(const GameSounds sound);
 
 	void stopSongLevel(const GameSounds sound);

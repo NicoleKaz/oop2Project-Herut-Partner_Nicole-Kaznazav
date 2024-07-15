@@ -33,17 +33,27 @@ void Entrance::update()
             m_colorChanged = false;
         }
     }
+    // בדיקה ועדכון של m_disabled
+    if (m_disabled && m_disableClock.getElapsedTime().asSeconds() > 2.0f)
+    {
+        m_disabled = false;
+    }
 }
+
 
 void Entrance::changeColorTemporarily(const sf::Color& color)
 {
-    m_object.setColor(color);
-    m_colorChanged = true;
-    m_colorChangeClock.restart();
-	//not avaliable for 2 second to use again.
-
-
+    if (!m_disabled)
+    {
+        m_object.setColor(color);
+        m_colorChanged = true;
+        m_colorChangeClock.restart();
+        m_disabled = true;
+        m_disableClock.restart();
+    }
 }
+
+
 
 //register all the spikes to the static object factory
 bool Entrance::m_object1 = Factory<StaticObject>::registerObject(GATE_GRAVITY_CHANGE_COLOR,
@@ -60,7 +70,7 @@ bool Entrance::m_object2 = Factory<StaticObject>::registerObject(GATE_NO_FLY_COL
 //register all the spikes to the static object factory
 bool Entrance::m_object3 = Factory<StaticObject>::registerObject(GATE_END_LEVEL_COLOR,
 	[](b2World& world, const sf::Vector2f location) -> std::unique_ptr<StaticObject> {
-		return std::make_unique<Entrance>(world, GateGateLevelEnd, location/*, false, (GameAnimations)0, (GameTextures)0*/); }
+		return std::make_unique<Entrance>(world, GateLevelEnd, location/*, false, (GameAnimations)0, (GameTextures)0*/); }
 );
 
 

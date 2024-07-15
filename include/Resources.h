@@ -30,7 +30,7 @@ enum GameTextures {
 	ThornRed, ThornPink, ThornBlue, Thorns,
 	CoinSpeed, CoinScore, CoinShield, CoinFly,
 	Cube1Red, Cube2Red, Cube1Pink, Cube2Pink, Cube1Blue, Cube2Blue,
-	GateNoFly, GateGravityChange, GateGateLevelEnd,
+	GateNoFly, GateGravityChange, GateLevelEnd,
 	Jumper1, Jumper2,
 	Enemy1SpriteSheet, Enemy2SpriteSheet, Enemy1, Enemy2, Bullet1,
 	ScoreBoard, Wheel

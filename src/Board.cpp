@@ -70,6 +70,7 @@ void Board::resetBoard()
 	//clear vectors
 	m_static_objects.clear();	
 	m_moving_objects.clear();
+	m_collected_coins.clear();
 	//reset members
 	m_win = false;
 	m_background.setPosition(0, 0);
@@ -139,6 +140,7 @@ void Board::handleCollision()
 	{
 		m_player->setRegularState();
 		m_player->resetPlayerAfterKill();
+		//resetCoin();
 	 	//newGame();
 	}
 	if (m_player->isGravityChange())
@@ -158,9 +160,12 @@ void Board::handleCollision()
 	{
 		if (typeid(*object) == typeid(Entrance))
 		{
-			static_cast<Entrance*>(object.get())->update(); //maybe need to change more nice.
+			//static_cast<Entrance*>(object.get())->update(); //maybe need to change more nice.
+			auto entrance = static_cast<Entrance*>(object.get());
+			entrance->update();  // אפשר לשפר את הבדיקה לפי הצורך
 		}
 	}
+
 
 	//for (auto& moving_object : m_moving_objects)
 	//{
@@ -196,6 +201,21 @@ void Board::drawBoard()
 	for (auto& object : m_moving_objects)
 	{
 		object->draw(m_window);
+	}
+}
+
+void Board::resetCoin() 
+{
+	for (auto& object : m_initial_coins) 
+	{
+		//if is not nullptr
+		if (object)
+		{
+			//set delete state to false
+			//object->setNotDelete();
+			std::cout << "reset coin" << std::endl;
+			m_static_objects.push_back(std::move(object));
+		}
 	}
 }
 
@@ -246,7 +266,15 @@ void Board::findObjectColor(const sf::Color& color, const sf::Vector2f& location
 			auto staticObject = Factory<StaticObject>::createObject(m_source.getPixel(x, y), m_world, location);
 			if (staticObject)
 			{
+				//chaek if the object is coin and add it to the initial coins
+				if (typeid(*staticObject) == typeid(Coin))
+				{
+					auto initialCoin = std::make_unique<Coin>(*static_cast<Coin*>(staticObject.get()));
+					copyInitialObjects(std::move(initialCoin));
+				}
 				addStaticObject(std::move(staticObject));
+
+
 			}
 		}
 	}
@@ -260,6 +288,12 @@ void Board::addMovingObject(std::unique_ptr<MovingObject> object)
 void Board::addStaticObject(std::unique_ptr<StaticObject> object)
 {
 	m_static_objects.push_back(std::move(object));
+}
+
+// Make a copy of the initial state just for coins
+void Board::copyInitialObjects(std::unique_ptr<StaticObject> object)
+{
+	m_initial_coins.push_back(std::move(object));
 }
 
 const b2Vec2 Board::getPlayerPosition()const

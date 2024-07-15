@@ -38,6 +38,12 @@ void StaticObject::setDelete()
     m_delete = true;
 }
 
+//void StaticObject::setNotDelete()
+//{
+//    m_delete = false;
+//}
+
+
 const bool StaticObject::getDelete()const
 {
     return m_delete;

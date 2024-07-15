@@ -28,10 +28,12 @@ void Musics::playMenuSound()
 	m_menuSound.play();
 }
 
-void Musics::stopMusic()
+void Musics::stopMenuMusic()
 {
 	m_menuSound.stop();
 }
+
+
 
 void Musics::playSongLevel(const GameSounds sound)
 {

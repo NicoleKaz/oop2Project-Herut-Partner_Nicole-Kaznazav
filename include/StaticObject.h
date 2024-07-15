@@ -14,6 +14,7 @@ public:
 	const GameTextures getType()const;
 
 	void setDelete();
+	void setNotDelete();
 	const bool getDelete() const;
 
 

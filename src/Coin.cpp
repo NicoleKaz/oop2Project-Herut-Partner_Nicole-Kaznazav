@@ -35,3 +35,4 @@ bool Coin::m_object4 = Factory<StaticObject>::registerObject(COIN_COLOR_FLY,
 		return std::make_unique<Coin>(world, GameTextures::CoinFly, location/*,
 		false, (GameAnimations)0, (GameTextures)0*/); }
 );
+

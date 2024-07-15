@@ -25,4 +25,6 @@ private:
 	sf::Color m_originalColor;
 	sf::Clock m_colorChangeClock;
 	bool m_colorChanged = false;
+	sf::Clock m_disableClock;
+	bool m_disabled = false;
 };

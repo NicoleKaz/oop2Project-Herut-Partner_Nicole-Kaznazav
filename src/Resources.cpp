@@ -113,7 +113,7 @@ void Resources::loadTextures()
 	m_game_textures[Wheel].loadFromFile("SpikedWheel.png");
 	m_game_textures[GateGravityChange].loadFromFile("GateGravityChange.png");
 	m_game_textures[GateNoFly].loadFromFile("GateNoFly.png");
-	m_game_textures[GateGateLevelEnd].loadFromFile("GateLevelEnd.png");
+	m_game_textures[GateLevelEnd].loadFromFile("GateLevelEnd.png");
 
 	m_font.loadFromFile("C:/Windows/Fonts/Arial.ttf");
 }

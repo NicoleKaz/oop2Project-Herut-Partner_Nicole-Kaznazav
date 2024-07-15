@@ -25,15 +25,16 @@ void GdContactListener::BeginContact(b2Contact* contact)
         }
         else if (typeid(player) == typeid(Player) && typeid(other) == typeid(Coin))
         {
-            static_cast<Coin&>(other).setDelete();
+            //static_cast<Coin&>(other).setDelete();
             auto& coin = static_cast<Coin&>(other);
             switch (coin.getType())
             {
+            case CoinScore:
+                static_cast<Coin&>(other).setDelete();
+                static_cast<Player&>(player).increasePoints();
+                break;
             case CoinSpeed:
                 static_cast<Player&>(player).increaseSpeed();
-                break;
-            case CoinScore:
-                static_cast<Player&>(player).increasePoints();
                 break;
             case CoinShield:
                 static_cast<Player&>(player).beShield();
@@ -51,6 +52,8 @@ void GdContactListener::BeginContact(b2Contact* contact)
         {
             static_cast<Player&>(player).setPlayerKill();
         }
+
+
         else if (typeid(player) == typeid(Player) && typeid(other) == typeid(Entrance))
         {
             auto& entrance = static_cast<Entrance&>(other);
@@ -58,16 +61,19 @@ void GdContactListener::BeginContact(b2Contact* contact)
             {
             case GateGravityChange:
                 static_cast<Player&>(player).reverseGravity();
-                static_cast<Entrance&>(other).changeColorTemporarily(sf::Color::Red);
+                entrance.changeColorTemporarily(sf::Color::Red);
                 break;
             case GateNoFly:
                 static_cast<Player&>(player).setRegular();
+                entrance.changeColorTemporarily(sf::Color::Blue);
                 break;
-            case GateGateLevelEnd:
+            case GateLevelEnd:
                 static_cast<Player&>(player).setWin();
+                entrance.changeColorTemporarily(sf::Color::Green);
                 break;
             }
         }
+
         else if (typeid(player) == typeid(Player) && typeid(other) == typeid(Jumper))
         {
             auto& jumper = static_cast<Jumper&>(other);
