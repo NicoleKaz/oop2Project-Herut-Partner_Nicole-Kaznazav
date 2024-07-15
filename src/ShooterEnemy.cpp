@@ -15,7 +15,7 @@ void ShooterEnemy::shoot()
         //counter = 0;
         // Implement shooting logic
         sf::Vector2f bulletPosition = m_object.getPosition();
-        //bulletPosition.x += 10; // Adjusting bullet position slightly
+        bulletPosition.x += 50; // Adjusting bullet position slightly
         //if is NULPTR
         if (m_bullet != nullptr)
         {
@@ -24,14 +24,17 @@ void ShooterEnemy::shoot()
         }
         // Create a new bullet and add it to the list
         m_bullet.reset(new Bullet(m_world, Bullet1, bulletPosition));
-        // 
-    // You can perform any additional logic here related to the bullet
     }
-	else if (m_bullet != nullptr)
+}
+
+void ShooterEnemy::update()
+{
+    if (m_bullet)
     {
-		// Update the bullet's position
-		m_bullet->update();
-	}
+        // Update the bullet's position
+        m_bullet->update();
+    }
+    MovingObject::update();
 }
 
 void ShooterEnemy::updateDirection() 
@@ -51,12 +54,12 @@ void ShooterEnemy::draw(sf::RenderWindow& window) const
 	if (m_bullet != nullptr)
 	{
 		//if the time passed from the last shoot is bigger than the interval
-		if (m_shootClock.getElapsedTime().asSeconds() > m_shootInterval)
-		{
+		//if (m_shootClock.getElapsedTime().asSeconds() > 2)
+		//{
             // ציור האויב
             m_bullet->draw(window);
 			//restart the clock
-  		}
+  		//}
 	}
     Enemy::draw(window);
 }

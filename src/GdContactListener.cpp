@@ -23,7 +23,7 @@ void GdContactListener::BeginContact(b2Contact* contact)
         {
             static_cast<Player&>(player).setTouchingFloor(true);
         }
-        if (typeid(player) == typeid(Player) && typeid(other) == typeid(Coin))
+        else if (typeid(player) == typeid(Player) && typeid(other) == typeid(Coin))
         {
             //static_cast<Coin&>(other).setDelete();
             auto& coin = static_cast<Coin&>(other);
@@ -44,15 +44,15 @@ void GdContactListener::BeginContact(b2Contact* contact)
                 break;
             }
         }
-        if (typeid(player) == typeid(Player) && typeid(other) == typeid(Thorn))
+        else if (typeid(player) == typeid(Player) && typeid(other) == typeid(Thorn))
         {
             static_cast<Player&>(player).setPlayerKill();
         }
-        if (typeid(player) == typeid(Player) && typeid(other) == typeid(WheelSpike))
+        else if (typeid(player) == typeid(Player) && typeid(other) == typeid(WheelSpike))
         {
             static_cast<Player&>(player).setPlayerKill();
         }
-        if (typeid(player) == typeid(Player) && typeid(other) == typeid(Entrance))
+        else if (typeid(player) == typeid(Player) && typeid(other) == typeid(Entrance))
         {
             auto& entrance = static_cast<Entrance&>(other);
             switch (entrance.getType())
@@ -72,7 +72,7 @@ void GdContactListener::BeginContact(b2Contact* contact)
             }
         }
 
-        if (typeid(player) == typeid(Player) && typeid(other) == typeid(Jumper))
+        else if (typeid(player) == typeid(Player) && typeid(other) == typeid(Jumper))
         {
             auto& jumper = static_cast<Jumper&>(other);
             switch (jumper.getType())
@@ -85,40 +85,36 @@ void GdContactListener::BeginContact(b2Contact* contact)
                 break;
             }
         }
-
-        if ((typeid(*objectA) == typeid(ShooterEnemy) && typeid(*objectB) == typeid(Player)) ||
+        else if ((typeid(*objectA) == typeid(ShooterEnemy) && typeid(*objectB) == typeid(Player)) ||
             (typeid(*objectB) == typeid(ShooterEnemy) && typeid(*objectA) == typeid(Player)))
         {
             std::cout << "Player hit by ShooterEnemy" << std::endl;
             static_cast<Player&>(player).setPlayerKill();
         }
 
-        if ((typeid(*objectA) == typeid(Bullet) && typeid(*objectB) == typeid(Player)) ||
-            (typeid(*objectB) == typeid(Bullet) && typeid(*objectA) == typeid(Player)))
-        {
-
-            std::cout << "Player hit by Bullet" << std::endl;
-            static_cast<Player&>(player).setPlayerKill();
-        }
-
-        // èéôåì áäúðâùåéåú ùì ChaserEnemy
-        if ((typeid(*objectA) == typeid(ChaserEnemy) && typeid(*objectB) == typeid(Player)) ||
+        
+        else if ((typeid(*objectA) == typeid(ChaserEnemy) && typeid(*objectB) == typeid(Player)) ||
             (typeid(*objectB) == typeid(ChaserEnemy) && typeid(*objectA) == typeid(Player)))
         {
             static_cast<Player&>(player).setPlayerKill();
         }
-        if (typeid(*objectA) == typeid(ChaserEnemy) && typeid(*objectB) != typeid(Player) && typeid(*objectB) != typeid(Floor))
+        else if (typeid(*objectA) == typeid(ChaserEnemy) && typeid(*objectB) != typeid(Player) && typeid(*objectB) != typeid(Floor))
         {
             static_cast<ChaserEnemy&>(*objectA).notifyCollision();
         }
-        if (typeid(*objectB) == typeid(ChaserEnemy) && typeid(*objectA) != typeid(Player) && typeid(*objectA) != typeid(Floor))
+        else if (typeid(*objectB) == typeid(ChaserEnemy) && typeid(*objectA) != typeid(Player) && typeid(*objectA) != typeid(Floor))
         {
             static_cast<ChaserEnemy&>(*objectB).notifyCollision();
         }
-        if (typeid(*objectA) == typeid(ChaserEnemy) && typeid(*objectB) == typeid(ChaserEnemy))
+        else if (typeid(*objectA) == typeid(ChaserEnemy) && typeid(*objectB) == typeid(ChaserEnemy))
         {
             static_cast<ChaserEnemy&>(*objectA).notifyCollision();
             static_cast<ChaserEnemy&>(*objectB).notifyCollision();
+        }
+        else if  ((typeid(*objectA) == typeid(Player) || typeid(*objectB) == typeid(Player)))
+        {
+            std::cout << "Player hit by Bullet" << std::endl;
+            static_cast<Player&>(player).setPlayerKill();
         }
     }
 }

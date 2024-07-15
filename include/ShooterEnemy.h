@@ -22,6 +22,7 @@ public:
     virtual void move() override;
     virtual void draw(sf::RenderWindow& window) const override;
     void shoot();
+    virtual void update() override;
 private:
     sf::Clock m_shootClock;
     float m_shootInterval; // זמן בין יריות

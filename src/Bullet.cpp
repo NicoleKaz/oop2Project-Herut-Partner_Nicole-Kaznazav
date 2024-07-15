@@ -10,13 +10,14 @@ Bullet::Bullet(b2World& world, const GameTextures texture, const sf::Vector2f po
 
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
-	bodyDef.bullet = true;
-    bodyDef.position.Set(position.x / SCALE, position.y / SCALE); // Assuming SCALE is defined somewhere
+    bodyDef.bullet = true;
+    bodyDef.position.Set(position.x / SCALE, position.y / SCALE); 
     m_body = world.CreateBody(&bodyDef);
-    
-    
+
+    bodyDef.userData.pointer = reinterpret_cast<uintptr_t>(this); // update the pointer to return himself
+
     b2CircleShape shape;
-    shape.m_radius = m_sprite.getLocalBounds().width / 2 / SCALE;
+    //shape.m_radius = m_sprite.getLocalBounds().width / 2 / SCALE;
 
     b2FixtureDef fixtureDef;
     fixtureDef.shape = &shape;
@@ -24,7 +25,7 @@ Bullet::Bullet(b2World& world, const GameTextures texture, const sf::Vector2f po
     m_body->CreateFixture(&fixtureDef);
 
     // Apply impulse force to the Box2D body
-    b2Vec2 forceScaled{ 50* 8.f / SCALE, 0 };
+    b2Vec2 forceScaled{ 50 * 8.f / SCALE, 0 };
 
     m_body->SetLinearVelocity(forceScaled);
     m_body->ApplyLinearImpulse(forceScaled, m_body->GetWorldCenter(), true);
@@ -32,20 +33,14 @@ Bullet::Bullet(b2World& world, const GameTextures texture, const sf::Vector2f po
 
 //distractor
 Bullet::~Bullet()
-{   
-    //if(m_body){ m_body->GetWorld()->DestroyBody(m_body); } maybe ?
-	m_body->GetWorld()->DestroyBody(m_body);
+{
+    m_body->GetWorld()->DestroyBody(m_body);
 }
 
 void Bullet::update()
 {
     b2Vec2 position = m_body->GetPosition();
     m_sprite.setPosition(position.x * SCALE, position.y * SCALE);
-    // Update bullet position based on Box2D physics if needed
-    if (m_alive)
-    {
-        m_sprite.setPosition(m_body->GetPosition().x * SCALE, m_body->GetPosition().y * SCALE);
-    }
 }
 
 void Bullet::draw(sf::RenderWindow& window) const

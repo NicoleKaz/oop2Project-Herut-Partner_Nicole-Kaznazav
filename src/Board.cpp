@@ -201,6 +201,8 @@ void Board::drawBoard()
 	for (auto& object : m_moving_objects)
 	{
 		object->draw(m_window);
+		//update the object direction
+		object->update();
 	}
 }
 

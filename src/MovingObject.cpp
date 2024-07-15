@@ -33,3 +33,9 @@ const b2Vec2 MovingObject::getPosition()const
 }
 
 
+void MovingObject::update()
+{
+    // Update the sprite position based on Box2D physics
+    m_object.setPosition(m_object_body->GetPosition().x * SCALE, m_object_body->GetPosition().y * SCALE);
+    //m_object.setRotation(m_object_body->GetAngle() * 180 / b2_pi);
+}

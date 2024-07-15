@@ -11,7 +11,7 @@ class Bullet : public MovingObject
 public:
     Bullet(b2World& world, const GameTextures texture, const sf::Vector2f position);
 	~Bullet();    
-    void update(); // Update bullet's position or perform any necessary logic
+    virtual void update() override; // Update bullet's position or perform any necessary logic
     void draw(sf::RenderWindow& window) const;
     bool isAlive() const;
     virtual void updateDirection() override {}
