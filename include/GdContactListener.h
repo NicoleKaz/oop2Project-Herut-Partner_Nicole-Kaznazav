@@ -18,16 +18,15 @@
 #include "ChaserEnemy.h"
 #include "ShooterEnemy.h"
 #include "Bullet.h"
-
+#include <functional>
+#include <iostream>
+#include <map>
+#include <typeindex>
 #include "ShieldPlayerState.h"
 #include "SpeedPlayerState.h"
 #include "FLYPlayerState.h"
-
-#include <functional>
-#include <map>
 #include <string>
 #include <typeinfo>
-#include <typeindex>
 
 class GdContactListener : public b2ContactListener
 {
