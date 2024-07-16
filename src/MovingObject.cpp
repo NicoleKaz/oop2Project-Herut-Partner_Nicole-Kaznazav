@@ -14,8 +14,8 @@ MovingObject::MovingObject( b2World& world, const GameTextures texture, const sf
     bodyDef.type = b2_dynamicBody; // Set the body type to dynamic
 
     bodyDef.userData.pointer = reinterpret_cast<uintptr_t>(this); // update the pointer to return himself
-
     m_object_body = world.CreateBody(&bodyDef); // pushing body into the board world
+
     b2PolygonShape shape; //define the body  shape
     shape.SetAsBox(sprite_size.x / 2.0f / SCALE, sprite_size.y / 2.0f / SCALE); // shape size
     b2FixtureDef fixtureDef; // define fuxture

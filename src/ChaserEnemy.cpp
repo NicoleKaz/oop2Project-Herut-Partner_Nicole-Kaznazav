@@ -15,12 +15,15 @@ ChaserEnemy::ChaserEnemy(b2World& world, const GameTextures texture, const sf::V
 
 void ChaserEnemy::updateDirection()
 {
+    //std::cout << "m_shouldChangeDirection from " << m_shouldChangeDirection << std::endl;
     if (m_shouldChangeDirection)
     {
         m_direction[Right] = !m_direction[Right];
         m_direction[Left] = !m_direction[Left];
         m_shouldChangeDirection = false;
     }
+    //std::cout << "m_shouldChangeDirection to " << m_shouldChangeDirection << std::endl;
+
 }
 
 void ChaserEnemy::move()

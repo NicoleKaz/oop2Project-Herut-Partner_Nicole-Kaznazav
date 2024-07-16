@@ -11,7 +11,8 @@ Bullet::Bullet(b2World& world, const GameTextures texture, const sf::Vector2f po
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
     bodyDef.bullet = true;
-    bodyDef.position.Set(position.x / SCALE, position.y / SCALE); 
+    bodyDef.position.Set(position.x / SCALE, position.y / SCALE);
+
     bodyDef.userData.pointer = reinterpret_cast<uintptr_t>(this); // update the pointer to return himself
     m_body = world.CreateBody(&bodyDef);
 
