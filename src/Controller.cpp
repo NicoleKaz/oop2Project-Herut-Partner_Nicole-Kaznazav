@@ -27,11 +27,11 @@ Controller::Controller()
 
 void Controller::run()
 {
-    //m_musics.playMenuSound();
+    m_musics.playMenuSound();
     m_GameClock.restart();
     while (m_window.isOpen())
     {
-        //m_musics.playMenuSound();
+       // m_musics.playMenuSound();
         //display the first window 
         m_window.clear(sf::Color::Color(0, 0, 0));
         m_menu.drawMenu();
