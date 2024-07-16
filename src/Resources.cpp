@@ -4,23 +4,8 @@
 Resources::Resources()
 {
 	loadTextures();
-	//loadMusic();	
 }
 
-//void Resources::loadMusic()
-//{
-//	m_soundBuffers[Red_Song].loadFromFile("Red_Song.wav");
-//	m_soundBuffers[Pink_Song].loadFromFile("Pink_Song.wav");
-//	m_soundBuffers[Blue_Song].loadFromFile("Blue_Song.wav");
-//	m_soundBuffers[Menu_Song].loadFromFile("Menu_Song.wav");
-//}
-//
-//
-////getGameSounds
-//sf::SoundBuffer& Resources::getGameSounds(GameSounds sound)
-//{
-//	return m_soundBuffers[sound];
-//}
 
 //loading all the textures
 void Resources::loadTextures()
@@ -55,7 +40,7 @@ void Resources::loadTextures()
 	m_menuLevel[level3].loadFromFile("Level3.png");
 
 	m_instructionsTextures[GAME_RULES].loadFromFile("instructions.png");
-	m_instructionsTextures[STICKER].loadFromFile("Sticker.png");	
+	m_instructionsTextures[STICKER].loadFromFile("Sticker.png");
 
 
 	//background textures

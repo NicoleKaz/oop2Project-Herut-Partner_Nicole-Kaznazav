@@ -89,7 +89,7 @@ const sf::Color BULLET_COLOR = sf::Color(255, 0, 0);
 const sf::Color WHEEL_COLOR = sf::Color(50, 60, 70);
 
 //physics
-const float SCALE = 30.f;
+const float SCALE = 30.0f;
 const float SPEED_JUMP_FORCE = 80.f;
 const float REGULER_JUMP_FORCE = 30.f;
 const float SHIELD_JUMP_FORCE = 60.f;
@@ -129,10 +129,12 @@ public:
 private:
 	void loadTextures();
 	sf::Texture m_menuTextures[MENU_TEXTURES];
-	sf::Texture m_menuButton[MENU_BUTTONS];
-	sf::Texture m_instructionsTextures[INSTRUCTIONS];
 	sf::Texture m_game_textures[GAME_TEXTURES];
 	sf::Texture m_background_textures[GAME_BACKGROUND];
+
+
+	sf::Texture m_menuButton[MENU_BUTTONS];
+	sf::Texture m_instructionsTextures[INSTRUCTIONS];
 	sf::Texture m_menuPlayers[MENU_PLAYER];
 	sf::Texture m_menuLevel[LEVEL_MENU];
 
@@ -141,16 +143,4 @@ private:
 	sf::Image m_maps[GAME_MAPS];
 
 	sf::CircleShape player;
-	//sf::Sound m_sound;
-//	sf::Music m_music;
-
-	//std::vector<sf::Texture> m_textureVec;
-	//std::vector<sf::SoundBuffer> m_soundVector;
-//	std::vector<sf::Music> m_musicVector;
-	/*std::string m_ButtonFiles[BUTTONS] = { "Play.png", "Help.png", "Exit.png" , "VideoPlay.png" , "Back.png" };
-	std::string m_MusicFiles[MUSIC] = { "Song.wav","5_second_end.wav" };
-	std::string m_InstructionFiles[INSTRUCTIONS] = { "GameRules.png" };
-	std::string m_SoundFiles[SOUNDS] = { "Click.ogg", "MinusLife.ogg", "Eat.ogg", "ClockSound.ogg",
-									"DoorSound.ogg" , "FreezeSound.ogg" ,
-									 "KeySound.ogg" , "GameOver.ogg","win.ogg", "ExtraLifeSound.ogg" };*/
 };

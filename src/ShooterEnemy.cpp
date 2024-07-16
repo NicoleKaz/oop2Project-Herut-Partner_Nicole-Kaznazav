@@ -9,10 +9,9 @@ ShooterEnemy::ShooterEnemy(b2World& world, const GameTextures texture, const sf:
 void ShooterEnemy::shoot()
 {
     static int counter = 0; 
-    if (m_shootClock.getElapsedTime().asSeconds() > 1.f)
+    if (m_shootClock.getElapsedTime().asSeconds() > 1.35f)
     {
 		m_shootClock.restart();
-        //counter = 0;
         // Implement shooting logic
         sf::Vector2f bulletPosition = m_object.getPosition();
         bulletPosition.x += 50; // Adjusting bullet position slightly
