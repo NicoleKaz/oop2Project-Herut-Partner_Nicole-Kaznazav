@@ -3,8 +3,8 @@
 #include "LevelsMenu.h"
 #include <iostream>
 
-LevelsMenu::LevelsMenu(Controller* game, sf::RenderWindow& window, GameManager* manager)
-	: m_game(game), m_window(window) , m_manager(manager)
+LevelsMenu::LevelsMenu(sf::RenderWindow& window, GameManager& manager)
+	:m_window(window), m_manager(manager)
 {
 	m_background.setTexture(Resources::instance().getMenuTexture(menuBackground));
 	m_background.scale(1.6f, 1.6f);
@@ -65,18 +65,18 @@ void LevelsMenu::action(const sf::Vector2f& location)const
 {
 
 	//check if the button contains the click location
-	 for (int button = level1; button < m_options.size(); button++)
-	 {
-		 //why cannot enter to if?
-		 if (m_options[button].first.getGlobalBounds().contains(location))
-		 {
+	for (int button = level1; button < m_options.size(); button++)
+	{
+		//why cannot enter to if?
+		if (m_options[button].first.getGlobalBounds().contains(location))
+		{
 
-		//perform the button action
-		 m_options[button].second->execute();
-		 return;
-		 }
+			//perform the button action
+			m_options[button].second->execute();
+			return;
+		}
 
-	 }
+	}
 }
 
 

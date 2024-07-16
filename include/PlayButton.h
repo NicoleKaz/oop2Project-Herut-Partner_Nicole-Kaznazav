@@ -5,14 +5,15 @@
 
 class Controller;
 
-class PlayButton : public Command 
+class PlayButton : public Command
 {
 public:
-
-	PlayButton(Controller* game, sf::RenderWindow& window, GameManager* manager);
+	PlayButton(sf::RenderWindow& , GameManager& , Controller&);
 	void execute() override;
 
 private:
 	LevelsMenu m_levelsMenu;
+	GameManager& m_manager;
+	Controller& m_game;
 
 };

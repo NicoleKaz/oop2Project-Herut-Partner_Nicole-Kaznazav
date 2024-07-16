@@ -7,7 +7,7 @@
 class LevelsMenu
 {
 public:
-	LevelsMenu(Controller*, sf::RenderWindow& ,GameManager*);
+	LevelsMenu(sf::RenderWindow&, GameManager&);
 	void drawLevelsMenu()const;
 	const int getOptionFromUser(const sf::Vector2f)const;
 	void action(const sf::Vector2f& location) const;
@@ -18,8 +18,7 @@ public:
 private:
 
 	sf::RenderWindow& m_window;
-	Controller* m_game;
-	GameManager* m_manager;
+	GameManager& m_manager;
 	sf::Sprite m_background;
 	sf::Sprite m_buttons[MENU_BUTTONS];
 	sf::Sprite m_menuLevel[LEVEL_MENU];

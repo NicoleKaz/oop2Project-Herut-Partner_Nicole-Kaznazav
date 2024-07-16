@@ -10,14 +10,11 @@ class Controller;
 class HelpButton : public Command
 {
 public:
-
-	HelpButton(Controller* game, sf::RenderWindow& window, GameManager* manager);
-
+	HelpButton(sf::RenderWindow& window, Controller& game);
 	void execute() override;
 
 private:
-	//LevelsMenu m_levels_menu;
-	//Controller* m_game;
-	//sf::RenderWindow& m_window;
+	Controller& m_game;
+
 };
 

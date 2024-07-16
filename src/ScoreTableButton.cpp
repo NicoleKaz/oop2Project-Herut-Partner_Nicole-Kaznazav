@@ -4,8 +4,8 @@
 #include "Controller.h"
 
 
-ScoreTableButton::ScoreTableButton(Controller* game, sf::RenderWindow& window, GameManager* manager)
-	:Command(game, window,manager)
+ScoreTableButton::ScoreTableButton(sf::RenderWindow& window, Controller& game)
+    :Command(window), m_game(game)
 {
 }
 
@@ -17,7 +17,7 @@ void ScoreTableButton::execute()
     while (m_window.isOpen() && !click)
     {
         m_window.clear();
-        m_game->getMenu().drawScoreTable();
+        m_game.getMenu().drawScoreTable();
         m_window.display();
 
         if (auto event = sf::Event{}; m_window.waitEvent(event))

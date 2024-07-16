@@ -2,7 +2,7 @@
 
 #include "MovingObject.h"
 
-MovingObject::MovingObject( b2World& world, const GameTextures texture, const sf::Vector2f location)
+MovingObject::MovingObject(b2World& world, const GameTextures texture, const sf::Vector2f location)
     :GameObject(texture, location)
 {
     //getting the sprite size
@@ -37,5 +37,4 @@ void MovingObject::update()
 {
     // Update the sprite position based on Box2D physics
     m_object.setPosition(m_object_body->GetPosition().x * SCALE, m_object_body->GetPosition().y * SCALE);
-    //m_object.setRotation(m_object_body->GetAngle() * 180 / b2_pi);
 }

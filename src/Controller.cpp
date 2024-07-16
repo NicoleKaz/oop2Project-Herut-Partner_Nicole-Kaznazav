@@ -15,11 +15,11 @@ Controller::Controller()
     m_gameView.setCenter(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
 
     //adding menu buttons:
-    m_menu.add(PLAY, std::make_unique<PlayButton>(this, m_window, &m_gameManager));
-    m_menu.add(HELP, std::make_unique<HelpButton>(this, m_window, &m_gameManager));
-    m_menu.add(SWITCH_PLAYER, std::make_unique<SwitchPlayerButton>(this, m_window, &m_gameManager));
-    m_menu.add(SCORE_TABLE, std::make_unique<ScoreTableButton>(this, m_window, &m_gameManager));
-    m_menu.add(EXIT, std::make_unique<ExitGame>(this, m_window, &m_gameManager));
+    m_menu.add(PLAY, std::make_unique<PlayButton>(m_window, m_gameManager, *this));
+    m_menu.add(HELP, std::make_unique<HelpButton>(m_window, *this));
+    m_menu.add(SWITCH_PLAYER, std::make_unique<SwitchPlayerButton>(m_window, m_gameManager, *this));
+    m_menu.add(SCORE_TABLE, std::make_unique<ScoreTableButton>(m_window, *this));
+    m_menu.add(EXIT, std::make_unique<ExitGame>(m_window, *this));
 
     // הגדרות התצוגה
     m_window.setView(m_gameView);

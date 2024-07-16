@@ -1,11 +1,10 @@
 #include "HelpButton.h"
 #include "Controller.h"
-#include <iostream>
 
 
-
-HelpButton::HelpButton(Controller* game, sf::RenderWindow& window, GameManager* manager)
-    : Command(game, window,manager) {
+HelpButton::HelpButton(sf::RenderWindow& window, Controller& game)
+    : Command(window), m_game(game)
+{
 }
 
 void HelpButton::execute()
@@ -13,7 +12,7 @@ void HelpButton::execute()
     while (m_window.isOpen())
     {
         m_window.clear();
-        m_game->getMenu().displayRules();
+        m_game.getMenu().displayRules();
         m_window.display();
 
         if (auto event = sf::Event{}; m_window.waitEvent(event))

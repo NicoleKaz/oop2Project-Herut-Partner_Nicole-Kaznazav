@@ -8,13 +8,10 @@ class Controller;
 class ScoreTableButton : public Command
 {
 public:
-
-	ScoreTableButton(Controller* game, sf::RenderWindow& window, GameManager* manager);
-
+	ScoreTableButton(sf::RenderWindow& window, Controller& game);
 	void execute() override;
 
 private:
-	//LevelsMenu m_levels_menu;
-	//Controller* m_game;
-	//sf::RenderWindow& m_window;
+	Controller& m_game;
+
 };

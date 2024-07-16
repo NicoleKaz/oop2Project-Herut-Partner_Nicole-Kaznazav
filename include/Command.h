@@ -9,12 +9,10 @@ class GameManager;
 class Command
 {
 public:
-    Command(Controller* game, sf::RenderWindow& window, GameManager* manager);
+    Command(sf::RenderWindow& window);
     virtual ~Command() = default;
     virtual void execute() = 0;
 
 protected:
-    Controller* m_game;
     sf::RenderWindow& m_window;
-    GameManager* m_manager;  
 };
