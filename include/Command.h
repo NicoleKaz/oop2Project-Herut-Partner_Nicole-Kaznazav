@@ -5,6 +5,8 @@
 
 class Controller;
 class GameManager;
+class Musics;
+
 
 class Command
 {

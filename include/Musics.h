@@ -15,6 +15,7 @@ class Musics
 public:
 	Musics();
 	static Musics& instance();
+	void muteMusic();
 	void playMenuSound();
 	void stopMenuMusic();
 	//stopMusic
@@ -22,13 +23,7 @@ public:
 
 	void stopSongLevel(const GameSounds sound);
 
-
-
-
-
 	const sf::SoundBuffer& getSoundBuffer(const GameSounds sound) const { return m_soundBuffers[sound]; }
-
-
 
 
 private:

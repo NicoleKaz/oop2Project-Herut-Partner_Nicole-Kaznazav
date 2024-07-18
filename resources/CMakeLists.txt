@@ -12,6 +12,7 @@ configure_file ("ScoreTable.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Help.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Exit.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Play.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("MuteMusic.png" ${CMAKE_BINARY_DIR} COPYONLY)
 
 configure_file ("level1.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("level2.png" ${CMAKE_BINARY_DIR} COPYONLY)

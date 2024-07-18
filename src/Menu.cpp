@@ -12,7 +12,7 @@ Menu::Menu(sf::RenderWindow& window)
 	//title sprite
 	m_title.setTexture(Resources::instance().getMenuTexture(Title));
 	//the menu buttons
-	for (int button = PLAY; button <= EXIT; button++)
+	for (int button = PLAY; button <= MUTE_MUSIC ; button++)
 	{
 		m_buttons[button].setTexture(Resources::instance().getButton((Button)button));
 	}
@@ -141,6 +141,10 @@ void Menu::setPosition()
 	m_buttons[EXIT].setPosition(sf::Vector2f((WINDOW_WIDTH - m_buttons[EXIT].getTextureRect().width) * 1,
 		WINDOW_HEIGHT - m_buttons[EXIT].getTextureRect().height * 1));
 	
+	m_buttons[MUTE_MUSIC].setPosition(sf::Vector2f((WINDOW_WIDTH - m_buttons[MUTE_MUSIC].getTextureRect().width) * 1,
+		WINDOW_HEIGHT - m_buttons[MUTE_MUSIC].getTextureRect().height * 4));
+
+	
 	m_title.setPosition(sf::Vector2f(WINDOW_WIDTH * 0.18, WINDOW_HEIGHT * 0.1));
 	m_title.scale(sf::Vector2f(WINDOW_WIDTH * 0.67 / m_title.getTextureRect().width,
 		WINDOW_WIDTH * 0.5 / m_title.getTextureRect().width));
@@ -150,9 +154,4 @@ void Menu::setPosition()
 		//WINDOW_HEIGHT - m_instructionsPage[STICKER].getTextureRect().height * 1.0));
 }
 
-////Returns the from the array
-//sf::Sprite Menu::getInstructions(const Instructions object) const
-//{
-//	return m_instructionsPage[object];
-//}
 

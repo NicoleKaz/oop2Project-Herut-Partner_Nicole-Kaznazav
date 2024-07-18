@@ -20,6 +20,8 @@ Controller::Controller()
     m_menu.add(SWITCH_PLAYER, std::make_unique<SwitchPlayerButton>(m_window, m_gameManager, *this));
     m_menu.add(SCORE_TABLE, std::make_unique<ScoreTableButton>(m_window, *this));
     m_menu.add(EXIT, std::make_unique<ExitGame>(m_window, *this));
+    m_menu.add(MUTE_MUSIC, std::make_unique<MuteMusic>(m_window, m_musics));
+
 
     // הגדרות התצוגה
     m_window.setView(m_gameView);
@@ -31,13 +33,13 @@ void Controller::run()
     m_GameClock.restart();
     while (m_window.isOpen())
     {
-       // m_musics.playMenuSound();
         //display the first window 
         m_window.clear(sf::Color::Color(0, 0, 0));
         m_menu.drawMenu();
         m_window.display();
 
-        if (auto event = sf::Event{}; m_window.waitEvent(event))
+        sf::Event event;
+        if (m_window.waitEvent(event))
         {
             switch (event.type)
             {
@@ -194,7 +196,7 @@ void Controller::handleSwitchPlayerMouseMoved(const sf::Vector2f location)
 void Controller::handleMenuMouseMoved(const sf::Vector2f location)
 {
     //loop to go over the buttons
-    for (int player = PLAY; player <= EXIT; player++)
+    for (int player = PLAY; player <= MUTE_MUSIC; player++)
     {
         //check if a button pressed
         if ((m_menu.getButton((Button)player).getGlobalBounds().contains(location)))
@@ -213,6 +215,3 @@ void Controller::quitGame()
 {
     m_window.close();
 }
-
-
-

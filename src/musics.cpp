@@ -21,6 +21,18 @@ Musics& Musics::instance()
 	return Music;
 }
 
+void Musics::muteMusic()
+{
+	if (m_menuSound.getStatus() == sf::Sound::Playing)
+	{
+		m_menuSound.pause();
+	}
+	else
+	{
+		m_menuSound.play();
+	}
+}
+
 
 
 void Musics::playMenuSound()
@@ -32,8 +44,6 @@ void Musics::stopMenuMusic()
 {
 	m_menuSound.stop();
 }
-
-
 
 void Musics::playSongLevel(const GameSounds sound)
 {
