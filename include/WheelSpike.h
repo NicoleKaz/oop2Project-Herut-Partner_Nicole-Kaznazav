@@ -1,11 +1,11 @@
 #pragma once
-
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <Box2D/Box2D.h>
-#include "Resources.h"
 #include "MovingObject.h"
+#include "Resources.h"
 #include "Factory.h"
+
 
 class WheelSpike : public MovingObject
 {
@@ -18,5 +18,4 @@ private:
     GameTextures m_wheel_textures;
     static bool m_object1;
     float m_degrees;
-
 };

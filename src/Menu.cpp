@@ -1,5 +1,4 @@
 #include "Menu.h"
-#include <iostream>
 
 
 //This functions define the arrays
@@ -17,7 +16,7 @@ Menu::Menu(sf::RenderWindow& window)
 		m_buttons[button].setTexture(Resources::instance().getButton((Button)button));
 	}
 	//the instruction page 
-	for (int instruction = GAME_RULES; instruction <= STICKER; instruction++)
+	for (int instruction = GAME_RULES; instruction <= GAME_RULES; instruction++)
 	{
 		m_instructionsPage[instruction].setTexture(Resources::instance().getInstruction((Instructions)instruction));
 	}
@@ -48,12 +47,7 @@ void Menu::ButtonRelease(const MenuPlayer player)
 	m_players[player].setColor(sf::Color::Color(255, 255, 255, 100));
 };
 
-//void Menu::playSound(Sound sound);
-//{
-//	Resources::instance().playSound(sound);
-//}
-
-
+//The players Textures
 std::vector<GameTextures> Menu::getPlayerTextures() const
 {
 	switch (m_player)
@@ -65,7 +59,7 @@ std::vector<GameTextures> Menu::getPlayerTextures() const
 	case PLAYER3:
 		return { Third_Player, Third_Speed, Third_Shield, Third_Fly };
 	case PLAYER4:
-		return { Fourth_Player, Fourth_Speed, Fourth_Player, Fourth_Fly };
+		return { Fourth_Player, Fourth_Speed, Fourth_Shield, Fourth_Fly };
 	default:
 		return { First_Player, First_Speed, First_Shield, First_Fly };
 	}
@@ -77,15 +71,11 @@ void Menu::choosePlayer(const MenuPlayer player)
 	m_player = player;
 }
 
-
-
 //adding new button to the menu
 void Menu::add(const Button button, std::unique_ptr<Command> command)
 {
 	m_options.push_back(std::make_pair(m_buttons[button], std::move(command)));
 }
-
-
 
 //draw the game menu
 void Menu::drawMenu()const
@@ -98,7 +88,9 @@ void Menu::drawMenu()const
 	m_window.draw(m_title);
 }
 
-
+// function handles user interactions with menu items by executing 
+//associated actions when the user clicks on a menu item. 
+//It checks if the click location falls within the bounds of any menu item
 void Menu::action(const sf::Vector2f& location) const
 {
 	for (const auto& option : m_options)
@@ -150,8 +142,6 @@ void Menu::setPosition()
 		WINDOW_WIDTH * 0.5 / m_title.getTextureRect().width));
 
 	m_instructionsPage[GAME_RULES].setPosition(sf::Vector2f(WINDOW_WIDTH * 0.04f, WINDOW_HEIGHT * 0.04f));
-	//m_instructionsPage[STICKER].setPosition(sf::Vector2f((WINDOW_WIDTH - m_instructionsPage[STICKER].getTextureRect().width) * 0.9,
-		//WINDOW_HEIGHT - m_instructionsPage[STICKER].getTextureRect().height * 1.0));
 }
 
 

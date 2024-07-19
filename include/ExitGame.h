@@ -12,5 +12,4 @@ public:
 
 private:
 	Controller& m_game;
-
 };

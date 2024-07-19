@@ -1,4 +1,3 @@
-#pragma once
 #include "ScoreTable.h"
 #include <iostream>
 #include <thread>

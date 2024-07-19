@@ -55,13 +55,11 @@ void Player::releaseRight()
     m_direction[Right] = false;
     m_direction[Stay] = true;
 }
-
 void Player::releaseLeft()
 {
     m_direction[Left] = false;
     m_direction[Stay] = true;
 }
-
 void Player::releaseSpace()
 {
     m_direction[Up] = false;
@@ -87,6 +85,8 @@ void Player::resetPlayerAfterKill()
     m_alive = true;
 }
 
+//function is designed to apply a vertical impulse to the player's physics body, 
+//enabling the player to perform a hopping action
 void Player::hop(const float hop_force) const
 {
     //to avoid "icetower" jumps
@@ -113,35 +113,6 @@ void Player::setRegular()
     m_beShield = false;
     m_state_change = true;
 }
-
-//isRegularState
-bool Player::isRegularState() const
-{
-    return m_state_change;
-}
-
-void Player::updateTools(sf::Sprite& background)
-{
-    if (m_beSpeed && m_speedClock.getElapsedTime().asSeconds() > 3)
-    {
-        m_beSpeed = false;
-        setRegularState();
-        //background.setColor(sf::Color(rand(), rand(), rand()));
-    }
-    else if (m_beShield && m_shieldClock.getElapsedTime().asSeconds() > 5)
-    {
-        m_beShield = false;
-        setRegularState();
-        //background.setColor(sf::Color(rand(), rand(), rand()));
-    }
-    //else if (m_beFly && m_flyClock.getElapsedTime().asSeconds() > 5)
-    //{
-    //    m_beFly = false;
-    //    setRegularState();
-    //    //background.setColor(sf::Color(rand(), rand(), rand()));
-    //}
-}
-
 void Player::setRegularState()
 {
     //changed the player body
@@ -150,18 +121,36 @@ void Player::setRegularState()
     m_state.reset(new RegularPlayerState());
     m_object.setRotation(0);
 }
+bool Player::isRegularState() const
+{
+    return m_state_change;
+}
 
-void Player::increaseSpeed()
+//This function is used to manage and update the status of power-up tools for the player
+void Player::updateTools(sf::Sprite& background)
+{
+    if (m_beSpeed && m_speedClock.getElapsedTime().asSeconds() > 4)
+    {
+        m_beSpeed = false;
+        setRegularState();
+    }
+    else if (m_beShield && m_shieldClock.getElapsedTime().asSeconds() > 5)
+    {
+        m_beShield = false;
+        setRegularState();
+    }
+}
+
+//Speed state
+void Player::beSpeed()
 {
     m_beSpeed = true;
     m_speedClock.restart();
 }
-
 bool Player::isSpeedState() const
 {
     return m_beSpeed;
 }
-
 void Player::setSpeedState()
 {
     //changed the player body
@@ -172,17 +161,16 @@ void Player::setSpeedState()
 
 }
 
+//Shield state
 void Player::beShield()
 {
     m_beShield = true;
-    m_shieldClock.restart(); // אתחול הטיימר עבור מצב מגן
+    m_shieldClock.restart(); 
 }
-
 bool Player::isShieldState() const
 {
     return m_beShield;
 }
-
 void Player::setShieldState()
 {
     //changed the player body
@@ -192,16 +180,15 @@ void Player::setShieldState()
     m_object.setRotation(0);
 }
 
+//Fly state
 void Player::beFly()
 {
     m_beFly = true;
 }
-
 bool Player::isFlystate() const
 {
     return m_beFly;
 }
-
 void Player::setFlyState()
 {
     //changed the player body
@@ -232,13 +219,13 @@ const bool Player::isWinner() const
     return m_win;
 }
 
-
+//This function handles the player's jumping mechanics in the game. 
 void Player::chooseAndJump(const float jump)
 {
-    // כדי למנוע קפיצות "icetower"
+    // Stop the player's movement
     m_object_body->SetLinearVelocity(b2Vec2(0.0f, 0.0f));
 
-    // לגרום לשחקן לקפוץ לפי הכבידה
+    // Apply an impulse for jumping based on gravity direction
     if (m_gravity.y > 0)
         m_object_body->ApplyLinearImpulseToCenter(b2Vec2(0.0f, -jump), true);
     else

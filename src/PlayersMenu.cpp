@@ -1,5 +1,5 @@
 #include "PlayersMenu.h"
-#include "Resources.h"
+
 
 PlayersMenu::PlayersMenu(sf::RenderWindow& window)
     : m_window(window)
@@ -30,11 +30,9 @@ void PlayersMenu::locateObjects()
 
     m_player[PLAYER4].setPosition(sf::Vector2f((WINDOW_WIDTH - m_player[PLAYER4].getTextureRect().width) * 0.75,
         (WINDOW_HEIGHT - m_player[PLAYER3].getTextureRect().height) * 0.75));
-
-    //m_player[Spectre].setPosition(sf::Vector2f((WINDOW_WIDTH - m_player[Spectre].getTextureRect().width) * 0.75,
-    //    (WINDOW_HEIGHT - m_player[Spectre].getTextureRect().height) * 0.75));
 }
 
+//draw the players buttons
 void PlayersMenu::drawPlayer()const 
 {
     m_window.draw(m_background);
@@ -50,7 +48,7 @@ void PlayersMenu::add(const MenuPlayer player, std::unique_ptr<Command> command)
     m_options.emplace_back(options(m_player[player], std::move(command)));
 }
 
-
+//Handel the user choice 
 void PlayersMenu::handleAction(const sf::Vector2f& location)
 {
     for (auto& option : m_options)

@@ -38,7 +38,6 @@ configure_file ("Player4_Shield.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Player4_Speed.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Player4_Fly.png" ${CMAKE_BINARY_DIR} COPYONLY)
 
-configure_file ("Sticker.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("instructions.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("MapRed.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("MapPink.png" ${CMAKE_BINARY_DIR} COPYONLY)

@@ -1,15 +1,14 @@
 #include "Controller.h"
 #include <thread>
 #include <chrono>
-#include <iostream>
 
+
+//Responsible for managing the game menu
 Controller::Controller()
     :m_window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Geometry Dash"),
     m_menu(m_window),
     m_gameManager(m_window, m_menu)
 {
-    //m_menuSound.setBuffer(Resources::instance().getSoundBuffer(Menu_Song));
-    //m_menuSound.setLoop(true);
     m_window.setFramerateLimit(120);
     m_gameView.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
     m_gameView.setCenter(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
@@ -22,11 +21,10 @@ Controller::Controller()
     m_menu.add(EXIT, std::make_unique<ExitGame>(m_window, *this));
     m_menu.add(MUTE_MUSIC, std::make_unique<MuteMusic>(m_window, m_musics));
 
-
-    // הגדרות התצוגה
     m_window.setView(m_gameView);
 };
 
+//This function runs the game menu
 void Controller::run()
 {
     m_musics.playMenuSound();
@@ -52,58 +50,45 @@ void Controller::run()
             {
                 //getting the click location, checking what button pressed
                 const auto location = m_window.mapPixelToCoords({ event.mouseButton.x, event.mouseButton.y });
-                // const int button = m_menu.getOptionFromUser(location);l
-
                 //performing the button action accordingly
                 m_menu.action(location);
                 break;
             }
-            //case sf::Event::MouseMoved:
-            //{
-            //    //indicate if the mouse on the buttons 
-            //    const auto location = m_window.mapPixelToCoords(sf::Mouse::getPosition(m_window));
-            //    m_menu.handleMenuMouseMoved(location);
-            //    break;
-            //}
-
             }
         }
-        //m_musics.playMenuSound();
         if (m_gameManager.isWin())
         {
-			//m_gameManager.setWin(false);
-			//m_gameManager.setFinish(false);
-           // m_menu.updateScoreTable(m_gameManager.getCoins());
             m_gameView.setCenter(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
             m_window.setView(m_gameView);
-            fillScoreTable(); //taking name to scoreboard
+            //taking name to scoreboard
+            fillScoreTable(); 
         }
 
     }
 }
 
+//This function is responsible for filling the scoreboard
 void Controller::fillScoreTable()
 {
+    // Initialize the state for entering a username
     m_isEnteringName = true;
     m_username.clear();
-
-    // עיצוב הכותרת והטקסט
+    // Set up the "High Scores" title text
     m_enterNameText.setFont(Resources::instance().getFont());
     m_enterNameText.setString("High Scores");
     m_enterNameText.setCharacterSize(48);
     m_enterNameText.setFillColor(sf::Color::White);
     m_enterNameText.setPosition(300, 100);
-
+    // Set up the prompt text for entering the name
     m_promptText.setFont(Resources::instance().getFont());
     m_promptText.setString("Enter your name: ");
     m_promptText.setCharacterSize(24);
     m_promptText.setFillColor(sf::Color::White);
     m_promptText.setPosition(300, 200);
-
-    // עיצוב הרקע
+    // Set up the background rectangle
     m_backgroundRect.setSize(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT));
-    m_backgroundRect.setFillColor(sf::Color(100, 100, 100, 150)); // רקע שחור שקוף
-
+    m_backgroundRect.setFillColor(sf::Color(100, 100, 100, 150));
+    // Event loop for capturing name input
     while (m_isEnteringName)
     {
         sf::Event event;
@@ -111,20 +96,20 @@ void Controller::fillScoreTable()
         {
             if (event.type == sf::Event::Closed)
                 m_window.close();
-
+            //Handle text input event
             if (event.type == sf::Event::TextEntered && m_isEnteringName)
             {
+                //Function to process text input
                 handleTextEntered(event);
             }
         }
-
+        // Clear the window for redrawing
         m_window.clear();
-
-        // ציור הרקע, הכותרת והטקסט
+        // Draw the background rectangle, title text, and prompt text
         m_window.draw(m_backgroundRect);
         m_window.draw(m_enterNameText);
         m_window.draw(m_promptText);
-
+        // Draw the entered name text
         sf::Text nameText;
         nameText.setFont(Resources::instance().getFont());
         nameText.setString(m_username);
@@ -132,35 +117,44 @@ void Controller::fillScoreTable()
         nameText.setFillColor(sf::Color::White);
         nameText.setPosition(300, 250);
         m_window.draw(nameText);
-
+        //Display the updated window
         m_window.display();
     }
+
 }
 
+
+//This function handels the Name input
 void Controller::handleTextEntered(const sf::Event& event)
 {
+    //Only handle printable ASCII characters
     if (event.text.unicode < 128)
     {
+        //Convert the entered Unicode character to a char
         char enteredChar = static_cast<char>(event.text.unicode);
-        if (enteredChar == '\b') // טיפול במחיקת תו
+        //Handle backspace key press
+        if (enteredChar == '\b') 
         {
             if (!m_username.empty())
                 m_username.pop_back();
         }
-        else if (enteredChar == '\r') // טיפול בלחיצת Enter
+        //Handle Enter key press
+        else if (enteredChar == '\r')
         {
             m_isEnteringName = false;
             int score = m_gameManager.getCoins();
             m_menu.updateScoreTable(m_username, score);
         }
+        //Handle other printable characters
         else
         {
+            //Append the entered character to the username
             m_username += enteredChar;
         }
     }
 }
 
-
+//This functions handels the choose player menu
 void Controller::handleSwitchPlayer(const sf::Vector2f location)
 {
     //loop to go over the buttons
@@ -174,7 +168,6 @@ void Controller::handleSwitchPlayer(const sf::Vector2f location)
         }
     }
 }
-
 void Controller::handleSwitchPlayerMouseMoved(const sf::Vector2f location)
 {
     //loop to go over the buttons

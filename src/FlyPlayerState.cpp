@@ -1,10 +1,10 @@
 #include "FlyPlayerState.h"
 
+
 void FlyPlayerState::move(bool* direction, b2Body* body, bool& m_touchingFloor, const b2Vec2 gravity, sf::Sprite& object)
 {
     if (direction[Up])
     {
-
         //saving last vilocity and keep moving that way
         float currentSpeed_y = body->GetLinearVelocity().y;
 
@@ -39,14 +39,4 @@ void FlyPlayerState::move(bool* direction, b2Body* body, bool& m_touchingFloor, 
     //move the sprite
     object.setPosition(SCALE * body->GetPosition().x, SCALE * body->GetPosition().y);
 }
-
-
-
-
-
-//void FlyPlayerState::collideBrick(bool& touching_ground, bool& alive)
-//{
-//	std::cout << "CollideBrick" << std::endl;
-//    touching_ground = true;
-//}
 

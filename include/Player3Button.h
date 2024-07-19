@@ -1,9 +1,9 @@
 #pragma once
-
+#include "Controller.h"
 #include "Command.h"
 
-class Controller;
 
+class Controller;
 
 class Player3Button : public Command
 {

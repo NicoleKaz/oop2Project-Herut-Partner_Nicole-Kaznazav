@@ -1,6 +1,8 @@
 #pragma once
-
+#include "GameManager.h"
+#include "Controller.h"
 #include "Command.h"
+
 
 class Controller;
 
@@ -13,5 +15,4 @@ public:
 private:
 	GameManager& m_manager;
 	Controller& m_game;
-
 };

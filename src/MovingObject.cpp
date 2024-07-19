@@ -1,6 +1,5 @@
-#pragma once
-
 #include "MovingObject.h"
+
 
 MovingObject::MovingObject(b2World& world, const GameTextures texture, const sf::Vector2f location)
     :GameObject(texture, location)
@@ -26,15 +25,14 @@ MovingObject::MovingObject(b2World& world, const GameTextures texture, const sf:
     m_object_body->CreateFixture(&fixtureDef); //pushing the fixture into the body
 }
 
-
+//BOX2D body location 
 const b2Vec2 MovingObject::getPosition()const
 {
     return m_object_body->GetPosition();
 }
 
-
+// Update the sprite position based on Box2D physics
 void MovingObject::update()
 {
-    // Update the sprite position based on Box2D physics
     m_object.setPosition(m_object_body->GetPosition().x * SCALE, m_object_body->GetPosition().y * SCALE);
 }

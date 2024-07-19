@@ -1,7 +1,5 @@
-#pragma once
-
 #include "LevelsMenu.h"
-#include <iostream>
+
 
 LevelsMenu::LevelsMenu(sf::RenderWindow& window, GameManager& manager)
 	:m_window(window), m_manager(manager)
@@ -26,26 +24,27 @@ void LevelsMenu::drawLevelsMenu() const
 	}
 }
 
+//This function handles mouse movement events 
 void LevelsMenu::handleMouseMoved(const sf::Vector2f location)
 {
 
-	// מציין את המיקום של העכבר
+	// Loop through each menu item
 	for (std::size_t level = 0; level < m_options.size(); ++level)
 	{
 		if (m_options[level].first.getGlobalBounds().contains(location))
 		{
-			// הפיכת הכפתור לבולט
+			// Change color when mouse is over the item
 			m_menuLevel[level].setColor(sf::Color::Color(255, 255, 255, 150));
 		}
 		else
 		{
-			// הסרת ההבלטה מהכפתור
+			// Reset color when mouse is not over the item
 			m_menuLevel[level].setColor(sf::Color::Color(255, 255, 255));
 		}
 	}
 }
 
-
+//This function checking where the user clicked
 const int LevelsMenu::getOptionFromUser(const sf::Vector2f location) const
 {
 	//check if the button contains the click location 
@@ -61,31 +60,27 @@ const int LevelsMenu::getOptionFromUser(const sf::Vector2f location) const
 	return m_options.size() + 1;
 }
 
+//This function determines which menu button was clicked based on the location of the click and performs the corresponding action
 void LevelsMenu::action(const sf::Vector2f& location)const
 {
-
 	//check if the button contains the click location
 	for (int button = level1; button < m_options.size(); button++)
 	{
-		//why cannot enter to if?
 		if (m_options[button].first.getGlobalBounds().contains(location))
 		{
-
 			//perform the button action
 			m_options[button].second->execute();
 			return;
 		}
-
 	}
 }
 
-
-
+//This function adding new button to the menu
 void LevelsMenu::add(const MenuLevels button, std::unique_ptr<Command> command)
 {
-	//adding new button to the menu
 	m_options.emplace_back(option(m_menuLevel[button], move(command)));
 }
+
 
 void LevelsMenu::locateObjects()
 {
@@ -98,7 +93,4 @@ void LevelsMenu::locateObjects()
 
 	m_menuLevel[level3].setPosition(sf::Vector2f((WINDOW_WIDTH - m_menuLevel[level3].getTextureRect().width) * 0.50,
 		(WINDOW_HEIGHT - m_menuLevel[level3].getTextureRect().height) * 0.75));
-
-	/*m_menuLevel[Spectre].setPosition(sf::Vector2f((WINDOW_WIDTH - m_menuLevel[Spectre].getTextureRect().width) * 0.75,
-		(WINDOW_HEIGHT - m_menuLevel[Spectre].getTextureRect().height) * 0.75));*/
 }

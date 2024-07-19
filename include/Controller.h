@@ -5,14 +5,14 @@
 #include <iomanip>
 #include "SwitchPlayerButton.h"
 #include "ScoreTableButton.h"
-#include "ExitGame.h"
-#include "Resources.h"
+#include "GameManager.h"
 #include "HelpButton.h"
 #include "PlayButton.h"
+#include "Resources.h"
 #include "MuteMusic.h"
-#include "Menu.h"
-#include "GameManager.h"
+#include "ExitGame.h"
 #include "Musics.h"
+#include "Menu.h"
 
 
 class Controller {
@@ -23,30 +23,24 @@ public:
     void handleSwitchPlayer(const sf::Vector2f location);
     void handleSwitchPlayerMouseMoved(const sf::Vector2f location);
     void quitGame();
-
-
     Menu& getMenu() { return m_menu; }
     Musics& getMusics() { return m_musics; }
 
-
 private:
-    sf::RenderWindow m_window;
     Menu m_menu;
     Musics m_musics;
     GameManager m_gameManager;
     Resources m_resources;
+    std::string m_username;
     sf::View m_gameView;
     sf::Clock m_GameClock;
-
-    void handleMenuMouseMoved(const sf::Vector2f);
-    void handleTextEntered(const sf::Event& event); // פונקציה יעודית לטיפול בקלט טקסט
-
-    std::string m_username;
-    bool m_isEnteringName = false;
+    sf::RenderWindow m_window;
     sf::Text m_enterNameText;
     sf::Text m_promptText;
     sf::RectangleShape m_backgroundRect;
 	sf::RectangleShape m_nameRect;
-
+    void handleMenuMouseMoved(const sf::Vector2f);
+    void handleTextEntered(const sf::Event& event); 
+    bool m_isEnteringName = false;
     bool m_isMuted = false;
 };

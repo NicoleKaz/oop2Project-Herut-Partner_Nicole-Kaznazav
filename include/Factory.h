@@ -1,14 +1,12 @@
 #pragma once
-
+#include <SFML/Graphics.hpp>
 #include <iostream>
 #include <memory>
-#include <map>
 #include <vector>
 #include <string>
+#include <map>
 #include "StaticObject.h"
 #include "MovingObject.h" 
-#include <SFML/Graphics.hpp>
-
 
 
 struct ColorComparator
@@ -21,8 +19,6 @@ struct ColorComparator
     }
 };
 
-
-
 template<class ObjectType>
 class Factory
 {
@@ -33,16 +29,12 @@ public:
 	static std::unique_ptr<ObjectType> createObject(sf::Color color, b2World& world, sf::Vector2f location);
     static bool isExist(sf::Color color);
 
-
-
-
 private:
     static auto& getMap()
     {
         static std::map<sf::Color, p2Fnc, ColorComparator> map;
         return map;
     }
-
 };
 
 
@@ -50,22 +42,12 @@ template<class ObjectType>
 inline bool Factory<ObjectType>::isExist(sf::Color color)
 {
     return getMap().find(color) != getMap().end();
-    //const auto& map = getMap();
-
-    //// Check in the map of StaticObjects
-    //for (const auto& pair : map) {
-    //    if (pair.first == color) {
-    //        return true;
-    //    }
-    //}
-    //return false;
 }
 
 template<class ObjectType>
 inline bool Factory<ObjectType>::registerObject(sf::Color object, p2Fnc fnc)
 {
     //Insert the object to the map (color, function)
-   /* Factory::getMap().emplace(object, fnc);*/
     getMap().emplace(object, fnc);
     return true;
 }

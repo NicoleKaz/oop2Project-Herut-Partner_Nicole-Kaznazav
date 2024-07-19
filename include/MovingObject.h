@@ -1,10 +1,9 @@
 #pragma once
-
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <Box2D/Box2D.h>
-#include "Resources.h"
 #include "GameObject.h"
+#include "Resources.h"
 
 
 class MovingObject : public GameObject
@@ -15,7 +14,4 @@ public:
 	virtual void update();
 	virtual void updateDirection() = 0;
 	virtual void move() = 0;
-
-protected:
-	
 };

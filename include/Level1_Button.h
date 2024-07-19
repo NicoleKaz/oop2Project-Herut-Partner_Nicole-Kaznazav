@@ -1,8 +1,8 @@
 #pragma once
-
-#include "Command.h"
-#include "Controller.h"
 #include "GameManager.h"
+#include "Controller.h"
+#include "Command.h"
+
 
 class Controller;
 

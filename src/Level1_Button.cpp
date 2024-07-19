@@ -1,5 +1,6 @@
 #include "Level1_Button.h"
 
+
 Level1_Button::Level1_Button(sf::RenderWindow& window, GameManager& manager, Controller& game)
     : Command(window), m_manager(manager), m_game(game)
 {

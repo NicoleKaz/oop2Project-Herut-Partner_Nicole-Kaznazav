@@ -1,5 +1,5 @@
 #include "WheelSpike.h"
-#include <cmath>
+//#include <cmath>
 
 
 WheelSpike::WheelSpike(b2World& world, const GameTextures textures, const sf::Vector2f location)

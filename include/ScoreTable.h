@@ -1,11 +1,10 @@
 #pragma once
-
 #include <SFML/Graphics.hpp>
-#include <vector>
-#include <string>
+#include <algorithm>
 #include <fstream>
 #include <sstream>
-#include <algorithm>
+#include <vector>
+#include <string>
 #include "Resources.h"
 
 
@@ -21,10 +20,8 @@ private:
     sf::Sprite m_backgroundScore;
     sf::Text m_titleScore;
     sf::RenderWindow& m_window;
-    std::vector<std::pair<std::string, int>> m_scores; // זוג של שם משתמש וניקוד
+    std::vector<std::pair<std::string, int>> m_scores; 
     sf::Vector2f m_table;
-
     const int maxScores = 10; // Maximum number of scores to keep
     void sortScores();
-
 };

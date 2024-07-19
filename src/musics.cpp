@@ -15,6 +15,8 @@ void Musics::loadMusic()
 	m_soundBuffers[Menu_Song].loadFromFile("Menu_Song.ogg");
 }
 
+//implementation of the Singleton design pattern 
+//ensures that a class has only one instance and provides a global point of access to it.
 Musics& Musics::instance()
 {
 	static Musics Music;
@@ -32,8 +34,6 @@ void Musics::muteMusic()
 		m_menuSound.play();
 	}
 }
-
-
 
 void Musics::playMenuSound()
 {

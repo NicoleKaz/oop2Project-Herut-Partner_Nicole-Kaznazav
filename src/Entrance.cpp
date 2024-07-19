@@ -1,26 +1,18 @@
-#pragma once
-
 #include "Entrance.h"
 
 
-Entrance::Entrance(b2World& world, const GameTextures texture, const sf::Vector2f location/*, const bool up,
-    const GameAnimations, const GameTextures*/)
+Entrance::Entrance(b2World& world, const GameTextures texture, const sf::Vector2f location)
     :StaticObject(world, texture, location)
 {
-    // הגדרת הגוף כ-sensor
     b2Fixture* fixture = m_object_body->GetFixtureList();
     if (fixture)
     {
         fixture->SetSensor(true);
-
     }
-
     m_originalColor = m_object.getColor();
-
-
 }
 
-
+//
 void Entrance::update()
 {
     if (m_colorChanged)
@@ -40,7 +32,7 @@ void Entrance::update()
     }
 }
 
-
+//
 void Entrance::changeColorTemporarily(const sf::Color& color)
 {
     if (!m_disabled)
@@ -53,24 +45,22 @@ void Entrance::changeColorTemporarily(const sf::Color& color)
     }
 }
 
-
-
 //register all the spikes to the static object factory
 bool Entrance::m_object1 = Factory<StaticObject>::registerObject(GATE_GRAVITY_CHANGE_COLOR,
     [](b2World& world, const sf::Vector2f location) -> std::unique_ptr<StaticObject> {
-        return std::make_unique<Entrance>(world, GateGravityChange, location/*, false, (GameAnimations)0, (GameTextures)0*/); }
+        return std::make_unique<Entrance>(world, GateGravityChange, location); }
 );
 
 //register all the spikes to the static object factory
 bool Entrance::m_object2 = Factory<StaticObject>::registerObject(GATE_NO_FLY_COLOR,
     [](b2World& world, const sf::Vector2f location) -> std::unique_ptr<StaticObject> {
-        return std::make_unique<Entrance>(world, GateNoFly, location/*, false, (GameAnimations)0, (GameTextures)0*/); }
+        return std::make_unique<Entrance>(world, GateNoFly, location); }
 );
 
 //register all the spikes to the static object factory
 bool Entrance::m_object3 = Factory<StaticObject>::registerObject(GATE_END_LEVEL_COLOR,
     [](b2World& world, const sf::Vector2f location) -> std::unique_ptr<StaticObject> {
-        return std::make_unique<Entrance>(world, GateLevelEnd, location/*, false, (GameAnimations)0, (GameTextures)0*/); }
+        return std::make_unique<Entrance>(world, GateLevelEnd, location); }
 );
 
 

@@ -1,7 +1,5 @@
-#pragma once
-
 #include "GameObject.h"
-#include <iostream>
+
 
 GameObject::GameObject(const GameTextures texture, const sf::Vector2f location)
     :m_object_body(nullptr)
@@ -13,12 +11,13 @@ GameObject::GameObject(const GameTextures texture, const sf::Vector2f location)
     m_object.setPosition(location);
 }
 
+//Responsible for rendering the game object onto the window.
 void GameObject::draw(sf::RenderWindow& window) const
 {
     window.draw(m_object);
-
 }
 
+//Returns a pointer to the b2Body object associated with the game object
 b2Body* GameObject::getBody() const
 {
     return m_object_body;

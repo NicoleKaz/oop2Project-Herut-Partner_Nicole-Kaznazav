@@ -7,6 +7,7 @@ HelpButton::HelpButton(sf::RenderWindow& window, Controller& game)
 {
 }
 
+//display the Help window 
 void HelpButton::execute()
 {
     while (m_window.isOpen())

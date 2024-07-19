@@ -1,9 +1,6 @@
 #pragma once
-
 #include "Command.h"
-//#include "Game.h"
 
-//#include "LevelsMenu.h"
 
 class Controller;
 
@@ -15,6 +12,5 @@ public:
 
 private:
 	Controller& m_game;
-
 };
 

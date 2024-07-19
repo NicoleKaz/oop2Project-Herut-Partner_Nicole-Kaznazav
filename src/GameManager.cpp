@@ -1,13 +1,15 @@
 #include "GameManager.h"
 
+
 GameManager::GameManager(sf::RenderWindow& window, Menu& menu)
     : m_window(window), m_menu(menu), m_board(m_window, m_menu.getPlayerTextures())
 {
-   	m_gameView.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-	m_gameView.setCenter(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2),
-    m_coins = 0;
+    m_gameView.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+    m_gameView.setCenter(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2),
+        m_coins = 0;
 }
 
+//This function runs the game 
 void GameManager::startGame()
 {
     m_isFinish = false;
@@ -61,7 +63,8 @@ void GameManager::setView()
     m_board.viewBackground(playerX - last_pos); //make the background move with the view
 }
 
-bool GameManager::isWin() 
+//This function checks if the player has finished the game
+bool GameManager::isWin()
 {
     if (m_isWin)
     {
@@ -71,8 +74,9 @@ bool GameManager::isWin()
     return false;
 }
 
-
+//This function returns the points the player has collected in the game
 int GameManager::getCoins() const
 {
-	return m_coins;
+    return m_coins;
 }
+

@@ -1,8 +1,8 @@
 #pragma once
-
-#include "Command.h"
-#include "PlayersMenu.h"
 #include <SFML/Graphics.hpp>
+#include "PlayersMenu.h"
+#include "Command.h"
+
 
 class SwitchPlayerButton : public Command
 {

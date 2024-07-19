@@ -1,9 +1,8 @@
 #pragma once
-
 #include <SFML/Graphics.hpp>
 #include <Box2D/Box2D.h>
-#include "Resources.h" // Assuming this provides access to game textures
 #include "MovingObject.h" 
+#include "Resources.h" 
 
 
 class Bullet : public MovingObject
@@ -11,11 +10,11 @@ class Bullet : public MovingObject
 public:
     Bullet(b2World& world, const GameTextures texture, const sf::Vector2f position);
 	~Bullet();    
-    virtual void update() override; // Update bullet's position or perform any necessary logic
-    void draw(sf::RenderWindow& window) const;
-    bool isAlive() const;
+    virtual void update() override; 
     virtual void updateDirection() override {}
     virtual void move() override {}
+    void draw(sf::RenderWindow& window) const;
+    bool isAlive() const;
 
 private:
     sf::Sprite m_sprite;

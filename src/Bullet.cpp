@@ -1,5 +1,6 @@
 #include "Bullet.h"
 
+
 Bullet::Bullet(b2World& world, const GameTextures texture, const sf::Vector2f position)
     : MovingObject(world, texture, position), m_alive(true)
 {
@@ -37,20 +38,24 @@ Bullet::Bullet(b2World& world, const GameTextures texture, const sf::Vector2f po
 //distractor
 Bullet::~Bullet()
 {
+    m_alive = false; 
     m_body->GetWorld()->DestroyBody(m_body);
 }
 
+//Updating the position of the bullet sprite based on the physics simulation.
 void Bullet::update()
 {
     b2Vec2 position = m_body->GetPosition();
     m_sprite.setPosition(position.x * SCALE, position.y * SCALE);
 }
 
+//draw the sprite
 void Bullet::draw(sf::RenderWindow& window) const
 {
     window.draw(m_sprite);
 }
 
+//returns the current state of the bullet
 bool Bullet::isAlive() const
 {
     return m_alive;

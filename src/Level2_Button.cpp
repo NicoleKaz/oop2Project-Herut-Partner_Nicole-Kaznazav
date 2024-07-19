@@ -1,7 +1,5 @@
-#pragma once
-
 #include "Level2_Button.h"
-#include "Controller.h"
+
 
 Level2_Button::Level2_Button(sf::RenderWindow& window, GameManager& manager, Controller& game)
     : Command(window), m_manager(manager), m_game(game)

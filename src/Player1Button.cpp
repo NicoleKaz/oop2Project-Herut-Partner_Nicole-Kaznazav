@@ -1,5 +1,5 @@
 #include "Player1Button.h"
-#include "Controller.h"
+
 
 Player1Button::Player1Button(sf::RenderWindow& window, Controller& game, GameManager& manager)
     : Command(window), m_game(game), m_manager(manager)

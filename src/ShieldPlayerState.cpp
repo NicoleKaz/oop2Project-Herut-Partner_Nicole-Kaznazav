@@ -3,7 +3,6 @@
 
 void ShieldPlayerState::move(bool* direction, b2Body* body, bool& m_touchingFloor, const b2Vec2 gravity, sf::Sprite& object)
 {
-
     if (direction[Up])
     {
         if (m_touchingFloor)
@@ -45,13 +44,3 @@ void ShieldPlayerState::move(bool* direction, b2Body* body, bool& m_touchingFloo
     object.setRotation(body->GetAngle() * 180 / b2_pi);
 
 }
-
-
-
-
-//void ShieldPlayerState::collideBrick(bool& touching_ground, bool& alive)
-//{
-//	std::cout << "CollideBrick" << std::endl;
-//    touching_ground = true;
-//}
-

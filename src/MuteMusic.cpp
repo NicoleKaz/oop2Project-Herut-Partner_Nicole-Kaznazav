@@ -14,6 +14,3 @@ void MuteMusic::execute()
 	m_music.muteMusic();
 }
 
-
-
-

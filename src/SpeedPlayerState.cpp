@@ -17,7 +17,6 @@ void SpeedPlayerState::move(bool* direction, b2Body* body, bool& m_touchingFloor
                 body->ApplyLinearImpulseToCenter(b2Vec2(0.0f, SHIELD_JUMP_FORCE), true);
 
             //reset sensors
-            //direction[Up] = false;
             m_touchingFloor = false;
         }  
     }
@@ -42,5 +41,4 @@ void SpeedPlayerState::move(bool* direction, b2Body* body, bool& m_touchingFloor
     //move and rotate the sprite acording to the body
     object.setPosition(SCALE * body->GetPosition().x, SCALE * body->GetPosition().y);
     object.setRotation(body->GetAngle() * 180 / b2_pi);
-
 }

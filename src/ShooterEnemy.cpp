@@ -1,5 +1,6 @@
 #include "ShooterEnemy.h"
 
+
 ShooterEnemy::ShooterEnemy(b2World& world, const GameTextures texture, const sf::Vector2f location)
     : Enemy(world, texture, location), m_world(world)
 {
@@ -40,27 +41,18 @@ void ShooterEnemy::update()
 
 void ShooterEnemy::updateDirection() 
 {
-    // אין צורך לעדכן כיוון
 }
 
 void ShooterEnemy::move()
 {
-    //shoot
     shoot();
-    //m_shootClock.restart();
 }
 
 void ShooterEnemy::draw(sf::RenderWindow& window) const
 {
 	if (m_bullet != nullptr)
 	{
-		//if the time passed from the last shoot is bigger than the interval
-		//if (m_shootClock.getElapsedTime().asSeconds() > 2)
-		//{
-            // ציור האויב
-            m_bullet->draw(window);
-			//restart the clock
-  		//}
+        m_bullet->draw(window);
 	}
     Enemy::draw(window);
 }

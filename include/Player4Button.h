@@ -1,9 +1,9 @@
 #pragma once
-
+#include "Controller.h"
 #include "Command.h"
 
-class Controller;
 
+class Controller;
 
 class Player4Button : public Command
 {
@@ -12,6 +12,6 @@ public:
     void execute() override;
 
 private:
-    Controller& m_game;
     GameManager& m_manager;
+    Controller& m_game;
 };

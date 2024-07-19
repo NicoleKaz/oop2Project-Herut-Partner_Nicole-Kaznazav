@@ -1,7 +1,4 @@
-#pragma once
-
 #include "ScoreTableButton.h"
-#include "Controller.h"
 
 
 ScoreTableButton::ScoreTableButton(sf::RenderWindow& window, Controller& game)

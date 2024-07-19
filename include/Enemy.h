@@ -1,14 +1,13 @@
 #pragma once
-
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <Box2D/Box2D.h>
-#include "Resources.h"
-#include "GameObject.h"
+#include <memory>
 #include "MovingObject.h"
+#include "GameObject.h"
+#include "Resources.h"
 #include "Factory.h"
 #include "Player.h"
-#include <memory>
 
 
 class Enemy : public MovingObject {

@@ -1,10 +1,9 @@
-﻿#pragma once
-
-#include "Board.h"
+﻿#include "Board.h"
 #include <thread>
-//#include <ShooterEnemy.h>
 
 
+//This constructor initializes the Board object with a reference to the main window,
+//a vector of player textures, and sets up the Box2D world with gravity and a contact listener.
 Board::Board(sf::RenderWindow& window, const std::vector<GameTextures> player_textures)
 	:m_window(window), m_gravity(0.0f, 9.8f), m_world(m_gravity), m_player_textures(player_textures)
 {
@@ -12,11 +11,13 @@ Board::Board(sf::RenderWindow& window, const std::vector<GameTextures> player_te
 	m_world.SetContactListener(&m_contact_listener);
 }
 
+//This function changes the player's texture according to the person's choice
 void Board::switchPlayer(const std::vector<GameTextures>& player_textures)
 {
 	m_player_textures = player_textures;
 }
 
+//This function handles the user's pressing on the keys and moves the player accordingly
 bool Board::handleInput(const sf::Event& event)
 {
 	switch (event.type)
@@ -49,12 +50,28 @@ bool Board::handleInput(const sf::Event& event)
 	return false;
 }
 
+//These functions handle the release of specific keys and are intended 
+//to update the state of the player accordingly.
+void Board::leftReleased()const
+{
+	m_player->releaseLeft();
+}
+void Board::spaceReleased() const
+{
+	m_player->releaseSpace();
+}
+void Board::rightReleased()const
+{
+	m_player->releaseRight();
+}
 
+//This function returns the amount of coins the player has collected
 int Board::getCoins() const
 {
 	return m_player->getCoins();
 }
 
+//This function updates the direction of the moving objects on the game
 void Board::updateMovingDirections()const
 {
 	// Update each moving object's direction based on its state
@@ -64,13 +81,12 @@ void Board::updateMovingDirections()const
 	}
 }
 
-
+//This function initializes the game board
 void Board::resetBoard()
 {
 	//clear vectors
 	m_static_objects.clear();	
 	m_moving_objects.clear();
-	m_collected_coins.clear();
 	//reset members
 	m_win = false;
 	m_background.setPosition(0, 0);
@@ -97,11 +113,10 @@ void Board::resetBoard()
 	// Reset the player
 	m_player = nullptr;
 	// Reset the world
-	//m_world = b2World(m_gravity);
 	m_world.SetContactListener(&m_contact_listener);
 }
 
-
+//This function updates the movement of the moving objects in BOX2D
 void Board::moveObjects()
 {
 	// Update Box2D world
@@ -109,77 +124,49 @@ void Board::moveObjects()
 	int32 velocityIterations = 6; // Adjust the iterations as needed
 	int32 positionIterations = 2; // Adjust the iterations as needed
 	m_world.Step(timeStep, velocityIterations, positionIterations);
-
+	//vector of the moving objects.
 	for (int index = 0; index < m_moving_objects.size(); index++)
 	{
 		m_moving_objects[index]->move();
 	}
 }
 
-
-void Board::leftReleased()const
-{
-	m_player->releaseLeft();
-}
-
-void Board::spaceReleased() const
-{
-	m_player->releaseSpace();
-}
-
-void Board::rightReleased()const
-{
-	m_player->releaseRight();
-}
-
+//This function deals with collisions on the game board
 void Board::handleCollision()
 {
 	std::erase_if(m_static_objects, [](const auto& static_object) {return static_object->getDelete(); });
-
-	if (!m_player->isAlive())
-	{
-		m_player->setRegularState();
-		m_player->resetPlayerAfterKill();
-	}
+	//Cancellation of change in gravity
 	if (m_player->isGravityChange())
 	{
 		m_gravity = -m_gravity;
 		m_world.SetGravity(m_gravity);
 	}
-
-	//setreguler
+	//If the player is disqualified
+	if (!m_player->isAlive())
+	{
+		m_player->setRegularState();
+		m_player->resetPlayerAfterKill();
+	}
+	//setr eguler
 	if (m_player->isRegularState())
 	{
 		m_player->setRegularState();
 	}
-
-
+	//Changing the color of the gate
 	for (auto& object : m_static_objects)
 	{
 		if (typeid(*object) == typeid(Entrance))
 		{
-			//static_cast<Entrance*>(object.get())->update(); //maybe need to change more nice.
 			auto entrance = static_cast<Entrance*>(object.get());
-			entrance->update();  // אפשר לשפר את הבדיקה לפי הצורך
+			entrance->update();  
 		}
 	}
-
-
-	//for (auto& moving_object : m_moving_objects)
-	//{
-	//	if (typeid (*moving_object) == typeid(ShooterEnemy))
-	//	{
-	//		static_cast<ShooterEnemy*>(moving_object.get())->shoot(); // Execute shooting logic for ShooterEnemy
-	//	}
-	//}
-
-
+	//Checking the status of the player and updating his state
 	if (m_player->isSpeedState())	/*so*/ m_player->setSpeedState();
 	if (m_player->isShieldState()) /*so*/  m_player->setShieldState();
 	if (m_player->isFlystate())   /*so*/   m_player->setFlyState();
-
+	//Time measurement for shield and speed
 	m_player->updateTools(m_background);
-
 	//end of the level
 	if (m_player->isWinner())
 	{
@@ -204,25 +191,11 @@ void Board::drawBoard()
 	}
 }
 
-void Board::resetCoin() 
-{
-	for (auto& object : m_initial_coins) 
-	{
-		//if is not nullptr
-		if (object)
-		{
-			//set delete state to false
-			//object->setNotDelete();
-			std::cout << "reset coin" << std::endl;
-			m_static_objects.push_back(std::move(object));
-		}
-	}
-}
-
+//This function creates the board according to the level map
 void Board::createLevel(const GameMaps level, const GameBackground back)
 {
 	m_background.setTexture(Resources::instance().getGameBackground(back));
-	m_background.setScale(1.f, 1.f); // àéôåñ ÷ðä äîéãä
+	m_background.setScale(1.f, 1.f); 
 	m_background.scale(1.6f, 1.6f);
 
 	//read level board from image by pixel
@@ -240,13 +213,13 @@ void Board::createLevel(const GameMaps level, const GameBackground back)
 	}
 }
 
+//This function creates the different objects on the board using the colors we defined for each object
 void Board::findObjectColor(const sf::Color& color, const sf::Vector2f& location, size_t x, size_t y, const sf::Image& m_source)
 {
 	if (color == sf::Color::White)
 	{
 		return;
 	}
-
 	//creating the player sepratly to keep a pointer on him
 	else if ((color == PLAYER_COLOR))
 	{
@@ -254,8 +227,10 @@ void Board::findObjectColor(const sf::Color& color, const sf::Vector2f& location
 		m_moving_objects.push_back(std::unique_ptr<Player>(m_player));
 		m_player_location = location;
 	}
+	//creating the other objects on the board
 	else
 	{
+		//using the Factory create the moving objects
 		auto movingObject = Factory<MovingObject>::createObject(m_source.getPixel(x, y), m_world, location);
 		if (movingObject)
 		{
@@ -263,46 +238,36 @@ void Board::findObjectColor(const sf::Color& color, const sf::Vector2f& location
 		}
 		else
 		{
+			//using the Factory create the static objects 
 			auto staticObject = Factory<StaticObject>::createObject(m_source.getPixel(x, y), m_world, location);
 			if (staticObject)
 			{
-				//chaek if the object is coin and add it to the initial coins
-				if (typeid(*staticObject) == typeid(Coin))
-				{
-					auto initialCoin = std::make_unique<Coin>(*static_cast<Coin*>(staticObject.get()));
-					copyInitialObjects(std::move(initialCoin));
-				}
 				addStaticObject(std::move(staticObject));
-
-
 			}
 		}
 	}
 }
 
+//This function adds the moving objects to the moving vector
 void Board::addMovingObject(std::unique_ptr<MovingObject> object)
 {
 	m_moving_objects.push_back(std::move(object));
 }
 
+//This function adds the static objects to the static vector
 void Board::addStaticObject(std::unique_ptr<StaticObject> object)
 {
 	m_static_objects.push_back(std::move(object));
 }
 
-// Make a copy of the initial state just for coins
-void Board::copyInitialObjects(std::unique_ptr<StaticObject> object)
-{
-	m_initial_coins.push_back(std::move(object));
-}
-
+//This function returns the position of the player on the board
 const b2Vec2 Board::getPlayerPosition()const
 {
 	return m_player->getPosition();
 }
 
+//This functionmoving the game background
 void Board::viewBackground(const float addition)
 {
-	//moving the game background
 	m_background.setPosition(m_background.getPosition().x + addition, m_background.getPosition().y);
 }

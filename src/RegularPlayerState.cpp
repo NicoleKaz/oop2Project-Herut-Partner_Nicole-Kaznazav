@@ -44,12 +44,3 @@ void RegularPlayerState::move(bool* direction, b2Body* body, bool& m_touchingFlo
 
 }
 
-
-
-
-//void RegularPlayerState::collideBrick(bool& touching_ground, bool& alive)
-//{
-//	std::cout << "CollideBrick" << std::endl;
-//    touching_ground = true;
-//}
-

@@ -2,8 +2,9 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <memory>
+#include "Resources.h"
 #include "Command.h"
-//#include <SwitchPlayerButton.h>
+
 
 class PlayersMenu 
 {
@@ -19,11 +20,6 @@ private:
     sf::Sprite m_background;
     sf::Sprite m_player[MENU_PLAYER];
     void locateObjects();
-
-
-
-
     typedef std::pair< sf::Sprite, std::unique_ptr<Command>> options;
     std::vector<options> m_options;
-       
 };
