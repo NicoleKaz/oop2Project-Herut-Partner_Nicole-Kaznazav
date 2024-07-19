@@ -16,7 +16,7 @@
 class ChaserEnemy : public Enemy 
 {
 public:
-    ChaserEnemy(b2World& world, const GameTextures texture, const sf::Vector2f location);
+    ChaserEnemy(b2World& world, const GameTextures texture, const sf::Vector2f location, const bool up);
 
     void updateDirection() override;
     void move() override;
@@ -27,7 +27,10 @@ private:
     bool m_direction[2] = { true, false } ;
     float m_speed;
     static bool m_object1;
-    //float m_attach;
+    static bool m_object2;
+    float m_attach;
+    bool m_up;
+    bool m_rot = false;
 	bool m_shouldChangeDirection = false;
 
 };

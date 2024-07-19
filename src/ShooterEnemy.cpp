@@ -4,6 +4,8 @@ ShooterEnemy::ShooterEnemy(b2World& world, const GameTextures texture, const sf:
     : Enemy(world, texture, location), m_world(world)
 {
 	m_shootClock.restart();
+    //cancel the physisc gravity powers
+    m_object_body->SetGravityScale(0.0f);
 }
 
 void ShooterEnemy::shoot()

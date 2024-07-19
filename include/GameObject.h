@@ -18,6 +18,7 @@ public:
 protected:
 	sf::Sprite m_object;
 	b2Body* m_object_body;
+	float m_attach;
 	sf::Clock m_clock;
 
 

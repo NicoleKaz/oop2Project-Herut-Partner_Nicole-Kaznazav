@@ -29,6 +29,9 @@ Bullet::Bullet(b2World& world, const GameTextures texture, const sf::Vector2f po
 
     m_body->SetLinearVelocity(forceScaled);
     m_body->ApplyLinearImpulse(forceScaled, m_body->GetWorldCenter(), true);
+
+    //cancel the physisc gravity powers
+    m_object_body->SetGravityScale(0.0f);
 }
 
 //distractor

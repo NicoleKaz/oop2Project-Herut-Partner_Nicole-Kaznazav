@@ -57,6 +57,7 @@ configure_file ("Thorns.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("SpikedWheel.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Enemy1.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Enemy2.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("Enemy3.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Bullet.png" ${CMAKE_BINARY_DIR} COPYONLY)
 
 configure_file ("Red_Song.ogg" ${CMAKE_BINARY_DIR} COPYONLY)

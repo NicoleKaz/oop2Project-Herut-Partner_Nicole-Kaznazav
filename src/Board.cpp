@@ -140,8 +140,6 @@ void Board::handleCollision()
 	{
 		m_player->setRegularState();
 		m_player->resetPlayerAfterKill();
-		//resetCoin();
-	 	//newGame();
 	}
 	if (m_player->isGravityChange())
 	{

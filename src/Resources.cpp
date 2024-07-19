@@ -87,6 +87,7 @@ void Resources::loadTextures()
 
 	m_game_textures[Enemy1].loadFromFile("Enemy1.png");
 	m_game_textures[Enemy2].loadFromFile("Enemy2.png");
+	m_game_textures[Enemy3].loadFromFile("Enemy3.png");
 	m_game_textures[Bullet1].loadFromFile("Bullet.png");
 
 	m_game_textures[CoinSpeed].loadFromFile("CoinSpeed.png");

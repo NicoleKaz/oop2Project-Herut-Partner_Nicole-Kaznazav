@@ -32,7 +32,7 @@ enum GameTextures {
 	Cube1Red, Cube2Red, Cube1Pink, Cube2Pink, Cube1Blue, Cube2Blue,
 	GateNoFly, GateGravityChange, GateLevelEnd,
 	Jumper1, Jumper2,
-	Enemy1SpriteSheet, Enemy2SpriteSheet, Enemy1, Enemy2, Bullet1,
+	Enemy1SpriteSheet, Enemy2SpriteSheet, Enemy1, Enemy2, Enemy3, Bullet1,
 	ScoreBoard, Wheel
 };
 
@@ -50,7 +50,7 @@ const int MENU_TEXTURES = 3;
 const int GAME_MAPS = 3;
 const int GAME_BACKGROUND = 3;
 
-const int GAME_TEXTURES = 45;
+const int GAME_TEXTURES = 46;
 
 
 //game object by color
@@ -85,6 +85,7 @@ const sf::Color JUMPER1_COLOR = sf::Color(181, 230, 29);
 const sf::Color PLAYER_COLOR = sf::Color(255, 201, 14);
 const sf::Color ENEMY1_COLOR = sf::Color(195, 195, 195);
 const sf::Color ENEMY2_COLOR = sf::Color(234, 54, 128);
+const sf::Color ENEMY3_COLOR = sf::Color(190, 85, 255);
 const sf::Color BULLET_COLOR = sf::Color(255, 0, 0);
 const sf::Color WHEEL_COLOR = sf::Color(50, 60, 70);
 

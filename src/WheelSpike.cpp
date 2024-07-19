@@ -5,6 +5,8 @@
 WheelSpike::WheelSpike(b2World& world, const GameTextures textures, const sf::Vector2f location)
     : MovingObject(world, textures, location), m_degrees(0.0f)
 {
+    //cancel the physisc gravity powers
+    m_object_body->SetGravityScale(0.0f);
 }
 
 void WheelSpike::move()
