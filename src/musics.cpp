@@ -23,16 +23,25 @@ Musics& Musics::instance()
 	return Music;
 }
 
-void Musics::muteMusic()
+void Musics::muteMusic(sf::Sound& sound)
 {
-	if (m_menuSound.getStatus() == sf::Sound::Playing)
+	if (sound.getStatus() == sf::Sound::Playing)
 	{
-		m_menuSound.pause();
+		sound.pause();
 	}
-	else
-	{
-		m_menuSound.play();
+	else {
+		sound.play();
 	}
+}
+
+void Musics::muteMenuMusic()
+{
+	muteMusic(m_menuSound);
+}
+
+void Musics::muteLevelMusic()
+{
+	muteMusic(m_levelSound);
 }
 
 void Musics::playMenuSound()

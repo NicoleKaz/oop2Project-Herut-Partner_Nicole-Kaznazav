@@ -23,6 +23,12 @@ void Resources::loadTextures()
 	m_menuButton[SCORE_TABLE].loadFromFile("ScoreTable.png");
 	m_menuButton[EXIT].loadFromFile("Exit.png");
 	m_menuButton[MUTE_MUSIC].loadFromFile("MuteMusic.png");
+
+	//pause buttons
+	m_menuPause[RESUME].loadFromFile("Resume.png");
+	m_menuPause[MAIN_MENU].loadFromFile("MainMenu.png");
+	m_menuPause[MUTE].loadFromFile("Mute.png");
+
 	//player buttons
 	m_menuPlayers[PLAYER1].loadFromFile("Player1.png");
 	m_menuPlayers[PLAYER2].loadFromFile("Player2.png");

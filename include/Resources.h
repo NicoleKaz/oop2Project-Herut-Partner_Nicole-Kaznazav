@@ -6,6 +6,7 @@
 //enum
 enum Instructions { GAME_RULES };
 enum Button { PLAY, HELP, SWITCH_PLAYER, SCORE_TABLE, EXIT, MUTE_MUSIC};
+enum Pause { RESUME, MAIN_MENU, MUTE };
 enum ButtonHelp { BACK, VIDEO_PLAY };
 enum Direction { Right, Left, Up, Stay };
 enum ToolBarWord { LIFE, SCORE, LEVEL, TIME, KEYCOUNTER };
@@ -38,6 +39,7 @@ enum GameTextures {
 const int LEVEL_MENU = 3;
 const int MENU_BUTTONS = 6;
 const int MENU_PLAYER = 4;
+const int PAUSE_BUTTONS = 4;
 const int INSTRUCTIONS = 1;
 const int TOOL_BAR = 5;
 const int MUSIC = 2;
@@ -107,6 +109,7 @@ public:
 	const sf::Font& getFont() const { return m_font; }
 	const sf::Texture& getMenuTexture(const MenuTextures texture)const { return m_menuTextures[texture]; }
 	const sf::Texture& getButton(const Button button)const { return m_menuButton[button]; }
+	const sf::Texture& getPause(const Pause pause)const { return m_menuPause[pause]; }
 
 private:
 	void loadTextures();
@@ -117,6 +120,7 @@ private:
 	sf::Texture m_instructionsTextures[INSTRUCTIONS];
 	sf::Texture m_menuPlayers[MENU_PLAYER];
 	sf::Texture m_menuLevel[LEVEL_MENU];
+	sf::Texture m_menuPause[PAUSE_BUTTONS];
 	sf::Font m_font;
 	sf::Image m_maps[GAME_MAPS];
 	sf::CircleShape player;

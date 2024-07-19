@@ -12,11 +12,15 @@ class Musics
 public:
 	Musics();
 	static Musics& instance();
-	void muteMusic();
+	void muteMusic(sf::Sound& sound); // Function to mute/unmute any sf::Sound object
 	void playMenuSound();
 	void stopMenuMusic();
 	void playSongLevel(const GameSounds sound);
 	void stopSongLevel(const GameSounds sound);
+	void muteMenuMusic();
+	void muteLevelMusic();
+
+
 	const sf::SoundBuffer& getSoundBuffer(const GameSounds sound) const { return m_soundBuffers[sound]; }
 
 private:

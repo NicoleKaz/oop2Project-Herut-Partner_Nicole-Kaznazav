@@ -11,6 +11,6 @@ MuteMusic::MuteMusic(sf::RenderWindow& window, Musics& music)
 
 void MuteMusic::execute()
 {
-	m_music.muteMusic();
+	m_music.muteMenuMusic();
 }
 

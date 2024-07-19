@@ -15,6 +15,11 @@ Menu::Menu(sf::RenderWindow& window)
 	{
 		m_buttons[button].setTexture(Resources::instance().getButton((Button)button));
 	}
+	//the Pause
+	for (int pause = RESUME; pause <= MUTE; pause++)
+	{
+		m_pauses[pause].setTexture(Resources::instance().getPause((Pause)pause));
+	}
 	//the instruction page 
 	for (int instruction = GAME_RULES; instruction <= GAME_RULES; instruction++)
 	{
@@ -69,6 +74,19 @@ std::vector<GameTextures> Menu::getPlayerTextures() const
 void Menu::choosePlayer(const MenuPlayer player)
 {
 	m_player = player;
+}
+
+sf::Sprite Menu::getPause(const Pause object) const
+{
+	return m_pauses[object];
+}
+
+void Menu::displayPauseMenu() const
+{
+	for (const auto& option : m_pauses)
+	{
+		m_window.draw(option);
+	}
 }
 
 //adding new button to the menu
@@ -135,6 +153,18 @@ void Menu::setPosition()
 	
 	m_buttons[MUTE_MUSIC].setPosition(sf::Vector2f((WINDOW_WIDTH - m_buttons[MUTE_MUSIC].getTextureRect().width) * 1,
 		WINDOW_HEIGHT - m_buttons[MUTE_MUSIC].getTextureRect().height * 4));
+
+
+	//set the pauses all in line ona after another in the middle of the screen
+
+	m_pauses[RESUME].setPosition(sf::Vector2f((WINDOW_WIDTH - m_pauses[RESUME].getTextureRect().width) * 0.5,
+		(WINDOW_HEIGHT - m_pauses[RESUME].getTextureRect().height) * 0.15));
+
+	m_pauses[MAIN_MENU].setPosition(sf::Vector2f((WINDOW_WIDTH - m_pauses[MAIN_MENU].getTextureRect().width) * 0.5,
+		(WINDOW_HEIGHT - m_pauses[MAIN_MENU].getTextureRect().height) * 0.5));
+
+	m_pauses[MUTE].setPosition(sf::Vector2f((WINDOW_WIDTH - m_pauses[MUTE].getTextureRect().width) * 0.5,
+		(WINDOW_HEIGHT - m_pauses[MUTE].getTextureRect().height) * 0.9));
 
 	
 	m_title.setPosition(sf::Vector2f(WINDOW_WIDTH * 0.18, WINDOW_HEIGHT * 0.1));
