@@ -88,7 +88,7 @@ const float PLAYER_MOVEMENT_SPEED = 7;
 const float PLAYER_MOVEMENT_EXTRA_SPEED = 11;
 const float ENEMY_MOVEMENT_SPEED = 3;
 //window
-const int WINDOW_HEIGHT = 800;
+const int WINDOW_HEIGHT = 800 ;
 const int WINDOW_WIDTH = 1400;
 
 
