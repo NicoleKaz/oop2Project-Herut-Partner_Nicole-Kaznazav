@@ -97,7 +97,6 @@ class Resources
 public:
 
 	Resources(); //private so there will be no duplicates
-	Resources(const Resources&) = default;
 	static Resources& instance(); //static so the resources will called once
 
 	const sf::Texture& getMenuPlayer(const MenuPlayer player) const { return m_menuPlayers[player]; }
