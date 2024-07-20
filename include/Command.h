@@ -2,10 +2,10 @@
 #include <SFML/Graphics.hpp>
 #include "Resources.h"
 
+
 class Controller;
 class GameManager;
 class Musics;
-
 
 class Command
 {

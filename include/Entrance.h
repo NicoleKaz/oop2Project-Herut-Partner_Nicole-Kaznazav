@@ -6,6 +6,7 @@
 #include "Resources.h"
 #include "Factory.h"
 
+
 class Entrance : public StaticObject
 {
 public:

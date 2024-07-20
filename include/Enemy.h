@@ -10,7 +10,8 @@
 #include "Player.h"
 
 
-class Enemy : public MovingObject {
+class Enemy : public MovingObject 
+{
 public:
     Enemy(b2World& world, const GameTextures texture, const sf::Vector2f location)
         : MovingObject(world, texture, location) {}

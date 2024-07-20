@@ -10,15 +10,11 @@ enum Pause { RESUME, MAIN_MENU, MUTE };
 enum ButtonHelp { BACK, VIDEO_PLAY };
 enum Direction { Right, Left, Up, Stay };
 enum ToolBarWord { LIFE, SCORE, LEVEL, TIME, KEYCOUNTER };
-enum Sound { CLICK, MINUS_LIFE, EAT, CLOCK_SOUND, DOOR_SOUND, FREEZE_SOUND, KEY_SOUND, GAME_OVER, WIN, EXTRA_LIFE };
-enum Music { SONG, SECOND_END };
 enum MenuTextures { menuBackground, Title, Score_Background };
 enum MenuPlayer { PLAYER1, PLAYER2, PLAYER3, PLAYER4 };
 enum MenuLevels { level1, level2, level3 };
 enum GameMaps { MapRed, MapPink, MapBlue };
 enum GameBackground { LevelRed, LevelPink, LevelBlue };
-enum GameAnimations { Enemy1Animation, Enemy2Animation };
-
 
 enum GameTextures {
 	Floor_Inair_red, Floor_Inair_pink, Floor_Inair_blue,
@@ -42,12 +38,12 @@ const int MENU_PLAYER = 4;
 const int PAUSE_BUTTONS = 4;
 const int INSTRUCTIONS = 1;
 const int TOOL_BAR = 5;
-const int MUSIC = 2;
 const int MENU_TEXTURES = 3;
 const int GAME_MAPS = 3;
 const int GAME_BACKGROUND = 3;
 const int GAME_TEXTURES = 44;
 const float SPRITE_SIZE = 400.f;
+
 //game object by color
 const sf::Color FLOOR_Inair_RED = sf::Color(0, 0, 0);
 const sf::Color CUBE1_RED = sf::Color(63, 72, 204);
@@ -69,7 +65,6 @@ const sf::Color COIN_COLOR_FLY = sf::Color(255, 127, 39);
 const sf::Color GATE_NO_FLY_COLOR = sf::Color(136, 0, 21);
 const sf::Color GATE_GRAVITY_CHANGE_COLOR = sf::Color(200, 191, 231);
 const sf::Color GATE_END_LEVEL_COLOR = sf::Color(64, 128, 128);
-const sf::Color RECTANGLE_COLOR = sf::Color(153, 217, 234);
 const sf::Color JUMPER2_COLOR = sf::Color(34, 177, 76);
 const sf::Color JUMPER1_COLOR = sf::Color(181, 230, 29);
 const sf::Color PLAYER_COLOR = sf::Color(255, 201, 14);
@@ -122,5 +117,4 @@ private:
 	sf::Texture m_menuPause[PAUSE_BUTTONS];
 	sf::Font m_font;
 	sf::Image m_maps[GAME_MAPS];
-	sf::CircleShape player;
 };

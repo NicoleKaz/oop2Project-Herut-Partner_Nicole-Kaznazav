@@ -12,7 +12,7 @@ public:
     void startGame();
     void setView();
     bool isWin();
-    int getCoins() const;
+    int getCoins() const { return m_coins; };
     void togglePause();
     Board& getBoard() { return m_board; }
     Musics& getMusics() { return m_musics; }
@@ -28,6 +28,5 @@ private:
     bool m_isPaused = false;
     sf::View m_gameView;
     sf::View m_pauseView;
-
     int m_coins;
 };

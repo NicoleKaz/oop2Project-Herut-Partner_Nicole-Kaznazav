@@ -44,22 +44,6 @@ void LevelsMenu::handleMouseMoved(const sf::Vector2f location)
 	}
 }
 
-//This function checking where the user clicked
-const int LevelsMenu::getOptionFromUser(const sf::Vector2f location) const
-{
-	//check if the button contains the click location 
-	for (int button = level1; button < m_options.size(); button++)
-	{
-		if (m_options[button].first.getGlobalBounds().contains(location))
-		{
-			//return the button we clicked at
-			return button;
-		}
-	}
-	//no button
-	return m_options.size() + 1;
-}
-
 //This function determines which menu button was clicked based on the location of the click and performs the corresponding action
 void LevelsMenu::action(const sf::Vector2f& location)const
 {

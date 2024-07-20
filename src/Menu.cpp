@@ -39,13 +39,6 @@ void Menu::updateScoreTable(const std::string& username, const int score)
 	m_score_table.saveScores("scores.txt");
 }
 
-//This function changes the color of the button as soon as the user hovers over it with the mouse
-void Menu::ButtonPress(const MenuPlayer player)
-{
-	m_players[player].setColor(sf::Color::Color(255, 255, 255, 255));
-
-}
-
 void Menu::ButtonPress(const Button button)
 {
 	m_buttons[button].setColor(sf::Color::Color(255, 255, 255, 255));
@@ -55,13 +48,6 @@ void Menu::ButtonRelease(const Button button)
 {
 	m_buttons[button].setColor(sf::Color::Color(255, 255, 255, 100));
 }
-
-
-//This function changes the color of the button as soon as the user removes the mouse from the button
-void Menu::ButtonRelease(const MenuPlayer player)
-{
-	m_players[player].setColor(sf::Color::Color(255, 255, 255, 100));
-};
 
 //The players Textures
 std::vector<GameTextures> Menu::getPlayerTextures() const
@@ -136,10 +122,7 @@ void Menu::action(const sf::Vector2f& location) const
 void Menu::displayRules()const
 {
 	m_window.draw(m_background);
-	for (int inst = GAME_RULES; inst <= GAME_RULES; inst++)
-	{
-		m_window.draw(m_instructionsPage[inst]);
-	}
+	m_window.draw(m_instructionsPage[GAME_RULES]);
 }
 
 //this function set the position 

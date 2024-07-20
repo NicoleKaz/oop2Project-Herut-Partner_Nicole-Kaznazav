@@ -30,13 +30,13 @@ public:
     void beShield();
     void beRegular();
     void beFly();
+    void beSpeed();
     void setGravity();
     void setShieldState();
     void setFlyState();
     void setSpeedState();
     void setRegularState();
     void updateTools(sf::Sprite& background);
-    void beSpeed();
     void setWin();
     void chooseAndJump(const float jump);
     void setPlayerKill();
@@ -69,5 +69,4 @@ private:
     int m_coins;
     sf::Clock m_speedClock;
     sf::Clock m_shieldClock;
-    sf::Clock m_flyClock; 
 };

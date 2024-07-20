@@ -15,7 +15,8 @@
 #include "Menu.h"
 
 
-class Controller {
+class Controller 
+{
 public:
     Controller();
     void run();
@@ -29,7 +30,6 @@ private:
     Menu m_menu;
     Musics m_musics;
     GameManager m_gameManager;
-    Resources m_resources;
     std::string m_username;
     sf::View m_gameView;
     sf::Clock m_GameClock;
@@ -38,14 +38,10 @@ private:
     sf::Text m_promptText;
     sf::RectangleShape m_backgroundRect;
 	sf::RectangleShape m_nameRect;
-    void handleSwitchPlayerMouseMoved(const sf::Vector2f location);
     void handleMenuMouseMoved(const sf::Vector2f);
     void handleTextEntered(const sf::Event& event); 
     void loadCustomCursor();
     bool m_isEnteringName = false;
-    bool m_isMuted = false;
     sf::Cursor m_cursor;
     sf::Image cursorImage;
-
-
 };

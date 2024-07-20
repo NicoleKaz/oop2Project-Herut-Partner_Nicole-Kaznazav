@@ -13,10 +13,8 @@ public:
 	Menu(sf::RenderWindow& window);
 	void drawScoreTable() ;
 	void updateScoreTable(const std::string& username, const int score);
-	void ButtonPress(const MenuPlayer player);
 	void ButtonPress(const Button button);
 	void ButtonRelease(const Button button);
-	void ButtonRelease(const MenuPlayer player);
 	void add(const Button button, std::unique_ptr<Command> command);
 	void drawMenu()const;
 	void displayRules()const;
@@ -37,12 +35,11 @@ private:
 	sf::Sprite m_instructionsPage[INSTRUCTIONS];
 	sf::Sprite m_players[MENU_PLAYER];
 	sf::Sprite m_background;
-	sf::Sprite m_title;
 	sf::Sprite m_pauses[PAUSE_BUTTONS];
+	sf::Sprite m_title;
 
 	MenuPlayer m_player;
 	void setPosition();
 	typedef std::pair<const sf::Sprite, std::unique_ptr<Command>> option;
 	std::vector<option> m_options;
-
 };

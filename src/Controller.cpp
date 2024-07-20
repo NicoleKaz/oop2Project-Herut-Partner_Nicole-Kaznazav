@@ -181,23 +181,6 @@ void Controller::handleSwitchPlayer(const sf::Vector2f location)
     }
 }
 
-void Controller::handleSwitchPlayerMouseMoved(const sf::Vector2f location)
-{
-    //loop to go over the buttons
-    for (int player = PLAYER1; player <= PLAYER4; player++)
-    {
-        //check if a button pressed
-        if ((m_menu.getPlayer((MenuPlayer)player).getGlobalBounds().contains(location)))
-        {
-            m_menu.ButtonRelease((MenuPlayer)player);
-        }
-        else
-        {
-            m_menu.ButtonPress((MenuPlayer)player);
-        }
-    }
-}
-
 //This function checks whether one of the buttons in menu has been pressed
 void Controller::handleMenuMouseMoved(const sf::Vector2f location)
 {

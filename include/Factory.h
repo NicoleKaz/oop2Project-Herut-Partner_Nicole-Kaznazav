@@ -22,7 +22,6 @@ struct ColorComparator
 template<class ObjectType>
 class Factory
 {
-
 public:
     using p2Fnc = std::unique_ptr<ObjectType>(*)(b2World& world, sf::Vector2f location);
     static bool registerObject(sf::Color, p2Fnc);

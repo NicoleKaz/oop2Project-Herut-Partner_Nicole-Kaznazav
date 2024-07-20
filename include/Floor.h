@@ -22,5 +22,4 @@ private:
 	static bool m_object7;
 	static bool m_object8;
 	static bool m_object9;
-
 };

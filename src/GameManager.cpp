@@ -127,12 +127,6 @@ bool GameManager::isWin()
     return false;
 }
 
-//This function returns the points the player has collected in the game
-int GameManager::getCoins() const
-{
-    return m_coins;
-}
-
 void GameManager::togglePause()
 {
     m_isPaused = !m_isPaused;
