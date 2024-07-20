@@ -48,6 +48,7 @@ void Controller::run()
             }
             case sf::Event::MouseButtonReleased:
             {
+                m_GameClock.restart();
                 //getting the click location, checking what button pressed
                 const auto location = m_window.mapPixelToCoords({ event.mouseButton.x, event.mouseButton.y });
                 //performing the button action accordingly
@@ -142,7 +143,8 @@ void Controller::handleTextEntered(const sf::Event& event)
         else if (enteredChar == '\r')
         {
             m_isEnteringName = false;
-            int score = m_gameManager.getCoins();
+            int coins = m_gameManager.getCoins();
+            int score = 500000 - ((m_GameClock.getElapsedTime().asSeconds() * 8) + (coins * 5));
             m_menu.updateScoreTable(m_username, score);
         }
         //Handle other printable characters
