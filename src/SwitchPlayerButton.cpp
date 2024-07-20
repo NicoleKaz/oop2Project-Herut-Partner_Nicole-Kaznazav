@@ -40,7 +40,7 @@ void SwitchPlayerButton::execute()
             {
                 // Indicate if the mouse is on the buttons
                 const auto location = m_window.mapPixelToCoords(sf::Mouse::getPosition(m_window));
-                m_playerMenu.handleMouseMoved(location);
+                m_playerMenu.handleSwitchPlayerMouseMoved(location);
                 break;
             }
             case sf::Event::Closed:

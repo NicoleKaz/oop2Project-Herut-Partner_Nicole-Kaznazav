@@ -21,7 +21,6 @@ public:
     void run();
     void fillScoreTable();
     void handleSwitchPlayer(const sf::Vector2f location);
-    void handleSwitchPlayerMouseMoved(const sf::Vector2f location);
     void quitGame();
     Menu& getMenu() { return m_menu; }
     Musics& getMusics() { return m_musics; }
@@ -39,8 +38,14 @@ private:
     sf::Text m_promptText;
     sf::RectangleShape m_backgroundRect;
 	sf::RectangleShape m_nameRect;
+    void handleSwitchPlayerMouseMoved(const sf::Vector2f location);
     void handleMenuMouseMoved(const sf::Vector2f);
     void handleTextEntered(const sf::Event& event); 
+    void loadCustomCursor();
     bool m_isEnteringName = false;
     bool m_isMuted = false;
+    sf::Cursor m_cursor;
+    sf::Image cursorImage;
+
+
 };

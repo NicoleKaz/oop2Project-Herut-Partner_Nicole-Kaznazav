@@ -13,7 +13,7 @@ public:
     void drawPlayer() const;
     void add(const MenuPlayer player, std::unique_ptr<Command> command);
     void handleAction(const sf::Vector2f& location);
-    void handleMouseMoved(const sf::Vector2f& location);
+    void handleSwitchPlayerMouseMoved(const sf::Vector2f& location);
 
 private:
     sf::RenderWindow& m_window;

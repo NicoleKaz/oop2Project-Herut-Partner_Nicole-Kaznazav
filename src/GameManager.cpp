@@ -67,16 +67,10 @@ void GameManager::startGame()
 void GameManager::handlePauseMenu()
 {
     m_window.setView(m_pauseView);
-
     sf::RectangleShape darkOverlay(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT));
-    //derkl liitle
     darkOverlay.setFillColor(sf::Color(50, 50, 90, 8));
-
-
     m_window.draw(darkOverlay);
-
     m_menu.displayPauseMenu();
-
     m_window.display();
 
     // handle the pause menu

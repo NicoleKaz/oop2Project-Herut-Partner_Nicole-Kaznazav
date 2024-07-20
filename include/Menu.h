@@ -14,6 +14,8 @@ public:
 	void drawScoreTable() ;
 	void updateScoreTable(const std::string& username, const int score);
 	void ButtonPress(const MenuPlayer player);
+	void ButtonPress(const Button button);
+	void ButtonRelease(const Button button);
 	void ButtonRelease(const MenuPlayer player);
 	void add(const Button button, std::unique_ptr<Command> command);
 	void drawMenu()const;
@@ -24,7 +26,7 @@ public:
 	sf::Sprite getPause(const Pause object) const;
 	const sf::Sprite getPlayer(const MenuPlayer player) const { return m_players[player]; }
 	std::vector<GameTextures> getPlayerTextures() const;
-	sf::Sprite getButton(const Button button) const { return m_buttons[0]; }
+	sf::Sprite getButton(const Button button) const { return m_buttons[button]; }
 
 private:
 	std::string scoreFile = "scores.txt";

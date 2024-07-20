@@ -22,7 +22,10 @@ Controller::Controller()
     m_menu.add(MUTE_MUSIC, std::make_unique<MuteMusic>(m_window, m_musics));
 
     m_window.setView(m_gameView);
+	loadCustomCursor();
 };
+
+
 
 //This function runs the game menu
 void Controller::run()
@@ -55,6 +58,13 @@ void Controller::run()
                 m_menu.action(location);
                 break;
             }
+            //handleMenuMouseMoved
+			case sf::Event::MouseMoved:
+			{
+				const auto location = m_window.mapPixelToCoords({ event.mouseMove.x, event.mouseMove.y });
+				handleMenuMouseMoved(location);
+				break;
+			}
             }
         }
         if (m_gameManager.isWin())
@@ -170,6 +180,7 @@ void Controller::handleSwitchPlayer(const sf::Vector2f location)
         }
     }
 }
+
 void Controller::handleSwitchPlayerMouseMoved(const sf::Vector2f location)
 {
     //loop to go over the buttons
@@ -178,11 +189,11 @@ void Controller::handleSwitchPlayerMouseMoved(const sf::Vector2f location)
         //check if a button pressed
         if ((m_menu.getPlayer((MenuPlayer)player).getGlobalBounds().contains(location)))
         {
-            m_menu.ButtonPress((MenuPlayer)player);
+            m_menu.ButtonRelease((MenuPlayer)player);
         }
         else
         {
-            m_menu.ButtonRelease((MenuPlayer)player);
+            m_menu.ButtonPress((MenuPlayer)player);
         }
     }
 }
@@ -193,15 +204,16 @@ void Controller::handleMenuMouseMoved(const sf::Vector2f location)
     //loop to go over the buttons
     for (int player = PLAY; player <= MUTE_MUSIC; player++)
     {
-        //check if a button pressed
-        if ((m_menu.getButton((Button)player).getGlobalBounds().contains(location)))
-        {
-            m_menu.ButtonPress((MenuPlayer)player);
-        }
-        else
-        {
-            m_menu.ButtonRelease((MenuPlayer)player);
-        }
+		//check if a button pressed
+		if ((m_menu.getButton((Button)player).getGlobalBounds().contains(location)))
+		{
+			m_menu.ButtonRelease((Button)player);
+		}
+		else
+		{
+			m_menu.ButtonPress((Button)player);
+		}
+        
     }
 }
 
@@ -209,4 +221,15 @@ void Controller::handleMenuMouseMoved(const sf::Vector2f location)
 void Controller::quitGame()
 {
     m_window.close();
+}
+
+//This function loads the custom cursor
+void Controller::loadCustomCursor()
+{
+    // Load the custom cursor image
+    cursorImage.loadFromFile("cursor.png");
+    // Create the cursor from the image
+    m_cursor.loadFromPixels(cursorImage.getPixelsPtr(), cursorImage.getSize(), { 0, 0 });
+    // Set the cursor for the window
+    m_window.setMouseCursor(m_cursor);
 }

@@ -15,7 +15,6 @@ PlayersMenu::PlayersMenu(sf::RenderWindow& window)
     locateObjects();
 }
 
-
 void PlayersMenu::locateObjects()
 {
     //level buttons
@@ -33,13 +32,13 @@ void PlayersMenu::locateObjects()
 }
 
 //draw the players buttons
-void PlayersMenu::drawPlayer()const 
+void PlayersMenu::drawPlayer() const
 {
-    m_window.draw(m_background);
-    for (int player = PLAYER1; player <= PLAYER4; player++)
+	m_window.draw(m_background);
+    for (const auto& option : m_player)
     {
-        m_window.draw(m_player[player]);
-    }
+        m_window.draw(option);
+	}
 }
 
 void PlayersMenu::add(const MenuPlayer player, std::unique_ptr<Command> command)
@@ -61,17 +60,19 @@ void PlayersMenu::handleAction(const sf::Vector2f& location)
     }
 }
 
-void PlayersMenu::handleMouseMoved(const sf::Vector2f& location)
+//handleSwitchPlayerMouseMoved
+void PlayersMenu::handleSwitchPlayerMouseMoved(const sf::Vector2f& location)
 {
-    for (auto& option : m_options)
-    {
-        if (option.first.getGlobalBounds().contains(location))
-        {
-            option.first.setColor(sf::Color::Yellow);  // Highlight on hover
-        }
-        else
-        {
-            option.first.setColor(sf::Color::White);  // Reset color
-        }
-    }
+	for (auto& option : m_player)
+	{
+		if (option.getGlobalBounds().contains(location))
+		{
+			option.setColor(sf::Color::Color(255, 0, 0));
+		}
+		else
+		{
+			option.setColor(sf::Color::Color(255, 255, 255));
+		}
+		
+	}
 }

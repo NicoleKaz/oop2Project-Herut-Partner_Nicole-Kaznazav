@@ -46,6 +46,17 @@ void Menu::ButtonPress(const MenuPlayer player)
 
 }
 
+void Menu::ButtonPress(const Button button)
+{
+	m_buttons[button].setColor(sf::Color::Color(255, 255, 255, 255));
+}
+
+void Menu::ButtonRelease(const Button button)
+{
+	m_buttons[button].setColor(sf::Color::Color(255, 255, 255, 100));
+}
+
+
 //This function changes the color of the button as soon as the user removes the mouse from the button
 void Menu::ButtonRelease(const MenuPlayer player)
 {
@@ -99,12 +110,13 @@ void Menu::add(const Button button, std::unique_ptr<Command> command)
 void Menu::drawMenu()const
 {
 	m_window.draw(m_background);
-	for (const auto& option : m_options)
-	{
-		m_window.draw(option.first);
-	}
 	m_window.draw(m_title);
+	for (const auto& option : m_buttons)
+	{
+		m_window.draw(option);
+	}
 }
+
 
 // function handles user interactions with menu items by executing 
 //associated actions when the user clicks on a menu item. 
