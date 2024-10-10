@@ -1,6 +1,5 @@
-Project: 
 Geometry Dash
-Names:
+
 Herut Partner  205741333
 Nicole Kazantsev  208258095
 
